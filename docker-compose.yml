@@ -9,8 +9,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ".:/client"
-      - "/client/node_modules"
+      - ".:/app"
+      - "/app/node_modules"
     restart: always
     tty: true
-    command: ["npm", "start"]
+    command: ["npm", "run", "start"]
