@@ -6,7 +6,7 @@ export const Form = styled.form`
   position: relative;
   padding: 0;
   margin: 0;
-  max-width: 300px;
+  max-width: 320px;
   width: 100%;
 `;
 

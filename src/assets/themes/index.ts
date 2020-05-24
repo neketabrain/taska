@@ -4,6 +4,7 @@ import { DefaultTheme } from "styled-components";
 const defaultTheme: DefaultTheme = {
   colors: {
     primary: "#36355F",
+    secondary: "#7774ED",
     bg: "#FAFAFC",
     text: "#19203A",
     textDisabled: "#9097AF",
