@@ -10,6 +10,19 @@ declare module "styled-components" {
       border: string;
       borderHover: string;
       inputBg: string;
+
+      buttons: {
+        primary: {
+          bg: string;
+          hover: string;
+          active: string;
+        };
+        secondary: {
+          bg: string;
+          border: string;
+          borderHover: string;
+        };
+      };
     };
   }
 }
