@@ -1,6 +1,6 @@
 {
   "title": "Registration",
-  "toLogin": "Sign in",
+  "toLogin": "Login",
   "email": {
     "label": "Email"
   },
@@ -13,5 +13,7 @@
   "password": {
     "label": "Password"
   },
-  "button": "Sign up"
+  "button": "Sign up",
+  "divider": "or",
+  "withGoogle": "Sign in with Google"
 }

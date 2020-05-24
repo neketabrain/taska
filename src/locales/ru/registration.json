@@ -13,5 +13,7 @@
   "password": {
     "label": "Пароль"
   },
-  "button": "Зарегистрироваться"
+  "button": "Зарегистрироваться",
+  "divider": "или",
+  "withGoogle": "Войти через Google"
 }
