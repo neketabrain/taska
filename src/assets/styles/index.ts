@@ -25,6 +25,7 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     box-sizing: border-box;
     display: flex;
+    flex-direction: column;
   }
   
   ${Fonts}
