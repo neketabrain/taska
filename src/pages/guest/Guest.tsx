@@ -8,7 +8,7 @@ function Guest(): JSX.Element {
     <Switch>
       <Route path="/registration" component={RegistrationPage} />
 
-      <Redirect to="/login" />
+      <Redirect to="/registration" />
     </Switch>
   );
 }

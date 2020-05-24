@@ -39,7 +39,7 @@ export const DividerContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 32px 0;
+  margin: 20px 0;
   position: relative;
 `;
 
@@ -53,5 +53,5 @@ export const Divider = styled(Box)`
 export const GoogleIcon = styled(Icons.Google)`
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: 16px;
 `;
