@@ -10,6 +10,7 @@ export const Wrapper = styled.header`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }): string => theme.colors.primary};
+  margin-bottom: 48px;
 `;
 
 export const Container = styled(Box)`

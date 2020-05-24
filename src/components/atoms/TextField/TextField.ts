@@ -12,10 +12,7 @@ const TextField = styled.input`
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
   padding: 0 16px;
-
-  :hover :not(:disabled) {
-    border-color: ${({ theme }): string => theme.colors.borderHover};
-  }
+  outline: 0;
 
   :focus {
     border-color: ${({ theme }): string => theme.colors.primary};
@@ -25,6 +22,10 @@ const TextField = styled.input`
   :disabled {
     cursor: not-allowed;
     color: ${({ theme }): string => theme.colors.textDisabled};
+  }
+
+  :hover :not(:focus) :not(:disabled) {
+    border-color: ${({ theme }): string => theme.colors.borderHover};
   }
 `;
 
