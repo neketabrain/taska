@@ -1,0 +1,17 @@
+{
+  "title": "Registration",
+  "toLogin": "Sign in",
+  "email": {
+    "label": "Email"
+  },
+  "firstName": {
+    "label": "First name"
+  },
+  "lastName": {
+    "label": "Last name"
+  },
+  "password": {
+    "label": "Password"
+  },
+  "button": "Sign up"
+}
