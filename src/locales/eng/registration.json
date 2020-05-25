@@ -1,0 +1,19 @@
+{
+  "title": "Registration",
+  "toLogin": "Login",
+  "email": {
+    "label": "Email"
+  },
+  "firstName": {
+    "label": "First name"
+  },
+  "lastName": {
+    "label": "Last name"
+  },
+  "password": {
+    "label": "Password"
+  },
+  "button": "Sign up",
+  "divider": "or",
+  "withGoogle": "Sign in with Google"
+}

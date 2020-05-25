@@ -1,8 +1,12 @@
-FROM node:14.3-alpine
+FROM node:14-alpine
 
-WORKDIR /client/
+ARG APP_DIR=app
 
-COPY package.json /client/
-RUN npm install
+RUN mkdir -p ${APP_DIR}
+WORKDIR ${APP_DIR}
 
-COPY . /client/
+COPY package.json ./
+COPY yarn.lock ./
+RUN yarn install
+
+COPY . .

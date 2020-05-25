@@ -6,17 +6,23 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json"
+    "test:ci": "cross-env CI=true npm run test --env=jsdom",
+    "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
+    "serve": "serve -s build"
   },
   "dependencies": {
     "camelcase": "^5.3.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
+    "firebase": "^7.14.5",
     "fs-extra": "^8.1.0",
+    "i18next": "^19.4.4",
+    "i18next-browser-languagedetector": "^4.2.0",
     "identity-obj-proxy": "3.0.0",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",
+    "react-i18next": "^11.5.0",
     "react-router-dom": "^5.2.0",
     "resolve": "1.15.0",
     "semver": "6.3.0",
@@ -30,6 +36,8 @@
     "@testing-library/jest-dom": "^5.8.0",
     "@testing-library/react": "^10.0.4",
     "@testing-library/user-event": "^10.3.5",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^25.2.3",
     "@types/node": "^14.0.5",
     "@types/react": "^16.9.35",
@@ -46,7 +54,10 @@
     "babel-plugin-styled-components": "^1.10.7",
     "babel-preset-react-app": "^9.1.2",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "cross-env": "^7.0.2",
     "css-loader": "3.4.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
@@ -63,6 +74,7 @@
     "husky": "^4.2.5",
     "jest": "24.9.0",
     "jest-environment-jsdom-fourteen": "1.0.1",
+    "jest-enzyme": "^7.1.2",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.2",
     "lint-staged": "^10.2.6",
@@ -76,8 +88,10 @@
     "postcss-safe-parser": "4.0.1",
     "prettier": "^2.0.5",
     "react-dev-utils": "^10.2.1",
+    "react-test-renderer": "^16.13.1",
     "resolve-url-loader": "3.1.1",
     "sass-loader": "8.0.2",
+    "serve": "^11.3.1",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "2.3.5",
     "ts-pnp": "1.1.6",
@@ -129,6 +143,7 @@
     ],
     "modulePaths": [],
     "moduleNameMapper": {
+      "^src(.*)$": "<rootDir>/src$1",
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
     },
@@ -152,7 +167,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && lint-staged",
-      "pre-push": "npm run lint && npx jest -o"
+      "pre-push": "npm run lint && npm run test:ci"
     }
   },
   "lint-staged": {

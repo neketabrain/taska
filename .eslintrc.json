@@ -39,6 +39,7 @@
     ],
     "no-multi-spaces": "error",
     "no-console": "warn",
+    "import/named": "off",
     "import/order": [
       "error",
       {
