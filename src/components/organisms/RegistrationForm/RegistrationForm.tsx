@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Input, Box } from "src/components";
+import { Input, Box, Flex } from "src/components";
 
 import { Form, InputContainer, SubmitButton } from "./RegistrationForm.styles";
 import {
@@ -41,7 +41,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
   return (
     <Form onSubmit={handleSubmit}>
       <InputContainer>
-        <Box display="flex" justifyContent="space-between">
+        <Flex justifyContent="space-between">
           <Box width="48%">
             <Input
               required
@@ -63,7 +63,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               onChange={(e): void => setLastName(e.target.value)}
             />
           </Box>
-        </Box>
+        </Flex>
       </InputContainer>
 
       <InputContainer>

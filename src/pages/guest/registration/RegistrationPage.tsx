@@ -8,20 +8,22 @@ import {
   Text,
   Button,
 } from "src/components";
+import { ROUTES } from "src/constants";
 
 import {
   Container,
   Header,
   Title,
-  LoginLink,
+  NavLink,
   ChevronIcon,
   DividerContainer,
   Divider,
   GoogleIcon,
-} from "./RegistrationPage.styles";
+} from "../Guest.styles";
 
 function RegistrationPage(): JSX.Element {
   const { t } = useTranslation("registration");
+
   async function handleSubmit(values: RegistrationFormValues): Promise<void> {
     const { firstName, lastName, email, password } = values;
     const displayName = `${firstName} ${lastName}`;
@@ -39,9 +41,9 @@ function RegistrationPage(): JSX.Element {
     <Container>
       <Header>
         <Title>{t("title")}</Title>
-        <LoginLink to="/">
+        <NavLink to={ROUTES.LOGIN}>
           {t("toLogin")} <ChevronIcon />
-        </LoginLink>
+        </NavLink>
       </Header>
 
       <RegistrationForm onSubmit={handleSubmit} />
