@@ -6,6 +6,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "test:ci": "cross-env CI=true npm run test --env=jsdom",
     "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
     "serve": "serve -s build"
   },
@@ -166,7 +167,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && lint-staged",
-      "pre-push": "npm run lint && cross-env CI=true npm run test --env=jsdom"
+      "pre-push": "npm run lint && npm run test:ci"
     }
   },
   "lint-staged": {
