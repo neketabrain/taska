@@ -50,6 +50,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               type="text"
               value={firstName}
               onChange={(e): void => setFirstName(e.target.value)}
+              disabled={isSubmitting}
             />
           </Box>
 
@@ -61,6 +62,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               type="text"
               value={lastName}
               onChange={(e): void => setLastName(e.target.value)}
+              disabled={isSubmitting}
             />
           </Box>
         </Flex>
@@ -74,6 +76,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
           type="email"
           value={email}
           onChange={(e): void => setEmail(e.target.value)}
+          disabled={isSubmitting}
         />
       </InputContainer>
 
@@ -85,6 +88,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
           type="password"
           value={password}
           onChange={(e): void => setPassword(e.target.value)}
+          disabled={isSubmitting}
         />
       </InputContainer>
 

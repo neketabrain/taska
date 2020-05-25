@@ -1,0 +1,15 @@
+{
+  "title": "Login",
+  "toRegistration": "Registration",
+  "email": {
+    "label": "Email"
+  },
+  "password": {
+    "label": "Password"
+  },
+  "button": "Sign in",
+  "divider": "or",
+  "withGoogle": "Sign in with Google",
+  "forgot": "Forgot password?",
+  "remember": "Remember me"
+}
