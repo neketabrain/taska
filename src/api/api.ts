@@ -17,6 +17,7 @@ class Api {
   auth: firebase.auth.Auth;
   db: firebase.firestore.Firestore;
   googleAuthProvider: firebase.auth.GoogleAuthProvider;
+  persistence: typeof firebase.auth.Auth.Persistence;
 
   constructor() {
     firebase.initializeApp(firebaseConfig);
@@ -25,6 +26,7 @@ class Api {
     this.auth = firebase.auth();
     this.db = firebase.firestore();
 
+    this.persistence = firebase.auth.Auth.Persistence;
     this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
   }
 
