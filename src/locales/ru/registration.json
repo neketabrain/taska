@@ -1,0 +1,19 @@
+{
+  "title": "Регистрация",
+  "toLogin": "Вход",
+  "email": {
+    "label": "Электронная почта"
+  },
+  "firstName": {
+    "label": "Имя"
+  },
+  "lastName": {
+    "label": "Фамилия"
+  },
+  "password": {
+    "label": "Пароль"
+  },
+  "button": "Зарегистрироваться",
+  "divider": "или",
+  "withGoogle": "Войти через Google"
+}
