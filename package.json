@@ -6,8 +6,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
-    "test:ci": "cross-env CI=true npm run test --env=jsdom"
+    "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json"
   },
   "dependencies": {
     "camelcase": "^5.3.1",
@@ -53,7 +52,6 @@
     "babel-plugin-styled-components": "^1.10.7",
     "babel-preset-react-app": "^9.1.2",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
-    "cross-env": "^7.0.2",
     "css-loader": "3.4.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
@@ -165,7 +163,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && lint-staged",
-      "pre-push": "npm run lint && npm run test:ci"
+      "pre-push": "npm run lint && npm run test --watchAll=false"
     }
   },
   "lint-staged": {
