@@ -7,6 +7,7 @@ import {
   RegistrationFormValues,
   Text,
   Button,
+  Link,
 } from "src/components";
 import { ROUTES } from "src/constants";
 
@@ -14,7 +15,6 @@ import {
   Container,
   Header,
   Title,
-  NavLink,
   ChevronIcon,
   DividerContainer,
   Divider,
@@ -41,9 +41,9 @@ function RegistrationPage(): JSX.Element {
     <Container>
       <Header>
         <Title>{t("title")}</Title>
-        <NavLink to={ROUTES.LOGIN}>
+        <Link to={ROUTES.LOGIN}>
           {t("toLogin")} <ChevronIcon />
-        </NavLink>
+        </Link>
       </Header>
 
       <RegistrationForm onSubmit={handleSubmit} />

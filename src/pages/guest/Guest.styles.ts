@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Box, Flex, H1, Link, Icons } from "src/components";
+import { Box, Flex, H1, Icons } from "src/components";
 
 export const Container = styled(Flex)`
   flex-direction: column;
@@ -18,11 +18,6 @@ export const Header = styled(Flex)`
 export const Title = styled(H1)`
   max-width: 65%;
   margin: 0;
-`;
-
-export const NavLink = styled(Link)`
-  font-size: 16px;
-  font-weight: 600;
 `;
 
 export const ChevronIcon = styled(Icons.ChevronRight)`
