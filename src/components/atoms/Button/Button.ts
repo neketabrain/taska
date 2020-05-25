@@ -8,11 +8,11 @@ const primary = {
   bg: "buttons.primary.bg",
   border: "none",
 
-  "&:hover, &:focus": {
+  "&:hover:enabled, &:focus:enabled": {
     bg: "buttons.primary.hover",
   },
 
-  "&:active": {
+  "&:active:enabled": {
     bg: "buttons.primary.active",
   },
 };
@@ -23,11 +23,11 @@ const secondary = {
   border: "1px solid",
   borderColor: "buttons.secondary.border",
 
-  "&:hover, &:focus": {
+  "&:hover:enabled, &:focus:enabled": {
     borderColor: "buttons.secondary.borderHover",
   },
 
-  "&:active": {
+  "&:active:enabled": {
     bg: "buttons.secondary.border",
   },
 };
@@ -47,6 +47,11 @@ const Button = styled.button<ButtonProps>`
   padding: 0;
   cursor: pointer;
   outline: 0;
+
+  :disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 
   ${variant({
     variants: {
