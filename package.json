@@ -7,7 +7,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
-    "test:ci": "cross-env CI=true npm run test --env=jsdom"
+    "test:ci": "cross-env CI=true npm run test --env=jsdom",
+    "serve": "serve -s build"
   },
   "dependencies": {
     "camelcase": "^5.3.1",
@@ -90,6 +91,7 @@
     "react-test-renderer": "^16.13.1",
     "resolve-url-loader": "3.1.1",
     "sass-loader": "8.0.2",
+    "serve": "^11.3.1",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "2.3.5",
     "ts-pnp": "1.1.6",
