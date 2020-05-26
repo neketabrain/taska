@@ -29,28 +29,6 @@ class Api {
     this.persistence = firebase.auth.Auth.Persistence;
     this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
   }
-
-  createUserWithEmailAndPassword(
-    email: string,
-    password: string
-  ): Promise<firebase.auth.UserCredential> {
-    return this.auth.createUserWithEmailAndPassword(email, password);
-  }
-
-  signInWithGoogle(): Promise<firebase.auth.UserCredential> {
-    return this.auth.signInWithPopup(this.googleAuthProvider);
-  }
-
-  signInWithEmailAndPassword(
-    email: string,
-    password: string
-  ): Promise<firebase.auth.UserCredential> {
-    return this.auth.signInWithEmailAndPassword(email, password);
-  }
-
-  signOut(): Promise<void> {
-    return this.auth.signOut();
-  }
 }
 
 export default new Api();

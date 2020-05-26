@@ -25,14 +25,18 @@ function RegistrationPage(): JSX.Element {
     Api.auth
       .setPersistence(isRemembered ? LOCAL : NONE)
       .then(() =>
-        Api.signInWithEmailAndPassword(email, password)
+        Api.auth
+          .signInWithEmailAndPassword(email, password)
           .then(console.log)
           .catch(console.log)
       );
   }
 
   function signInWithGoogle(): void {
-    Api.signInWithGoogle().then(console.log).catch(console.log);
+    Api.auth
+      .signInWithPopup(Api.googleAuthProvider)
+      .then(console.log)
+      .catch(console.log);
   }
 
   return (
