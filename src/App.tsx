@@ -3,13 +3,13 @@ import { ThemeProvider } from "styled-components";
 
 import "./i18n";
 
-import { Theme, GlobalStyles } from "./assets";
+import { defaultTheme, GlobalStyles } from "./assets";
 import { AuthProvider } from "./context";
 import { Router } from "./pages";
 
 function App(): JSX.Element {
   return (
-    <ThemeProvider theme={Theme.defaultTheme}>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalStyles />
       <AuthProvider>
         <Router />
