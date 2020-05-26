@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import styled, {
+  css,
+  FlattenInterpolation,
+  ThemeProps,
+  DefaultTheme,
+} from "styled-components";
 
-const TextField = styled.input`
+const TextField = styled.input<{ hasError?: boolean }>`
   position: relative;
   width: 100%;
   height: 40px;
@@ -27,6 +32,15 @@ const TextField = styled.input`
   :hover :not(:focus) :not(:disabled) {
     border-color: ${({ theme }): string => theme.colors.borderHover};
   }
+
+  ${({
+    hasError,
+  }): FlattenInterpolation<ThemeProps<DefaultTheme>> | false | undefined =>
+    hasError &&
+    css`
+      border-color: ${({ theme }): string => theme.colors.error} !important;
+      background-color: ${({ theme }): string => theme.colors.errorBg};
+    `};
 `;
 
 export default TextField;
