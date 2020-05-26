@@ -9,8 +9,8 @@ import { RegistrationPage } from "./registration";
 function Guest(): JSX.Element {
   return (
     <Switch>
-      <Route path={ROUTES.LOGIN} component={LoginPage} />
-      <Route path={ROUTES.REGISTRATION} component={RegistrationPage} />
+      <Route exact path={ROUTES.LOGIN} component={LoginPage} />
+      <Route exact path={ROUTES.REGISTRATION} component={RegistrationPage} />
 
       <Redirect to={ROUTES.LOGIN} />
     </Switch>
