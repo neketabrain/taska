@@ -6,7 +6,6 @@ export const Form = styled.form`
   position: relative;
   padding: 0;
   margin: 0;
-  max-width: 320px;
   width: 100%;
 `;
 
@@ -18,4 +17,8 @@ export const InputContainer = styled(Box)`
 
 export const SubmitButton = styled(Button)`
   margin-top: 24px;
+
+  @media screen and (max-width: 480px) {
+    margin-top: 40px;
+  }
 `;

@@ -6,7 +6,6 @@ export const Form = styled.form`
   position: relative;
   padding: 0;
   margin: 0;
-  max-width: 320px;
   width: 100%;
 `;
 
@@ -24,8 +23,17 @@ export const ButtonContainer = styled(Flex)`
   margin-top: 24px;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 480px) {
+    margin-top: 40px;
+  }
 `;
 
 export const SubmitButton = styled(Button)`
   max-width: 128px;
+
+  @media screen and (max-width: 480px) {
+    max-width: 180px;
+    width: 50%;
+  }
 `;

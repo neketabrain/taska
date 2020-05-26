@@ -39,7 +39,6 @@ const Button = styled.button<ButtonProps>`
   color: ${({ theme }): string => theme.colors.bg};
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,10 +46,16 @@ const Button = styled.button<ButtonProps>`
   padding: 0;
   cursor: pointer;
   outline: 0;
+  font-size: 14px;
 
   :disabled {
     cursor: not-allowed;
     opacity: 0.5;
+  }
+
+  @media screen and (max-width: 480px) {
+    height: 50px;
+    font-size: 16px;
   }
 
   ${variant({

@@ -9,7 +9,6 @@ export const InputContainer = styled(Box)`
 
 export const Label = styled.label`
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
   color: ${({ theme }): string => theme.colors.text};
 `;
 

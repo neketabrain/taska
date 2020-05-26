@@ -13,6 +13,7 @@ type BoxProps = SpaceProps | LayoutProps | PositionProps;
 
 const Box = styled.div<BoxProps>`
   position: relative;
+  box-sizing: border-box;
   ${compose(space, layout, position)};
 `;
 
