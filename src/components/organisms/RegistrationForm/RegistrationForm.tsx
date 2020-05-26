@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Input, Box, Flex } from "src/components";
+import { useForm } from "src/hooks";
 
 import { Form, InputContainer, SubmitButton } from "./RegistrationForm.styles";
 import {
@@ -9,15 +10,19 @@ import {
   RegistrationFormValues,
 } from "./RegistrationForm.types";
 
+const defaultValues: RegistrationFormValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+};
+
 function RegistrationForm(props: RegistrationFormProps): JSX.Element {
-  const { onSubmit } = props;
+  const { onSubmit, getError, clearError } = props;
 
   const { t } = useTranslation("registration");
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, onChange } = useForm(defaultValues, clearError);
   const [isSubmitting, setSubmitting] = useState(false);
 
   async function handleSubmit(
@@ -26,15 +31,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
     event.preventDefault();
 
     setSubmitting(true);
-
-    const values: RegistrationFormValues = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
     await onSubmit(values);
-
     setSubmitting(false);
   }
 
@@ -48,8 +45,8 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               label={t("firstName.label")}
               name="firstName"
               type="text"
-              value={firstName}
-              onChange={(e): void => setFirstName(e.target.value)}
+              value={values.firstName}
+              onChange={onChange}
               disabled={isSubmitting}
             />
           </Box>
@@ -60,8 +57,8 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               label={t("lastName.label")}
               name="lastName"
               type="text"
-              value={lastName}
-              onChange={(e): void => setLastName(e.target.value)}
+              value={values.lastName}
+              onChange={onChange}
               disabled={isSubmitting}
             />
           </Box>
@@ -71,11 +68,12 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
       <InputContainer>
         <Input
           required
+          error={getError ? getError("email") : ""}
           label={t("email.label")}
           name="email"
           type="email"
-          value={email}
-          onChange={(e): void => setEmail(e.target.value)}
+          value={values.email}
+          onChange={onChange}
           disabled={isSubmitting}
         />
       </InputContainer>
@@ -83,11 +81,12 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
       <InputContainer>
         <Input
           required
+          error={getError ? getError("password") : ""}
           label={t("password.label")}
           name="password"
           type="password"
-          value={password}
-          onChange={(e): void => setPassword(e.target.value)}
+          value={values.password}
+          onChange={onChange}
           disabled={isSubmitting}
         />
       </InputContainer>

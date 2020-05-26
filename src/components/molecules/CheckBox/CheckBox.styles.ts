@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Icons, Box } from "../";
+import { Icons, Box } from "../../atoms";
 
 export const CheckBoxContainer = styled(Box)`
   display: inline-block;

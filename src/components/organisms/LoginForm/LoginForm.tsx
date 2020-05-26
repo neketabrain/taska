@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Input, Link, CheckBox } from "src/components";
 import { ROUTES } from "src/constants";
+import { useForm } from "src/hooks";
 
 import {
   Form,
@@ -13,14 +14,18 @@ import {
 } from "./LoginForm.styles";
 import { LoginFormProps, LoginFormValues } from "./LoginForm.types";
 
+const defaultValues: LoginFormValues = {
+  email: "",
+  password: "",
+  isRemembered: false,
+};
+
 function LoginForm(props: LoginFormProps): JSX.Element {
-  const { onSubmit } = props;
+  const { onSubmit, getError, clearError } = props;
 
   const { t } = useTranslation("login");
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isRemembered, setRemembered] = useState(false);
+  const { values, onChange } = useForm(defaultValues, clearError);
   const [isSubmitting, setSubmitting] = useState(false);
 
   async function handleSubmit(
@@ -29,14 +34,7 @@ function LoginForm(props: LoginFormProps): JSX.Element {
     event.preventDefault();
 
     setSubmitting(true);
-
-    const values: LoginFormValues = {
-      email,
-      password,
-      isRemembered,
-    };
     await onSubmit(values);
-
     setSubmitting(false);
   }
 
@@ -45,11 +43,12 @@ function LoginForm(props: LoginFormProps): JSX.Element {
       <InputContainer>
         <Input
           required
+          error={getError ? getError("email") : ""}
           label={t("email.label")}
           name="email"
           type="email"
-          value={email}
-          onChange={(e): void => setEmail(e.target.value)}
+          value={values.email}
+          onChange={onChange}
           disabled={isSubmitting}
         />
       </InputContainer>
@@ -57,20 +56,22 @@ function LoginForm(props: LoginFormProps): JSX.Element {
       <InputContainer>
         <Input
           required
+          error={getError ? getError("password") : ""}
           label={t("password.label")}
           name="password"
           type="password"
-          value={password}
-          onChange={(e): void => setPassword(e.target.value)}
+          value={values.password}
+          onChange={onChange}
           disabled={isSubmitting}
         />
       </InputContainer>
 
       <CheckBoxContainer>
         <CheckBox
+          name="isRemembered"
           label={t("remember")}
-          checked={isRemembered}
-          onChange={(e): void => setRemembered(e.target.checked)}
+          checked={values.isRemembered}
+          onChange={onChange}
         />
       </CheckBoxContainer>
 

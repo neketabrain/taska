@@ -10,6 +10,8 @@ const defaultTheme: DefaultTheme = {
     border: "#E4E3E8",
     borderHover: "#C4BFD8",
     inputBg: "#F1F2F7",
+    error: "#BC3B3B",
+    errorBg: "#F5E9E9",
 
     buttons: {
       primary: {

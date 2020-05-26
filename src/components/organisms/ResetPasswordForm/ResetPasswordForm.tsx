@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Input } from "src/components";
+import { useForm } from "src/hooks";
 
 import { Form, InputContainer, SubmitButton } from "./ResetPasswordForm.styles";
 import {
@@ -9,12 +10,16 @@ import {
   ResetPasswordFormProps,
 } from "./ResetPasswordForm.types";
 
+const defaultValues: ResetPasswordFormValues = {
+  email: "",
+};
+
 function ResetPasswordForm(props: ResetPasswordFormProps): JSX.Element {
-  const { onSubmit } = props;
+  const { onSubmit, getError, clearError } = props;
 
   const { t } = useTranslation("reset");
 
-  const [email, setEmail] = useState("");
+  const { values, onChange } = useForm(defaultValues, clearError);
   const [isSubmitting, setSubmitting] = useState(false);
 
   async function handleSubmit(
@@ -23,12 +28,7 @@ function ResetPasswordForm(props: ResetPasswordFormProps): JSX.Element {
     event.preventDefault();
 
     setSubmitting(true);
-
-    const values: ResetPasswordFormValues = {
-      email,
-    };
     await onSubmit(values);
-
     setSubmitting(false);
   }
 
@@ -37,11 +37,12 @@ function ResetPasswordForm(props: ResetPasswordFormProps): JSX.Element {
       <InputContainer>
         <Input
           required
+          error={getError ? getError("email") : ""}
           label={t("email.label")}
           name="email"
           type="email"
-          value={email}
-          onChange={(e): void => setEmail(e.target.value)}
+          value={values.email}
+          onChange={onChange}
           disabled={isSubmitting}
         />
       </InputContainer>

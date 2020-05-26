@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Api } from "src/api";
 import { LoginForm, LoginFormValues, Text, Button, Link } from "src/components";
 import { ROUTES } from "src/constants";
+import { useErrors } from "src/hooks";
 
 import {
   Container,
@@ -18,25 +19,27 @@ import {
 function LoginPage(): JSX.Element {
   const { t } = useTranslation("login");
 
+  const { clearError, getError, addError, clearAllErrors } = useErrors();
+
   async function handleSubmit(values: LoginFormValues): Promise<void> {
     const { email, password, isRemembered } = values;
     const { LOCAL, NONE } = Api.persistence;
+
+    clearAllErrors();
 
     Api.auth
       .setPersistence(isRemembered ? LOCAL : NONE)
       .then(() =>
         Api.auth
           .signInWithEmailAndPassword(email, password)
-          .then(console.log)
-          .catch(console.log)
+          .catch((err) => addError(err.code))
       );
   }
 
   function signInWithGoogle(): void {
     Api.auth
       .signInWithPopup(Api.googleAuthProvider)
-      .then(console.log)
-      .catch(console.log);
+      .catch((err) => addError(err.code));
   }
 
   return (
@@ -48,7 +51,11 @@ function LoginPage(): JSX.Element {
         </Link>
       </Header>
 
-      <LoginForm onSubmit={handleSubmit} />
+      <LoginForm
+        onSubmit={handleSubmit}
+        clearError={clearError}
+        getError={getError}
+      />
 
       <DividerContainer>
         <Divider />

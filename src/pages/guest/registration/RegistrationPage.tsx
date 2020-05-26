@@ -10,6 +10,7 @@ import {
   Link,
 } from "src/components";
 import { ROUTES } from "src/constants";
+import { useErrors } from "src/hooks";
 
 import {
   Container,
@@ -24,21 +25,24 @@ import {
 function RegistrationPage(): JSX.Element {
   const { t } = useTranslation("registration");
 
+  const { clearError, getError, addError, clearAllErrors } = useErrors();
+
   async function handleSubmit(values: RegistrationFormValues): Promise<void> {
     const { firstName, lastName, email, password } = values;
     const displayName = `${firstName} ${lastName}`;
 
+    clearAllErrors();
+
     Api.auth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => res.user?.updateProfile({ displayName }))
-      .catch(console.log);
+      .catch((err) => addError(err.code));
   }
 
   function signInWithGoogle(): void {
     Api.auth
       .signInWithPopup(Api.googleAuthProvider)
-      .then(console.log)
-      .catch(console.log);
+      .catch((err) => addError(err.code));
   }
 
   return (
@@ -50,7 +54,11 @@ function RegistrationPage(): JSX.Element {
         </Link>
       </Header>
 
-      <RegistrationForm onSubmit={handleSubmit} />
+      <RegistrationForm
+        onSubmit={handleSubmit}
+        clearError={clearError}
+        getError={getError}
+      />
 
       <DividerContainer>
         <Divider />

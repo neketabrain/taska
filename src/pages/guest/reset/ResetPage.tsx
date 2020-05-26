@@ -8,16 +8,21 @@ import {
   Link,
 } from "src/components";
 import { ROUTES } from "src/constants";
+import { useErrors } from "src/hooks";
 
 import { Container, Header, Title, ChevronIcon } from "../Guest.styles";
 
 function ResetPage(): JSX.Element {
   const { t } = useTranslation("reset");
 
+  const { clearError, getError, addError, clearAllErrors } = useErrors();
+
   async function handleSubmit(values: ResetPasswordFormValues): Promise<void> {
     const { email } = values;
 
-    Api.auth.sendPasswordResetEmail(email).then(console.log).catch(console.log);
+    clearAllErrors();
+
+    Api.auth.sendPasswordResetEmail(email).catch((err) => addError(err.code));
   }
 
   return (
@@ -29,7 +34,11 @@ function ResetPage(): JSX.Element {
         </Link>
       </Header>
 
-      <ResetPasswordForm onSubmit={handleSubmit} />
+      <ResetPasswordForm
+        onSubmit={handleSubmit}
+        clearError={clearError}
+        getError={getError}
+      />
     </Container>
   );
 }
