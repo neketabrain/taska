@@ -7,12 +7,17 @@ export interface UseErrorsState {
   [name: string]: string;
 }
 
+export type AddError = (code: string) => void;
+export type GetError = (name: string) => string;
+export type ClearError = (name: string) => void;
+export type ClearAllErrors = () => void;
+
 export interface UseErrors {
   errors: UseErrorsState;
-  addError: (code: string) => void;
-  getError: (name: string) => string;
-  clearError: (name: string) => void;
-  clearAllErrors: () => void;
+  addError: AddError;
+  getError: GetError;
+  clearError: ClearError;
+  clearAllErrors: ClearAllErrors;
 }
 
 function useErrors(): UseErrors {
