@@ -7,7 +7,7 @@ import { ROUTES } from "src/constants";
 
 function LogoutComponent(): JSX.Element {
   async function logout(): Promise<void> {
-    await Api.signOut();
+    await Api.auth.signOut();
   }
 
   return (

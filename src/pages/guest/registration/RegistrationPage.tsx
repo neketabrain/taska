@@ -28,13 +28,17 @@ function RegistrationPage(): JSX.Element {
     const { firstName, lastName, email, password } = values;
     const displayName = `${firstName} ${lastName}`;
 
-    Api.createUserWithEmailAndPassword(email, password)
+    Api.auth
+      .createUserWithEmailAndPassword(email, password)
       .then((res) => res.user?.updateProfile({ displayName }))
       .catch(console.log);
   }
 
   function signInWithGoogle(): void {
-    Api.signInWithGoogle().then(console.log).catch(console.log);
+    Api.auth
+      .signInWithPopup(Api.googleAuthProvider)
+      .then(console.log)
+      .catch(console.log);
   }
 
   return (

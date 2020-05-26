@@ -19,7 +19,7 @@ export function AuthProvider(props: { children: ReactElement }): JSX.Element {
   }, []);
 
   if (isFetching) {
-    return <>Loading...</>;
+    return <></>;
   }
 
   return (
