@@ -11,6 +11,8 @@ declare module "styled-components" {
       border: string;
       borderHover: string;
       inputBg: string;
+      error: string;
+      errorBg: string;
 
       buttons: {
         primary: {

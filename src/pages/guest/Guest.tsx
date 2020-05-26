@@ -1,16 +1,21 @@
+import loadable from "@loadable/component";
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import { ROUTES } from "src/constants";
 
-import { RegistrationPage } from "./registration";
+const LoginPage = loadable(() => import("./login"));
+const RegistrationPage = loadable(() => import("./registration"));
+const ResetPage = loadable(() => import("./reset"));
 
 function Guest(): JSX.Element {
   return (
     <Switch>
-      <Route path={ROUTES.REGISTRATION} component={RegistrationPage} />
+      <Route exact path={ROUTES.LOGIN} component={LoginPage} />
+      <Route exact path={ROUTES.REGISTRATION} component={RegistrationPage} />
+      <Route exact path={ROUTES.RESET} component={ResetPage} />
 
-      <Redirect to={ROUTES.REGISTRATION} />
+      <Redirect to={ROUTES.LOGIN} />
     </Switch>
   );
 }

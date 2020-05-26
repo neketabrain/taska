@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 import { Api } from "src/api";
@@ -7,44 +8,62 @@ import {
   RegistrationFormValues,
   Text,
   Button,
+  Link,
 } from "src/components";
+import { ROUTES } from "src/constants";
+import { useErrors } from "src/hooks";
 
 import {
   Container,
   Header,
   Title,
-  LoginLink,
   ChevronIcon,
   DividerContainer,
   Divider,
   GoogleIcon,
-} from "./RegistrationPage.styles";
+} from "../Guest.styles";
 
 function RegistrationPage(): JSX.Element {
   const { t } = useTranslation("registration");
+
+  const { clearError, getError, addError, clearAllErrors } = useErrors();
+
   async function handleSubmit(values: RegistrationFormValues): Promise<void> {
     const { firstName, lastName, email, password } = values;
     const displayName = `${firstName} ${lastName}`;
 
-    Api.createUserWithEmailAndPassword(email, password)
+    clearAllErrors();
+
+    Api.auth
+      .createUserWithEmailAndPassword(email, password)
       .then((res) => res.user?.updateProfile({ displayName }))
-      .catch(console.log);
+      .catch((err) => addError(err.code));
   }
 
   function signInWithGoogle(): void {
-    Api.signInWithGoogle().then(console.log).catch(console.log);
+    Api.auth
+      .signInWithPopup(Api.googleAuthProvider)
+      .catch((err) => addError(err.code));
   }
 
   return (
     <Container>
+      <Helmet>
+        <title>{t("pageTitle")}</title>
+      </Helmet>
+
       <Header>
         <Title>{t("title")}</Title>
-        <LoginLink to="/">
+        <Link to={ROUTES.LOGIN}>
           {t("toLogin")} <ChevronIcon />
-        </LoginLink>
+        </Link>
       </Header>
 
-      <RegistrationForm onSubmit={handleSubmit} />
+      <RegistrationForm
+        onSubmit={handleSubmit}
+        clearError={clearError}
+        getError={getError}
+      />
 
       <DividerContainer>
         <Divider />

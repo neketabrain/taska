@@ -1,17 +1,31 @@
+import i18next from "i18next";
 import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "styled-components";
 
 import "./i18n";
 
-import { Theme, GlobalStyles } from "./assets";
-import { Router } from "./pages";
+import { defaultTheme, GlobalStyles } from "./assets";
+import { AuthProvider } from "./context";
+import Router from "./pages";
 
 function App(): JSX.Element {
+  const language =
+    window.localStorage.getItem("i18nextLng") || i18next.language || "en";
+
   return (
-    <ThemeProvider theme={Theme.defaultTheme}>
-      <GlobalStyles />
-      <Router />
-    </ThemeProvider>
+    <HelmetProvider>
+      <Helmet>
+        <html lang={language} />
+      </Helmet>
+
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyles />
+        <AuthProvider>
+          <Router />
+        </AuthProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

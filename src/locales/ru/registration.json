@@ -15,5 +15,6 @@
   },
   "button": "Зарегистрироваться",
   "divider": "или",
-  "withGoogle": "Войти через Google"
+  "withGoogle": "Войти через Google",
+  "pageTitle": "Taska. Регистрация"
 }
