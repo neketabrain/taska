@@ -16,6 +16,10 @@ export const InputContainer = styled(Box)`
   }
 `;
 
+export const CheckBoxContainer = styled(Box)`
+  margin-top: 24px;
+`;
+
 export const ButtonContainer = styled(Flex)`
   margin-top: 24px;
   justify-content: space-between;

@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Input, Link } from "src/components";
+import { Input, Link, CheckBox } from "src/components";
 import { ROUTES } from "src/constants";
 
 import {
@@ -9,6 +9,7 @@ import {
   InputContainer,
   ButtonContainer,
   SubmitButton,
+  CheckBoxContainer,
 } from "./LoginForm.styles";
 import { LoginFormProps, LoginFormValues } from "./LoginForm.types";
 
@@ -64,6 +65,14 @@ function LoginForm(props: LoginFormProps): JSX.Element {
           disabled={isSubmitting}
         />
       </InputContainer>
+
+      <CheckBoxContainer>
+        <CheckBox
+          label={t("remember")}
+          checked={isRemembered}
+          onChange={(e): void => setRemembered(e.target.checked)}
+        />
+      </CheckBoxContainer>
 
       <ButtonContainer>
         <SubmitButton variant="primary" type="submit" disabled={isSubmitting}>
