@@ -20,5 +20,5 @@ export const Field = styled(TextField)`
 export const Error = styled(Text)`
   font-size: 12px;
   color: ${({ theme }): string => theme.colors.error};
-  margin: 8px 0 0;
+  margin: 4px 0 0;
 `;
