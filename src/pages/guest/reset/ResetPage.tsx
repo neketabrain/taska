@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 import { Api } from "src/api";
@@ -27,6 +28,10 @@ function ResetPage(): JSX.Element {
 
   return (
     <Container>
+      <Helmet>
+        <title>{t("pageTitle")}</title>
+      </Helmet>
+
       <Header>
         <Title>{t("title")}</Title>
         <Link to={ROUTES.LOGIN}>

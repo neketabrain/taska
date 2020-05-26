@@ -15,5 +15,6 @@
   },
   "button": "Sign up",
   "divider": "or",
-  "withGoogle": "Sign in with Google"
+  "withGoogle": "Sign in with Google",
+  "pageTitle": "Taska. Registration"
 }

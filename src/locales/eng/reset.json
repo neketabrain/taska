@@ -4,5 +4,6 @@
   "email": {
     "label": "Email"
   },
-  "button": "Reset"
+  "button": "Reset",
+  "pageTitle": "Taska. Reset password"
 }
