@@ -1,1 +1,3 @@
-export { default as Guest } from "./Guest";
+import Guest from "./Guest";
+
+export default Guest;

@@ -5,7 +5,7 @@ import "./i18n";
 
 import { defaultTheme, GlobalStyles } from "./assets";
 import { AuthProvider } from "./context";
-import { Router } from "./pages";
+import Router from "./pages";
 
 function App(): JSX.Element {
   return (

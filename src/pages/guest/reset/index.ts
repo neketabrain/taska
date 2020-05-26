@@ -1,1 +1,3 @@
-export { default as ResetPage } from "./ResetPage";
+import ResetPage from "./ResetPage";
+
+export default ResetPage;

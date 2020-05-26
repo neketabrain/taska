@@ -6,6 +6,7 @@
       {
         "displayName": true
       }
-    ]
+    ],
+    "@loadable/babel-plugin"
   ]
 }

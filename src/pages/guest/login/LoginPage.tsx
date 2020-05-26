@@ -15,7 +15,7 @@ import {
   GoogleIcon,
 } from "../Guest.styles";
 
-function RegistrationPage(): JSX.Element {
+function LoginPage(): JSX.Element {
   const { t } = useTranslation("login");
 
   async function handleSubmit(values: LoginFormValues): Promise<void> {
@@ -64,4 +64,4 @@ function RegistrationPage(): JSX.Element {
   );
 }
 
-export default RegistrationPage;
+export default LoginPage;
