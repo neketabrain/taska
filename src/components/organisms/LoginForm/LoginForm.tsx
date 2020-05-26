@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Input, Link, CheckBox } from "src/components";
@@ -34,9 +34,7 @@ function LoginForm(props: LoginFormProps): JSX.Element {
     event.preventDefault();
 
     setSubmitting(true);
-
     await onSubmit(values);
-
     setSubmitting(false);
   }
 

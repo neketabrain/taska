@@ -1,3 +1,5 @@
+import { UseErrors } from "src/hooks/useErrors";
+
 export interface RegistrationFormValues {
   firstName: string;
   lastName: string;
@@ -5,6 +7,6 @@ export interface RegistrationFormValues {
   password: string;
 }
 
-export interface RegistrationFormProps {
+export interface RegistrationFormProps extends Partial<UseErrors> {
   onSubmit: (values: RegistrationFormValues) => Promise<void>;
 }
