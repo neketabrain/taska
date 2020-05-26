@@ -14,6 +14,13 @@ export const CheckIcon = styled(Icons.Check)`
   top: 1px;
   left: 1px;
   z-index: 2;
+
+  @media screen and (max-width: 480px) {
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    left: 2px;
+  }
 `;
 
 export const NativeCheckbox = styled.input`
@@ -42,6 +49,11 @@ export const CustomCheckbox = styled.div`
   box-sizing: border-box;
   border-radius: 4px;
 
+  @media screen and (max-width: 480px) {
+    width: 22px;
+    height: 22px;
+  }
+
   ${NativeCheckbox}:focus + & {
     border-color: ${({ theme }): string => theme.colors.text};
     background-color: ${({ theme }): string => theme.colors.bg};
@@ -60,7 +72,6 @@ export const Label = styled.label<{ disabled?: boolean }>`
   font-family: "Open Sans", sans-serif;
   position: relative;
   padding: 0;
-  font-size: 14px;
   line-height: 18px;
   display: flex;
   align-items: center;

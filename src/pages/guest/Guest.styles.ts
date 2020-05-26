@@ -7,6 +7,11 @@ export const Container = styled(Flex)`
   max-width: 320px;
   width: 100%;
   margin: 0 auto;
+
+  @media screen and (max-width: 480px) {
+    max-width: 100%;
+    padding: 0 16px;
+  }
 `;
 
 export const Header = styled(Flex)`
@@ -38,8 +43,15 @@ export const DividerContainer = styled(Flex)`
 export const Divider = styled(Box)`
   height: 1px;
   width: 100%;
-  max-width: 124px;
   background-color: ${({ theme }): string => theme.colors.border};
+
+  :first-of-type {
+    margin-right: 16px;
+  }
+
+  :last-of-type {
+    margin-left: 16px;
+  }
 `;
 
 export const GoogleIcon = styled(Icons.Google)`

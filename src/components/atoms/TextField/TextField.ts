@@ -14,10 +14,13 @@ const TextField = styled.input<{ hasError?: boolean }>`
   border: 1px solid ${({ theme }): string => theme.colors.border};
   border-radius: 4px;
   color: ${({ theme }): string => theme.colors.text};
-  font-size: 14px;
   font-family: "Open Sans", sans-serif;
   padding: 0 16px;
   outline: 0;
+
+  @media screen and (max-width: 480px) {
+    height: 50px;
+  }
 
   :focus {
     border-color: ${({ theme }): string => theme.colors.primary};
