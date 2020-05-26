@@ -1,8 +1,8 @@
 {
-  "auth/invalid-email": "Неверный адрес электронной почты",
-  "auth/user-disabled": "Пользователь заблокирован",
-  "auth/user-not-found": "Пользователь не найден",
-  "auth/wrong-password": "Неверный пароль",
-  "auth/email-already-in-use": "Такой адрес уже используется",
-  "auth/weak-password": "Минимальная длина пароля - 6 символов"
+  "auth/invalid-email": "Email address is not valid",
+  "auth/user-disabled": "User is disabled",
+  "auth/user-not-found": "User not found",
+  "auth/wrong-password": "Wrong password",
+  "auth/email-already-in-use": "This email is already in use",
+  "auth/weak-password": "Minimum password length is 6 characters"
 }

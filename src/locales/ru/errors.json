@@ -4,5 +4,5 @@
   "auth/user-not-found": "Пользователь не найден",
   "auth/wrong-password": "Неверный пароль",
   "auth/email-already-in-use": "Такой адрес уже используется",
-  "auth/weak-password": "Минимальная длина пароля - 6 символов"
+  "auth/weak-password": "Минимальная длина пароля 6 символов"
 }
