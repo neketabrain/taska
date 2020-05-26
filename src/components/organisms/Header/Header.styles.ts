@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Box } from "src/components";
+import { Flex } from "src/components";
 
 export const Wrapper = styled.header`
   position: relative;
@@ -13,8 +13,7 @@ export const Wrapper = styled.header`
   margin-bottom: 48px;
 `;
 
-export const Container = styled(Box)`
-  display: flex;
+export const Container = styled(Flex)`
   align-items: center;
   max-width: 1152px;
   width: 100%;

@@ -3,14 +3,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import { ROUTES } from "src/constants";
 
+import { LoginPage } from "./login";
 import { RegistrationPage } from "./registration";
 
 function Guest(): JSX.Element {
   return (
     <Switch>
-      <Route path={ROUTES.REGISTRATION} component={RegistrationPage} />
+      <Route exact path={ROUTES.LOGIN} component={LoginPage} />
+      <Route exact path={ROUTES.REGISTRATION} component={RegistrationPage} />
 
-      <Redirect to={ROUTES.REGISTRATION} />
+      <Redirect to={ROUTES.LOGIN} />
     </Switch>
   );
 }

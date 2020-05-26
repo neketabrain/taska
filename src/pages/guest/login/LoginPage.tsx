@@ -2,13 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Api } from "src/api";
-import {
-  RegistrationForm,
-  RegistrationFormValues,
-  Text,
-  Button,
-  Link,
-} from "src/components";
+import { LoginForm, LoginFormValues, Text, Button, Link } from "src/components";
 import { ROUTES } from "src/constants";
 
 import {
@@ -22,15 +16,19 @@ import {
 } from "../Guest.styles";
 
 function RegistrationPage(): JSX.Element {
-  const { t } = useTranslation("registration");
+  const { t } = useTranslation("login");
 
-  async function handleSubmit(values: RegistrationFormValues): Promise<void> {
-    const { firstName, lastName, email, password } = values;
-    const displayName = `${firstName} ${lastName}`;
+  async function handleSubmit(values: LoginFormValues): Promise<void> {
+    const { email, password, isRemembered } = values;
+    const { LOCAL, NONE } = Api.persistence;
 
-    Api.createUserWithEmailAndPassword(email, password)
-      .then((res) => res.user?.updateProfile({ displayName }))
-      .catch(console.log);
+    Api.auth
+      .setPersistence(isRemembered ? LOCAL : NONE)
+      .then(() =>
+        Api.signInWithEmailAndPassword(email, password)
+          .then(console.log)
+          .catch(console.log)
+      );
   }
 
   function signInWithGoogle(): void {
@@ -41,12 +39,12 @@ function RegistrationPage(): JSX.Element {
     <Container>
       <Header>
         <Title>{t("title")}</Title>
-        <Link to={ROUTES.LOGIN}>
-          {t("toLogin")} <ChevronIcon />
+        <Link to={ROUTES.REGISTRATION}>
+          {t("toRegistration")} <ChevronIcon />
         </Link>
       </Header>
 
-      <RegistrationForm onSubmit={handleSubmit} />
+      <LoginForm onSubmit={handleSubmit} />
 
       <DividerContainer>
         <Divider />

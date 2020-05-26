@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-import { Box, H1, Link, Icons } from "src/components";
+import { Box, Flex, H1, Icons } from "src/components";
 
-export const Container = styled(Box)`
-  display: flex;
+export const Container = styled(Flex)`
   flex-direction: column;
   max-width: 320px;
   width: 100%;
   margin: 0 auto;
 `;
 
-export const Header = styled(Box)`
-  display: flex;
+export const Header = styled(Flex)`
   justify-content: space-between;
   margin-bottom: 32px;
   align-items: baseline;
@@ -22,11 +20,6 @@ export const Title = styled(H1)`
   margin: 0;
 `;
 
-export const LoginLink = styled(Link)`
-  font-size: 16px;
-  font-weight: 600;
-`;
-
 export const ChevronIcon = styled(Icons.ChevronRight)`
   width: 20px;
   height: 20px;
@@ -34,9 +27,8 @@ export const ChevronIcon = styled(Icons.ChevronRight)`
   vertical-align: sub;
 `;
 
-export const DividerContainer = styled(Box)`
+export const DividerContainer = styled(Flex)`
   width: 100%;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;

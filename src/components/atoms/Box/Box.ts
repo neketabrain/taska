@@ -4,18 +4,16 @@ import {
   space,
   layout,
   position,
-  flexbox,
   SpaceProps,
   LayoutProps,
   PositionProps,
-  FlexboxProps,
 } from "styled-system";
 
-type BoxProps = SpaceProps | LayoutProps | PositionProps | FlexboxProps;
+type BoxProps = SpaceProps | LayoutProps | PositionProps;
 
 const Box = styled.div<BoxProps>`
   position: relative;
-  ${compose(space, layout, position, flexbox)};
+  ${compose(space, layout, position)};
 `;
 
 export default Box;

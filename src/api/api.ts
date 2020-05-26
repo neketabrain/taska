@@ -3,20 +3,21 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: process.env.REACT_APP_FIREBASE_KEY || "whatever",
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN || "whatever",
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE || "whatever",
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "whatever",
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "whatever",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID || "whatever",
+  appId: process.env.REACT_APP_FIREBASE_APP_ID || "whatever",
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID || "whatever",
 };
 
 class Api {
   auth: firebase.auth.Auth;
   db: firebase.firestore.Firestore;
   googleAuthProvider: firebase.auth.GoogleAuthProvider;
+  persistence: typeof firebase.auth.Auth.Persistence;
 
   constructor() {
     firebase.initializeApp(firebaseConfig);
@@ -25,6 +26,7 @@ class Api {
     this.auth = firebase.auth();
     this.db = firebase.firestore();
 
+    this.persistence = firebase.auth.Auth.Persistence;
     this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
   }
 

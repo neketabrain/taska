@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Input, Box } from "src/components";
+import { Input, Box, Flex } from "src/components";
 
 import { Form, InputContainer, SubmitButton } from "./RegistrationForm.styles";
 import {
@@ -41,7 +41,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
   return (
     <Form onSubmit={handleSubmit}>
       <InputContainer>
-        <Box display="flex" justifyContent="space-between">
+        <Flex justifyContent="space-between">
           <Box width="48%">
             <Input
               required
@@ -50,6 +50,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               type="text"
               value={firstName}
               onChange={(e): void => setFirstName(e.target.value)}
+              disabled={isSubmitting}
             />
           </Box>
 
@@ -61,9 +62,10 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
               type="text"
               value={lastName}
               onChange={(e): void => setLastName(e.target.value)}
+              disabled={isSubmitting}
             />
           </Box>
-        </Box>
+        </Flex>
       </InputContainer>
 
       <InputContainer>
@@ -74,6 +76,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
           type="email"
           value={email}
           onChange={(e): void => setEmail(e.target.value)}
+          disabled={isSubmitting}
         />
       </InputContainer>
 
@@ -85,6 +88,7 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
           type="password"
           value={password}
           onChange={(e): void => setPassword(e.target.value)}
+          disabled={isSubmitting}
         />
       </InputContainer>
 

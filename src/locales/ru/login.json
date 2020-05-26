@@ -1,0 +1,15 @@
+{
+  "title": "Вход",
+  "toRegistration": "Регистрация",
+  "email": {
+    "label": "Электронная почта"
+  },
+  "password": {
+    "label": "Пароль"
+  },
+  "button": "Войти",
+  "divider": "или",
+  "withGoogle": "Войти через Google",
+  "forgot": "Забыли пароль?",
+  "remember": "Запомнить меня"
+}
