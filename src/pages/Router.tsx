@@ -1,11 +1,12 @@
+import loadable from "@loadable/component";
 import React, { useContext } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import { Header, PageWrapper } from "src/components";
 import { AuthContext } from "src/context";
 
-import { Guest } from "./guest";
-import { User } from "./user";
+const Guest = loadable(() => import("./guest"));
+const User = loadable(() => import("./user"));
 
 function Router(): JSX.Element {
   const profile = useContext(AuthContext);
