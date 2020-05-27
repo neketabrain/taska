@@ -2,6 +2,15 @@
 /build
 .dockerignore
 Dockerfile
-/.git
+
 /.env
+
+/.git
 /.gitignore
+/.github
+
+/.firebase
+/.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules

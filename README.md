@@ -6,12 +6,14 @@ Task manager
 
 ```sh
 yarn install
+npm install
 ```
 
 ### Start
 
 ```sh
 yarn start
+npm run start
 ```
 
 Or run docker container
@@ -24,18 +26,21 @@ docker-compose up
 
 ```sh
 yarn build
+npm run build
 ```
 
 Start build on local server
 
 ```sh
 yarn serve
+npm run serve
 ```
 
 ### Testing
 
 ```sh
 yarn test
+npm run test
 ```
 
 ### Environment
