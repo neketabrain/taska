@@ -2,15 +2,18 @@ import styled from "styled-components";
 
 import { Box, Flex, H1, Icons } from "src/components";
 
-export const Container = styled(Flex)`
+export const Container = styled.main`
+  position: relative;
+  display: flex;
   flex-direction: column;
   max-width: 320px;
   width: 100%;
   margin: 0 auto;
+  padding: 60px 0;
 
   @media screen and (max-width: 480px) {
     max-width: 100%;
-    padding: 0 16px;
+    padding: 60px 16px;
   }
 `;
 
@@ -21,7 +24,7 @@ export const Header = styled(Flex)`
 `;
 
 export const Title = styled(H1)`
-  max-width: 65%;
+  max-width: 70%;
   margin: 0;
 `;
 

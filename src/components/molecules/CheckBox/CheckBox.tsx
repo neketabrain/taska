@@ -10,17 +10,12 @@ import {
 import { CheckBoxProps } from "./CheckBox.types";
 
 function CheckBox(props: CheckBoxProps): JSX.Element {
-  const { className, label, checked, disabled, ...rest } = props;
+  const { className, label, checked, ...rest } = props;
 
   return (
     <CheckBoxContainer className={className}>
-      <Label disabled={disabled}>
-        <NativeCheckbox
-          type="checkbox"
-          checked={checked}
-          disabled={disabled}
-          {...rest}
-        />
+      <Label>
+        <NativeCheckbox type="checkbox" checked={checked} {...rest} />
         <CustomCheckbox />
         {checked && <CheckIcon />}
         {label}

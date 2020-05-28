@@ -24,12 +24,12 @@ function LoginPage(): JSX.Element {
 
   async function handleSubmit(values: LoginFormValues): Promise<void> {
     const { email, password, isRemembered } = values;
-    const { LOCAL, NONE } = Api.persistence;
+    const { LOCAL, SESSION } = Api.persistence;
 
     clearAllErrors();
 
     Api.auth
-      .setPersistence(isRemembered ? LOCAL : NONE)
+      .setPersistence(isRemembered ? LOCAL : SESSION)
       .then(() =>
         Api.auth
           .signInWithEmailAndPassword(email, password)
