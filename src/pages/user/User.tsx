@@ -1,9 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Button } from "src/components";
+import { Box, Button, ProfileCard } from "src/components";
 import { ROUTES } from "src/constants";
+
+import { Wrapper, LeftSideContainer } from "./User.styles";
 
 function LogoutComponent(): JSX.Element {
   async function logout(): Promise<void> {
@@ -11,19 +14,31 @@ function LogoutComponent(): JSX.Element {
   }
 
   return (
-    <Button variant="primary" onClick={logout}>
-      Log out
-    </Button>
+    <Box width={128}>
+      <Button variant="primary" onClick={logout}>
+        Log out
+      </Button>
+    </Box>
   );
 }
 
 function User(): JSX.Element {
   return (
-    <Switch>
-      <Route exact path={ROUTES.ROOT} component={LogoutComponent} />
+    <Wrapper>
+      <Helmet>
+        <title>Taska</title>
+      </Helmet>
 
-      <Redirect to={ROUTES.ROOT} />
-    </Switch>
+      <LeftSideContainer>
+        <ProfileCard />
+      </LeftSideContainer>
+
+      <Switch>
+        <Route exact path={ROUTES.ROOT} component={LogoutComponent} />
+
+        <Redirect to={ROUTES.ROOT} />
+      </Switch>
+    </Wrapper>
   );
 }
 

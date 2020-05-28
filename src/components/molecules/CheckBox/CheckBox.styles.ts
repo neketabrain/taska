@@ -35,7 +35,7 @@ export const NativeCheckbox = styled.input`
   margin: 0;
 
   :disabled ~ ${CheckIcon} {
-    fill: ${({ theme }): string => theme.colors.textDisabled};
+    fill: ${({ theme }): string => theme.colors.additionalText};
   }
 `;
 
@@ -44,7 +44,7 @@ export const CustomCheckbox = styled.div`
   margin-right: 16px;
   width: 18px;
   height: 18px;
-  background: ${({ theme }): string => theme.colors.inputBg};
+  background: ${({ theme }): string => theme.colors.inputBackground};
   border: 1px solid ${({ theme }): string => theme.colors.border};
   box-sizing: border-box;
   border-radius: 4px;
@@ -56,8 +56,8 @@ export const CustomCheckbox = styled.div`
   }
 
   ${NativeCheckbox}:focus + & {
-    border-color: ${({ theme }): string => theme.colors.text};
-    background-color: ${({ theme }): string => theme.colors.bg};
+    border-color: ${({ theme }): string => theme.colors.primaryDark};
+    background-color: inherit;
   }
 
   ${NativeCheckbox}:disabled + & {
@@ -65,7 +65,7 @@ export const CustomCheckbox = styled.div`
   }
 
   ${NativeCheckbox}:hover:not(:focus):not(:disabled) + & {
-    border-color: ${({ theme }): string => theme.colors.borderHover};
+    border-color: ${({ theme }): string => theme.colors.borderDarker};
   }
 `;
 

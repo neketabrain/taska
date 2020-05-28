@@ -9,7 +9,7 @@ const TextField = styled.input<{ hasError?: boolean }>`
   position: relative;
   width: 100%;
   height: 40px;
-  background-color: ${({ theme }): string => theme.colors.inputBg};
+  background-color: ${({ theme }): string => theme.colors.inputBackground};
   box-sizing: border-box;
   border: 1px solid ${({ theme }): string => theme.colors.border};
   border-radius: 4px;
@@ -23,17 +23,17 @@ const TextField = styled.input<{ hasError?: boolean }>`
   }
 
   :focus {
-    border-color: ${({ theme }): string => theme.colors.primary};
-    background-color: ${({ theme }): string => theme.colors.bg};
+    border-color: ${({ theme }): string => theme.colors.primaryDark};
+    background-color: inherit;
   }
 
   :disabled {
     cursor: not-allowed;
-    color: ${({ theme }): string => theme.colors.textDisabled};
+    color: ${({ theme }): string => theme.colors.additionalText};
   }
 
   :hover :not(:focus) :not(:disabled) {
-    border-color: ${({ theme }): string => theme.colors.borderHover};
+    border-color: ${({ theme }): string => theme.colors.borderDarker};
   }
 
   ${({
@@ -42,7 +42,8 @@ const TextField = styled.input<{ hasError?: boolean }>`
     hasError &&
     css`
       border-color: ${({ theme }): string => theme.colors.error} !important;
-      background-color: ${({ theme }): string => theme.colors.errorBg};
+      background-color: ${({ theme }): string =>
+        theme.colors.errorInputBackground};
     `};
 `;
 

@@ -30,6 +30,9 @@ i18n
       escapeValue: false,
     },
     resources: locales,
+    react: {
+      wait: true,
+    },
   });
 
 export default i18n;

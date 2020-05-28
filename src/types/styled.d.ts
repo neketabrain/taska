@@ -3,25 +3,32 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      primary: string;
-      secondary: string;
-      bg: string;
+      background: string;
+      cardBackground: string;
       text: string;
-      textDisabled: string;
+      additionalText: string;
+      invertedText: string;
+      primary: string;
+      primaryDark: string;
+      primaryDarkest: string;
+      secondary: string;
       border: string;
-      borderHover: string;
-      inputBg: string;
+      borderDarker: string;
       error: string;
-      errorBg: string;
+      inputBackground: string;
+      errorInputBackground: string;
 
       buttons: {
         primary: {
-          bg: string;
-          hover: string;
-          active: string;
+          color: string;
+          background: string;
+          backgroundHover: string;
+          backgroundActive: string;
         };
         secondary: {
-          bg: string;
+          color: string;
+          background: string;
+          backgroundActive: string;
           border: string;
           borderHover: string;
         };
