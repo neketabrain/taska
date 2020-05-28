@@ -5,8 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Header, PageWrapper } from "src/components";
 import { AuthContext } from "src/context";
 
-const Guest = loadable(() => import("./guest"));
-const User = loadable(() => import("./user"));
+const Guest = loadable(() => import(/* webpackPrefetch: true */ "./guest"));
+const User = loadable(() => import(/* webpackPrefetch: true */ "./user"));
 
 function Router(): JSX.Element {
   const profile = useContext(AuthContext);
