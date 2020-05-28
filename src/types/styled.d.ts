@@ -10,6 +10,7 @@ declare module "styled-components" {
       invertedText: string;
       primary: string;
       primaryDark: string;
+      primaryDarkest: string;
       secondary: string;
       border: string;
       borderDarker: string;

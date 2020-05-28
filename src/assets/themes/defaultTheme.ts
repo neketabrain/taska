@@ -9,6 +9,7 @@ const defaultTheme: DefaultTheme = {
     invertedText: "#FFFFFF",
     primary: "#7D7CA4",
     primaryDark: "#36355F",
+    primaryDarkest: "#2B2A53",
     secondary: "#4B49AB",
     border: "#E4E3E8",
     borderDarker: "#C4BFD8",
