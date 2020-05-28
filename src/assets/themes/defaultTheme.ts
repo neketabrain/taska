@@ -2,25 +2,31 @@ import { DefaultTheme } from "styled-components";
 
 const defaultTheme: DefaultTheme = {
   colors: {
-    primary: "#36355F",
-    secondary: "#7774ED",
-    bg: "#FAFAFC",
+    background: "#EDEEF0",
+    cardBackground: "#FFFFFF",
     text: "#19203A",
-    textDisabled: "#9097AF",
+    additionalText: "#9097AF",
+    invertedText: "#FFFFFF",
+    primary: "#7D7CA4",
+    primaryDark: "#36355F",
+    secondary: "#4B49AB",
     border: "#E4E3E8",
-    borderHover: "#C4BFD8",
-    inputBg: "#F1F2F7",
+    borderDarker: "#C4BFD8",
     error: "#BC3B3B",
-    errorBg: "#F5E9E9",
+    inputBackground: "#F1F2F7",
+    errorInputBackground: "#F5E9E9",
 
     buttons: {
       primary: {
-        bg: "#7D7CA4",
-        hover: "#56557A",
-        active: "#47466A",
+        color: "#FFFFFF",
+        background: "#7D7CA4",
+        backgroundHover: "#56557A",
+        backgroundActive: "#47466A",
       },
       secondary: {
-        bg: "#FAFAFC",
+        color: "#19203A",
+        background: "#FAFAFC",
+        backgroundActive: "#E4E3E8",
         border: "#E4E3E8",
         borderHover: "#C4BFD8",
       },

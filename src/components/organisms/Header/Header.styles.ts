@@ -9,7 +9,7 @@ export const Wrapper = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }): string => theme.colors.primary};
+  background-color: ${({ theme }): string => theme.colors.primaryDark};
 `;
 
 export const Container = styled(Flex)`

@@ -4,22 +4,22 @@ import { variant } from "styled-system";
 import { ButtonProps } from "./Button.types";
 
 const primary = {
-  color: "bg",
-  bg: "buttons.primary.bg",
+  color: "buttons.primary.color",
+  bg: "buttons.primary.background",
   border: "none",
 
   "&:hover:enabled, &:focus:enabled": {
-    bg: "buttons.primary.hover",
+    bg: "buttons.primary.backgroundHover",
   },
 
   "&:active:enabled": {
-    bg: "buttons.primary.active",
+    bg: "buttons.primary.backgroundActive",
   },
 };
 
 const secondary = {
-  color: "text",
-  bg: "buttons.secondary.bg",
+  color: "buttons.secondary.color",
+  bg: "buttons.secondary.background",
   border: "1px solid",
   borderColor: "buttons.secondary.border",
 
@@ -28,7 +28,7 @@ const secondary = {
   },
 
   "&:active:enabled": {
-    bg: "buttons.secondary.border",
+    bg: "buttons.secondary.backgroundActive",
   },
 };
 
@@ -36,7 +36,6 @@ const Button = styled.button<ButtonProps>`
   position: relative;
   width: 100%;
   height: 40px;
-  color: ${({ theme }): string => theme.colors.bg};
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   display: flex;

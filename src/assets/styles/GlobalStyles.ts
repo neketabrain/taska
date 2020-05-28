@@ -23,7 +23,8 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    background-color: ${({ theme }): string => theme.colors.bg};
+    background-color: ${({ theme }): string => theme.colors.background};
+    color: ${({ theme }): string => theme.colors.text};
   }
   
   #root {
