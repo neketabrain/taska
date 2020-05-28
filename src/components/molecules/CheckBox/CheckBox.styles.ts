@@ -48,6 +48,7 @@ export const CustomCheckbox = styled.div`
   border: 1px solid ${({ theme }): string => theme.colors.border};
   box-sizing: border-box;
   border-radius: 4px;
+  cursor: pointer;
 
   @media screen and (max-width: 480px) {
     width: 22px;
@@ -68,7 +69,7 @@ export const CustomCheckbox = styled.div`
   }
 `;
 
-export const Label = styled.label<{ disabled?: boolean }>`
+export const Label = styled.label`
   font-family: "Open Sans", sans-serif;
   position: relative;
   padding: 0;
@@ -76,5 +77,4 @@ export const Label = styled.label<{ disabled?: boolean }>`
   display: flex;
   align-items: center;
   color: ${({ theme }): string => theme.colors.text};
-  cursor: ${({ disabled }): string => (disabled && "not-allowed") || "pointer"};
 `;
