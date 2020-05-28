@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
-import { Flex } from "src/components";
+import { Flex, Logo } from "src/components";
 
 export const Wrapper = styled.header`
   position: relative;
@@ -37,4 +37,15 @@ export const Button = styled.button`
   :hover {
     background-color: ${({ theme }): string => theme.colors.primaryDarkest};
   }
+`;
+
+export const HeaderLogo = styled(Logo)<{ isAuthorized: boolean }>`
+  ${({ isAuthorized }): FlattenSimpleInterpolation | false =>
+    isAuthorized &&
+    css`
+      max-width: 250px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    `};
 `;

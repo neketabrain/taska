@@ -1,14 +1,16 @@
 import i18next from "i18next";
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Logo } from "src/components";
+import { AuthContext } from "src/context";
 import { i18n } from "src/i18n";
 
-import { Wrapper, Container, Button } from "./Header.styles";
+import { Wrapper, Container, Button, HeaderLogo } from "./Header.styles";
 
 function Header(): JSX.Element {
   const { t } = useTranslation("header");
+
+  const user = useContext(AuthContext);
 
   async function switchLanguage(): Promise<void> {
     const currentLanguage =
@@ -20,8 +22,11 @@ function Header(): JSX.Element {
   return (
     <Wrapper>
       <Container>
-        <Logo />
-        <Button onClick={switchLanguage}>{t("switchLanguage")}</Button>
+        <HeaderLogo isAuthorized={!!user} />
+
+        {!user && (
+          <Button onClick={switchLanguage}>{t("switchLanguage")}</Button>
+        )}
       </Container>
     </Wrapper>
   );
