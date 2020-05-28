@@ -6,7 +6,6 @@ import { Api } from "src/api";
 import {
   RegistrationForm,
   RegistrationFormValues,
-  Text,
   Button,
   Link,
 } from "src/components";
@@ -14,12 +13,14 @@ import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
 
 import {
+  Main,
   Container,
   Header,
   Title,
   ChevronIcon,
   DividerContainer,
   Divider,
+  DividerText,
   GoogleIcon,
 } from "../Guest.styles";
 
@@ -47,35 +48,37 @@ function RegistrationPage(): JSX.Element {
   }
 
   return (
-    <Container>
-      <Helmet>
-        <title>{t("pageTitle")}</title>
-      </Helmet>
+    <Main>
+      <Container>
+        <Helmet>
+          <title>{t("pageTitle")}</title>
+        </Helmet>
 
-      <Header>
-        <Title>{t("title")}</Title>
-        <Link to={ROUTES.LOGIN}>
-          {t("toLogin")} <ChevronIcon />
-        </Link>
-      </Header>
+        <Header>
+          <Title>{t("title")}</Title>
+          <Link to={ROUTES.LOGIN}>
+            {t("toLogin")} <ChevronIcon />
+          </Link>
+        </Header>
 
-      <RegistrationForm
-        onSubmit={handleSubmit}
-        clearError={clearError}
-        getError={getError}
-      />
+        <RegistrationForm
+          onSubmit={handleSubmit}
+          clearError={clearError}
+          getError={getError}
+        />
 
-      <DividerContainer>
-        <Divider />
-        <Text>{t("divider")}</Text>
-        <Divider />
-      </DividerContainer>
+        <DividerContainer>
+          <Divider />
+          <DividerText>{t("divider")}</DividerText>
+          <Divider />
+        </DividerContainer>
 
-      <Button type="button" variant="secondary" onClick={signInWithGoogle}>
-        <GoogleIcon />
-        {t("withGoogle")}
-      </Button>
-    </Container>
+        <Button type="button" variant="secondary" onClick={signInWithGoogle}>
+          <GoogleIcon />
+          {t("withGoogle")}
+        </Button>
+      </Container>
+    </Main>
   );
 }
 

@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     box-sizing: border-box;
     text-rendering: optimizeLegibility;
