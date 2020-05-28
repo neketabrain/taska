@@ -11,7 +11,7 @@ import {
 import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
 
-import { Container, Header, Title, ChevronIcon } from "../Guest.styles";
+import { Main, Container, Header, Title, ChevronIcon } from "../Guest.styles";
 
 function ResetPage(): JSX.Element {
   const { t } = useTranslation("reset");
@@ -27,24 +27,26 @@ function ResetPage(): JSX.Element {
   }
 
   return (
-    <Container>
-      <Helmet>
-        <title>{t("pageTitle")}</title>
-      </Helmet>
+    <Main>
+      <Container>
+        <Helmet>
+          <title>{t("pageTitle")}</title>
+        </Helmet>
 
-      <Header>
-        <Title>{t("title")}</Title>
-        <Link to={ROUTES.LOGIN}>
-          {t("toLogin")} <ChevronIcon />
-        </Link>
-      </Header>
+        <Header>
+          <Title>{t("title")}</Title>
+          <Link to={ROUTES.LOGIN}>
+            {t("toLogin")} <ChevronIcon />
+          </Link>
+        </Header>
 
-      <ResetPasswordForm
-        onSubmit={handleSubmit}
-        clearError={clearError}
-        getError={getError}
-      />
-    </Container>
+        <ResetPasswordForm
+          onSubmit={handleSubmit}
+          clearError={clearError}
+          getError={getError}
+        />
+      </Container>
+    </Main>
   );
 }
 

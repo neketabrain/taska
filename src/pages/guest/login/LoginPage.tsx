@@ -3,17 +3,19 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 import { Api } from "src/api";
-import { LoginForm, LoginFormValues, Text, Button, Link } from "src/components";
+import { LoginForm, LoginFormValues, Button, Link } from "src/components";
 import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
 
 import {
+  Main,
   Container,
   Header,
   Title,
   ChevronIcon,
   DividerContainer,
   Divider,
+  DividerText,
   GoogleIcon,
 } from "../Guest.styles";
 
@@ -44,35 +46,37 @@ function LoginPage(): JSX.Element {
   }
 
   return (
-    <Container>
-      <Helmet>
-        <title>{t("pageTitle")}</title>
-      </Helmet>
+    <Main>
+      <Container>
+        <Helmet>
+          <title>{t("pageTitle")}</title>
+        </Helmet>
 
-      <Header>
-        <Title>{t("title")}</Title>
-        <Link to={ROUTES.REGISTRATION}>
-          {t("toRegistration")} <ChevronIcon />
-        </Link>
-      </Header>
+        <Header>
+          <Title>{t("title")}</Title>
+          <Link to={ROUTES.REGISTRATION}>
+            {t("toRegistration")} <ChevronIcon />
+          </Link>
+        </Header>
 
-      <LoginForm
-        onSubmit={handleSubmit}
-        clearError={clearError}
-        getError={getError}
-      />
+        <LoginForm
+          onSubmit={handleSubmit}
+          clearError={clearError}
+          getError={getError}
+        />
 
-      <DividerContainer>
-        <Divider />
-        <Text>{t("divider")}</Text>
-        <Divider />
-      </DividerContainer>
+        <DividerContainer>
+          <Divider />
+          <DividerText>{t("divider")}</DividerText>
+          <Divider />
+        </DividerContainer>
 
-      <Button type="button" variant="secondary" onClick={signInWithGoogle}>
-        <GoogleIcon />
-        {t("withGoogle")}
-      </Button>
-    </Container>
+        <Button type="button" variant="secondary" onClick={signInWithGoogle}>
+          <GoogleIcon />
+          {t("withGoogle")}
+        </Button>
+      </Container>
+    </Main>
   );
 }
 

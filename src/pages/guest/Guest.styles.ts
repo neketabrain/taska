@@ -1,18 +1,33 @@
 import styled from "styled-components";
 
-import { Box, Flex, H1, Icons } from "src/components";
+import { Box, Flex, H1, Card, Text, Icons } from "src/components";
 
-export const Container = styled.main`
+export const Main = styled.main`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
-  width: 100%;
   margin: 0 auto;
   padding: 60px 0;
 
   @media screen and (max-width: 480px) {
     max-width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+`;
+
+export const Container = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 480px) {
+    max-width: 100%;
+    height: 100%;
+    padding: 60px 24px;
+  }
+
+  @media screen and (max-width: 360px) {
     padding: 60px 16px;
   }
 `;
@@ -39,22 +54,18 @@ export const DividerContainer = styled(Flex)`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
+  margin: 24px 0;
   position: relative;
+`;
+
+export const DividerText = styled(Text)`
+  margin: 0 16px;
 `;
 
 export const Divider = styled(Box)`
   height: 1px;
   width: 100%;
   background-color: ${({ theme }): string => theme.colors.border};
-
-  :first-of-type {
-    margin-right: 16px;
-  }
-
-  :last-of-type {
-    margin-left: 16px;
-  }
 `;
 
 export const GoogleIcon = styled(Icons.Google)`
