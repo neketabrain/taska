@@ -18,11 +18,19 @@ export const Container = styled(Flex)`
   padding: 0 32px;
   width: 100%;
   height: 100%;
+  justify-content: space-between;
+
+  @media screen and (max-width: 480px) {
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 360px) {
+    padding: 0 16px;
+  }
 `;
 
 export const Button = styled.button`
   position: relative;
-  margin: 0 0 0 auto;
   color: ${({ theme }): string => theme.colors.invertedText};
   font-weight: 600;
   display: flex;
@@ -33,9 +41,23 @@ export const Button = styled.button`
   outline: 0;
   padding: 0 16px;
   background-color: ${({ theme }): string => theme.colors.primaryDark};
+  margin-left: 16px;
 
   :hover {
     background-color: ${({ theme }): string => theme.colors.primaryDarkest};
+  }
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
+export const MobileButton = styled(Button)`
+  display: none;
+  padding: 0 24px;
+
+  @media screen and (max-width: 480px) {
+    display: flex;
   }
 `;
 

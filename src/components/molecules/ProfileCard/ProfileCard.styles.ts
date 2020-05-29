@@ -10,6 +10,15 @@ export const Container = styled(Card)`
   justify-content: center;
 `;
 
+export const Picture = styled.picture`
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+`;
+
 export const UserName = styled(Text)`
   text-align: center;
   margin: 0;
@@ -36,5 +45,4 @@ export const UserAvatar = styled.img`
   position: relative;
   border-radius: 50%;
   border: 1px solid ${({ theme }): string => theme.colors.border};
-  margin: 0 auto 16px;
 `;

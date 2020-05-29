@@ -7,6 +7,7 @@ import {
   UserAvatar,
   UserName,
   UserEmail,
+  Picture,
 } from "./ProfileCard.styles";
 import { ProfileCardProps } from "./ProfileCard.types";
 
@@ -20,7 +21,11 @@ function ProfileCard(props: ProfileCardProps): JSX.Element {
 
   return (
     <Container className={className}>
-      {!!userAvatar && <UserAvatar src={userAvatar} alt="Profile avatar" />}
+      {!!userAvatar && (
+        <Picture>
+          <UserAvatar src={userAvatar} alt="Profile avatar" />
+        </Picture>
+      )}
 
       <UserName title={userName}>{userName}</UserName>
       <UserEmail title={userEmail}>{userEmail}</UserEmail>
