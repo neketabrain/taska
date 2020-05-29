@@ -2,25 +2,10 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Api } from "src/api";
-import { Box, Button, ProfileCard } from "src/components";
+import { ProfileCard } from "src/components";
 import { ROUTES } from "src/constants";
 
-import { Wrapper, LeftSideContainer } from "./User.styles";
-
-function LogoutComponent(): JSX.Element {
-  async function logout(): Promise<void> {
-    await Api.auth.signOut();
-  }
-
-  return (
-    <Box width={128}>
-      <Button variant="primary" onClick={logout}>
-        Log out
-      </Button>
-    </Box>
-  );
-}
+import { Wrapper, LeftSideContainer, Menu } from "./User.styles";
 
 function User(): JSX.Element {
   return (
@@ -31,12 +16,16 @@ function User(): JSX.Element {
 
       <LeftSideContainer>
         <ProfileCard />
+        <Menu />
       </LeftSideContainer>
 
       <Switch>
-        <Route exact path={ROUTES.ROOT} component={LogoutComponent} />
+        <Route exact path={ROUTES.TASKS} />
+        <Route exact path={ROUTES.NEW_TASK} />
+        <Route exact path={ROUTES.SETTINGS} />
+        <Route exact path={ROUTES.LOGOUT} />
 
-        <Redirect to={ROUTES.ROOT} />
+        <Redirect to={ROUTES.TASKS} />
       </Switch>
     </Wrapper>
   );

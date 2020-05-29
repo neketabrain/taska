@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Flex } from "src/components";
+import { Flex, NavMenu } from "src/components";
 
 export const Wrapper = styled(Flex)`
   position: relative;
@@ -15,4 +15,8 @@ export const LeftSideContainer = styled.aside`
   max-width: 250px;
   width: 100%;
   margin-right: 16px;
+`;
+
+export const Menu = styled(NavMenu)`
+  margin-top: 32px;
 `;
