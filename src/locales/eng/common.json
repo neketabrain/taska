@@ -1,0 +1,8 @@
+{
+  "navMenu": {
+    "newTask": "Add new task",
+    "taskList": "Task list",
+    "settings": "Settings",
+    "logout": "Sign out"
+  }
+}

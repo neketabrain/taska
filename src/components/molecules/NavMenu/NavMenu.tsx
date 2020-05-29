@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { NavItem, Icons } from "src/components";
 import { ROUTES } from "src/constants";
@@ -29,16 +30,22 @@ const navItems = [
 function NavMenu(props: NavMenuProps): JSX.Element {
   const { className } = props;
 
+  const { t } = useTranslation("common");
+
   return (
     <Container className={className}>
       <NavItemList>
-        {navItems.map((navItem) => (
-          <NavItem key={navItem.path} {...navItem} />
+        {navItems.map(({ label, ...navItem }) => (
+          <NavItem
+            key={navItem.path}
+            label={t(`navMenu.${label}`)}
+            {...navItem}
+          />
         ))}
 
         <Divider />
         <NavItem
-          label="logout"
+          label={t("navMenu.logout")}
           path={ROUTES.LOGOUT}
           Icon={Icons.FilledExit}
           exact={true}
