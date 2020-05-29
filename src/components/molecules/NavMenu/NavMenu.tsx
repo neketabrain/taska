@@ -1,10 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { NavItem, Icons } from "src/components";
+import { Icons } from "src/components";
 import { ROUTES } from "src/constants";
 
-import { Container, NavItemList, Divider } from "./NavMenu.styles";
+import { Container, NavItemList, Divider, MenuItem } from "./NavMenu.styles";
 import { NavMenuProps } from "./NavMenu.types";
 
 const navItems = [
@@ -36,7 +36,7 @@ function NavMenu(props: NavMenuProps): JSX.Element {
     <Container className={className}>
       <NavItemList>
         {navItems.map(({ label, ...navItem }) => (
-          <NavItem
+          <MenuItem
             key={navItem.path}
             label={t(`navMenu.${label}`)}
             {...navItem}
@@ -44,7 +44,7 @@ function NavMenu(props: NavMenuProps): JSX.Element {
         ))}
 
         <Divider />
-        <NavItem
+        <MenuItem
           label={t("navMenu.logout")}
           path={ROUTES.LOGOUT}
           Icon={Icons.FilledExit}

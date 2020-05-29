@@ -14,15 +14,18 @@ const defaultTheme: DefaultTheme = {
     border: "#E4E3E8",
     borderDarker: "#C4BFD8",
     error: "#BC3B3B",
-    inputBackground: "#F1F2F7",
+    disabledInputBackground: "#FAFAFC",
     errorInputBackground: "#F5E9E9",
+    outline:
+      "inset 0 1px 2px rgba(27, 31, 35, 0.075), 0 0 0 0.2em rgba(3, 102, 214, 0.3)",
 
     buttons: {
       primary: {
         color: "#FFFFFF",
-        background: "#7D7CA4",
+        background: "#7d7ca4",
         backgroundHover: "#56557A",
         backgroundActive: "#47466A",
+        outline: "0 0 0 0.2em rgba(125, 124, 164, 0.4)",
       },
       secondary: {
         color: "#19203A",
@@ -30,6 +33,8 @@ const defaultTheme: DefaultTheme = {
         backgroundActive: "#E4E3E8",
         border: "#E4E3E8",
         borderHover: "#C4BFD8",
+        outline:
+          "inset 0 1px 2px rgba(27, 31, 35, 0.075), 0 0 0 0.2em rgba(3, 102, 214, 0.3)",
       },
     },
   },

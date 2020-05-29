@@ -43,7 +43,8 @@ export const Button = styled.button`
   background-color: ${({ theme }): string => theme.colors.primaryDark};
   margin-left: 16px;
 
-  :hover {
+  :hover,
+  :focus {
     background-color: ${({ theme }): string => theme.colors.primaryDarkest};
   }
 

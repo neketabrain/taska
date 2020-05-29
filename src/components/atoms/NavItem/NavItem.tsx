@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Link } from "./NavItem.styles";
+import { Container, NavLink } from "./NavItem.styles";
 import { NavItemProps } from "./NavItem.types";
 
 function NavItem(props: NavItemProps): JSX.Element {
@@ -8,10 +8,10 @@ function NavItem(props: NavItemProps): JSX.Element {
 
   return (
     <Container className={className}>
-      <Link to={path} exact={exact} activeClassName="active">
+      <NavLink to={path} exact={exact} activeClassName="active">
         {Icon && <Icon />}
         {label}
-      </Link>
+      </NavLink>
     </Container>
   );
 }
