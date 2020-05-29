@@ -4,5 +4,7 @@
     "taskList": "Список задач",
     "settings": "Настройки",
     "logout": "Выйти"
-  }
+  },
+  "switchLanguage": "Switch to English",
+  "mobileSwitchLanguage": "English"
 }
