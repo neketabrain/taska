@@ -44,7 +44,7 @@ export const CustomCheckbox = styled.div`
   margin-right: 16px;
   width: 18px;
   height: 18px;
-  background: ${({ theme }): string => theme.colors.inputBackground};
+  background-color: inherit;
   border: 1px solid ${({ theme }): string => theme.colors.border};
   box-sizing: border-box;
   border-radius: 4px;
@@ -56,16 +56,14 @@ export const CustomCheckbox = styled.div`
   }
 
   ${NativeCheckbox}:focus + & {
-    border-color: ${({ theme }): string => theme.colors.primaryDark};
-    background-color: inherit;
+    border-color: ${({ theme }): string => theme.colors.secondary};
+    box-shadow: ${({ theme }): string => theme.colors.outline};
   }
 
   ${NativeCheckbox}:disabled + & {
     cursor: not-allowed;
-  }
-
-  ${NativeCheckbox}:hover:not(:focus):not(:disabled) + & {
-    border-color: ${({ theme }): string => theme.colors.borderDarker};
+    background-color: ${({ theme }): string =>
+      theme.colors.disabledInputBackground};
   }
 `;
 

@@ -1,35 +1,56 @@
-import styled from "styled-components";
-import { variant } from "styled-system";
+import styled, {
+  css,
+  FlattenInterpolation,
+  ThemeProps,
+  DefaultTheme,
+} from "styled-components";
 
 import { ButtonProps } from "./Button.types";
 
-const primary = {
-  color: "buttons.primary.color",
-  bg: "buttons.primary.background",
-  border: "none",
+const variants = {
+  primary: css`
+    color: ${({ theme }): string => theme.colors.buttons.primary.color};
+    background-color: ${({ theme }): string =>
+      theme.colors.buttons.primary.background};
 
-  "&:hover:enabled, &:focus:enabled": {
-    bg: "buttons.primary.backgroundHover",
-  },
+    :focus {
+      box-shadow: ${({ theme }): string =>
+        theme.colors.buttons.primary.outline};
+    }
 
-  "&:active:enabled": {
-    bg: "buttons.primary.backgroundActive",
-  },
-};
+    :hover {
+      background-color: ${({ theme }): string =>
+        theme.colors.buttons.primary.backgroundHover};
+    }
 
-const secondary = {
-  color: "buttons.secondary.color",
-  bg: "buttons.secondary.background",
-  border: "1px solid",
-  borderColor: "buttons.secondary.border",
+    :active {
+      background-color: ${({ theme }): string =>
+        theme.colors.buttons.primary.backgroundActive};
+    }
+  `,
+  secondary: css`
+    color: ${({ theme }): string => theme.colors.buttons.secondary.color};
+    background-color: ${({ theme }): string =>
+      theme.colors.buttons.secondary.background};
+    border: 1px solid
+      ${({ theme }): string => theme.colors.buttons.secondary.border};
 
-  "&:hover:enabled, &:focus:enabled": {
-    borderColor: "buttons.secondary.borderHover",
-  },
+    :focus {
+      box-shadow: ${({ theme }): string =>
+        theme.colors.buttons.secondary.outline};
+    }
 
-  "&:active:enabled": {
-    bg: "buttons.secondary.backgroundActive",
-  },
+    :focus,
+    :hover {
+      border-color: ${({ theme }): string =>
+        theme.colors.buttons.secondary.borderHover};
+    }
+
+    :active {
+      background-color: ${({ theme }): string =>
+        theme.colors.buttons.secondary.backgroundActive};
+    }
+  `,
 };
 
 const Button = styled.button<ButtonProps>`
@@ -46,6 +67,7 @@ const Button = styled.button<ButtonProps>`
   cursor: pointer;
   outline: 0;
   font-size: 14px;
+  border: none;
 
   :disabled {
     cursor: not-allowed;
@@ -57,12 +79,8 @@ const Button = styled.button<ButtonProps>`
     font-size: 16px;
   }
 
-  ${variant({
-    variants: {
-      primary,
-      secondary,
-    },
-  })};
+  ${({ variant }): FlattenInterpolation<ThemeProps<DefaultTheme>> =>
+    variants[variant]};
 `;
 
 export default Button;

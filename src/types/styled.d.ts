@@ -15,8 +15,9 @@ declare module "styled-components" {
       border: string;
       borderDarker: string;
       error: string;
-      inputBackground: string;
+      disabledInputBackground: string;
       errorInputBackground: string;
+      outline: string;
 
       buttons: {
         primary: {
@@ -24,6 +25,7 @@ declare module "styled-components" {
           background: string;
           backgroundHover: string;
           backgroundActive: string;
+          outline: string;
         };
         secondary: {
           color: string;
@@ -31,6 +33,7 @@ declare module "styled-components" {
           backgroundActive: string;
           border: string;
           borderHover: string;
+          outline: string;
         };
       };
     };

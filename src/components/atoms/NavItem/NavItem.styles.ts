@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+
+import { Link } from "../Link";
 
 export const Container = styled.li`
   position: relative;
@@ -8,18 +9,15 @@ export const Container = styled.li`
   margin: 0;
 `;
 
-export const Link = styled(NavLink)`
-  position: relative;
-  display: flex;
-  align-items: center;
+export const NavLink = styled(Link)`
   width: 100%;
   height: 32px;
   padding: 0 8px;
   border-radius: 4px;
   color: ${({ theme }): string => theme.colors.buttons.primary.background};
-  text-decoration: none;
 
   :hover {
+    text-decoration: none;
     background-color: ${({ theme }): string => theme.colors.border};
     color: ${({ theme }): string =>
       theme.colors.buttons.primary.backgroundHover};
@@ -28,6 +26,11 @@ export const Link = styled(NavLink)`
       fill: ${({ theme }): string =>
         theme.colors.buttons.primary.backgroundHover};
     }
+  }
+
+  :focus {
+    box-shadow: ${({ theme }): string => theme.colors.buttons.primary.outline};
+    border-radius: 4px;
   }
 
   svg {
