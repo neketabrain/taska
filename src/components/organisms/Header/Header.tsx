@@ -5,10 +5,16 @@ import { useTranslation } from "react-i18next";
 import { AuthContext } from "src/context";
 import { i18n } from "src/i18n";
 
-import { Wrapper, Container, Button, HeaderLogo } from "./Header.styles";
+import {
+  Wrapper,
+  Container,
+  Button,
+  MobileButton,
+  HeaderLogo,
+} from "./Header.styles";
 
 function Header(): JSX.Element {
-  const { t } = useTranslation("header");
+  const { t } = useTranslation("common");
 
   const user = useContext(AuthContext);
 
@@ -25,7 +31,12 @@ function Header(): JSX.Element {
         <HeaderLogo isAuthorized={!!user} />
 
         {!user && (
-          <Button onClick={switchLanguage}>{t("switchLanguage")}</Button>
+          <>
+            <Button onClick={switchLanguage}>{t("switchLanguage")}</Button>
+            <MobileButton onClick={switchLanguage}>
+              {t("mobileSwitchLanguage")}
+            </MobileButton>
+          </>
         )}
       </Container>
     </Wrapper>

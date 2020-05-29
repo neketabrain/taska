@@ -72,6 +72,7 @@ function LoginForm(props: LoginFormProps): JSX.Element {
           label={t("remember")}
           checked={values.isRemembered}
           onChange={onChange}
+          disabled={isSubmitting}
         />
       </CheckBoxContainer>
 
