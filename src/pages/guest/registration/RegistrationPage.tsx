@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
 import { Api } from "src/api";
 import {
@@ -11,6 +12,7 @@ import {
 } from "src/components";
 import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
+import { UserTypes } from "src/store";
 
 import {
   Main,
@@ -25,6 +27,7 @@ import {
 } from "../Guest.styles";
 
 function RegistrationPage(): JSX.Element {
+  const dispatch = useDispatch();
   const { t } = useTranslation("registration");
 
   const { clearError, getError, addError, clearAllErrors } = useErrors();
@@ -37,7 +40,13 @@ function RegistrationPage(): JSX.Element {
 
     Api.auth
       .createUserWithEmailAndPassword(email, password)
-      .then((res) => res.user?.updateProfile({ displayName }))
+      .then((res) =>
+        res.user
+          ?.updateProfile({ displayName })
+          .then(() =>
+            dispatch({ type: UserTypes.UPDATE, payload: { displayName } })
+          )
+      )
       .catch((err) => addError(err.code));
   }
 

@@ -1,13 +1,16 @@
 import i18next from "i18next";
 import React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import "./i18n";
 
 import { defaultTheme, GlobalStyles } from "./assets";
-import { AuthProvider } from "./context";
 import Router from "./pages";
+import { configureStore } from "./store";
+
+const store = configureStore();
 
 function App(): JSX.Element {
   const language =
@@ -21,9 +24,9 @@ function App(): JSX.Element {
 
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />
-        <AuthProvider>
+        <Provider store={store}>
           <Router />
-        </AuthProvider>
+        </Provider>
       </ThemeProvider>
     </HelmetProvider>
   );

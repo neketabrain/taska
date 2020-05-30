@@ -18,6 +18,8 @@ declare module "styled-components" {
       disabledInputBackground: string;
       errorInputBackground: string;
       outline: string;
+      opacityGrey: string;
+      opacityDarkGrey: string;
 
       buttons: {
         primary: {
