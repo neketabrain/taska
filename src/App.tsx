@@ -10,9 +10,9 @@ import { defaultTheme, GlobalStyles } from "./assets";
 import Router from "./pages";
 import { configureStore } from "./store";
 
-function App(): JSX.Element {
-  const store = configureStore();
+const store = configureStore();
 
+function App(): JSX.Element {
   const language =
     window.localStorage.getItem("i18nextLng") || i18next.language || "en";
 

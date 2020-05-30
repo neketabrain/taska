@@ -3,10 +3,17 @@ import { UserActions, UserState, UserTypes } from "./types";
 function UserReducer(
   state: UserState = null,
   { type, payload }: UserActions
-): UserState {
+): Partial<UserState> {
   switch (type) {
-    case UserTypes.UPDATE: {
+    case UserTypes.SET: {
       return payload;
+    }
+
+    case UserTypes.UPDATE: {
+      return {
+        ...state,
+        ...payload,
+      };
     }
 
     default: {

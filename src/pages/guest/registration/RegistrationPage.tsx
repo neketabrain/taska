@@ -41,10 +41,11 @@ function RegistrationPage(): JSX.Element {
     Api.auth
       .createUserWithEmailAndPassword(email, password)
       .then((res) =>
-        res.user?.updateProfile({ displayName }).then(() => {
-          const currentUser = Api.auth.currentUser;
-          dispatch({ type: UserTypes.UPDATE, payload: currentUser });
-        })
+        res.user
+          ?.updateProfile({ displayName })
+          .then(() =>
+            dispatch({ type: UserTypes.UPDATE, payload: { displayName } })
+          )
       )
       .catch((err) => addError(err.code));
   }
