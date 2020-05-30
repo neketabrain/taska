@@ -1,15 +1,35 @@
 import loadable from "@loadable/component";
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
+import { Api } from "src/api";
 import { Header, PageWrapper } from "src/components";
-import { AuthContext } from "src/context";
+import { ApplicationStore, UserTypes } from "src/store";
 
 const Guest = loadable(() => import(/* webpackPrefetch: true */ "./guest"));
 const User = loadable(() => import(/* webpackPrefetch: true */ "./user"));
 
 function Router(): JSX.Element {
-  const profile = useContext(AuthContext);
+  const [isFetching, setFetching] = useState(true);
+
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: ApplicationStore) => state);
+
+  useEffect(() => {
+    Api.auth.onAuthStateChanged((user) => {
+      // eslint-disable-next-line no-restricted-globals
+      if (!/registration/.test(location.pathname)) {
+        dispatch({ type: UserTypes.UPDATE, payload: user });
+      }
+
+      setFetching(false);
+    });
+  }, [dispatch]);
+
+  if (isFetching) {
+    return <></>;
+  }
 
   return (
     <>
@@ -17,8 +37,8 @@ function Router(): JSX.Element {
 
       <PageWrapper>
         <BrowserRouter>
-          {!!profile && <User />}
-          {!profile && <Guest />}
+          {!!user && <User />}
+          {!user && <Guest />}
         </BrowserRouter>
       </PageWrapper>
     </>

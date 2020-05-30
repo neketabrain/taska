@@ -1,9 +1,10 @@
 import i18next from "i18next";
-import React, { useContext } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
-import { AuthContext } from "src/context";
 import { i18n } from "src/i18n";
+import { ApplicationStore } from "src/store";
 
 import {
   Wrapper,
@@ -16,7 +17,7 @@ import {
 function Header(): JSX.Element {
   const { t } = useTranslation("common");
 
-  const user = useContext(AuthContext);
+  const { user } = useSelector((state: ApplicationStore) => state);
 
   async function switchLanguage(): Promise<void> {
     const currentLanguage =
