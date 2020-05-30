@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
-import { AuthContext } from "src/context";
+import { ApplicationStore } from "src/store";
 
 import {
   Container,
@@ -14,7 +15,8 @@ import { ProfileCardProps } from "./ProfileCard.types";
 function ProfileCard(props: ProfileCardProps): JSX.Element {
   const { className } = props;
 
-  const user = useContext(AuthContext);
+  const { user } = useSelector((state: ApplicationStore) => state);
+
   const userName = user?.displayName || "";
   const userEmail = user?.email || "";
   const userAvatar = user?.photoURL;
