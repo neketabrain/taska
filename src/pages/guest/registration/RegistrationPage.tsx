@@ -43,7 +43,7 @@ function RegistrationPage(): JSX.Element {
       .then((res) =>
         res.user?.updateProfile({ displayName }).then(() => {
           const currentUser = Api.auth.currentUser;
-          dispatch({ type: UserTypes.UPDATE, payload: currentUser });
+          dispatch({ type: UserTypes.SET, payload: currentUser });
         })
       )
       .catch((err) => addError(err.code));
