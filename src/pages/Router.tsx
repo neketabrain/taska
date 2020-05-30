@@ -18,11 +18,7 @@ function Router(): JSX.Element {
 
   useEffect(() => {
     Api.auth.onAuthStateChanged((user) => {
-      // eslint-disable-next-line no-restricted-globals
-      if (!/registration/.test(location.pathname)) {
-        dispatch({ type: UserTypes.SET, payload: user });
-      }
-
+      dispatch({ type: UserTypes.SET, payload: user });
       setFetching(false);
     });
   }, [dispatch]);

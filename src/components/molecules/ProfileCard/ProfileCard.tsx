@@ -23,7 +23,7 @@ function ProfileCard(props: ProfileCardProps): JSX.Element {
   const userEmail = user?.email || "";
   const userAvatar = user?.photoURL;
 
-  const [firstName, lastName] = userName.split(" ");
+  const [firstName = [""], lastName = [""]] = userName.split(" ");
   const avatarText = firstName[0] + lastName[0];
 
   return (
