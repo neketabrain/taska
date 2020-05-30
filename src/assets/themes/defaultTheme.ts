@@ -18,6 +18,8 @@ const defaultTheme: DefaultTheme = {
     errorInputBackground: "#F5E9E9",
     outline:
       "inset 0 1px 2px rgba(27, 31, 35, 0.075), 0 0 0 0.2em rgba(3, 102, 214, 0.3)",
+    opacityGrey: "rgba(0, 0, 0, 0.2)",
+    opacityDarkGrey: "rgba(0, 0, 0, 0.5)",
 
     buttons: {
       primary: {

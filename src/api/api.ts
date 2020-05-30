@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY || "whatever",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 class Api {
   auth: firebase.auth.Auth;
   db: firebase.firestore.Firestore;
+  storage: firebase.storage.Storage;
   googleAuthProvider: firebase.auth.GoogleAuthProvider;
   persistence: typeof firebase.auth.Auth.Persistence;
 
@@ -25,6 +27,7 @@ class Api {
 
     this.auth = firebase.auth();
     this.db = firebase.firestore();
+    this.storage = firebase.storage();
 
     this.persistence = firebase.auth.Auth.Persistence;
     this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
