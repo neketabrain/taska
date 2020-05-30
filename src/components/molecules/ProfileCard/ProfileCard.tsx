@@ -25,7 +25,7 @@ function ProfileCard(props: ProfileCardProps): JSX.Element {
     <Container className={className}>
       {!!userAvatar && (
         <Picture>
-          <UserAvatar src={userAvatar} alt="Profile avatar" />
+          <UserAvatar src={userAvatar} alt="User avatar" />
         </Picture>
       )}
 
