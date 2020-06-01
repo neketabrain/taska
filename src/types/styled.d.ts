@@ -8,6 +8,7 @@ declare module "styled-components" {
       text: string;
       additionalText: string;
       invertedText: string;
+      primaryLightest: string;
       primary: string;
       primaryDark: string;
       primaryDarkest: string;
