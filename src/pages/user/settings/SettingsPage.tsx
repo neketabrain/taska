@@ -6,19 +6,24 @@ import { SettingsMenu } from "src/components";
 
 import { ROUTES } from "../../../constants";
 
-import { Wrapper, MenuContainer, Title } from "./SettingsPage.styles";
+import {
+  Wrapper,
+  MenuSection,
+  MenuContainer,
+  Title,
+} from "./SettingsPage.styles";
 
 function SettingsPage(): JSX.Element {
   const { t } = useTranslation("settings");
 
   return (
     <Wrapper>
-      <section>
+      <MenuSection>
         <MenuContainer>
           <Title>{t("title")}</Title>
           <SettingsMenu />
         </MenuContainer>
-      </section>
+      </MenuSection>
 
       <Switch>
         <Route path={ROUTES.SETTINGS_EMAIL} />

@@ -9,13 +9,17 @@ export const Wrapper = styled.main`
 `;
 
 export const MenuContainer = styled(Card)`
-  max-width: 350px;
-  width: 100%;
   padding: 24px 0;
-  margin-right: 16px;
 `;
 
 export const Title = styled(H1)`
   padding: 0 24px;
   margin-bottom: 32px;
+`;
+
+export const MenuSection = styled.section`
+  position: relative;
+  max-width: 350px;
+  width: 100%;
+  margin-right: 16px;
 `;
