@@ -1,10 +1,10 @@
 {
   "navMenu": {
     "newTask": "New task",
-    "taskList": "Task list",
+    "taskList": "Tasks",
     "settings": "Settings",
     "logout": "Sign out"
   },
-  "switchLanguage": "Переключить на русский язык",
+  "switchLanguage": "Сменить язык на русский",
   "mobileSwitchLanguage": "Русский"
 }

@@ -7,6 +7,7 @@ const defaultTheme: DefaultTheme = {
     text: "#19203A",
     additionalText: "#9097AF",
     invertedText: "#FFFFFF",
+    primaryLightest: "#F1F2F7",
     primary: "#7D7CA4",
     primaryDark: "#36355F",
     primaryDarkest: "#2B2A53",
