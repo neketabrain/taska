@@ -1,0 +1,9 @@
+{
+  "navMenu": {
+    "email": "Change email",
+    "password": "Change password",
+    "profile": "Edit profile",
+    "preferences": "Preferences"
+  },
+  "title": "Settings"
+}
