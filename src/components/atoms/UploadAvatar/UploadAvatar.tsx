@@ -18,14 +18,14 @@ function UploadAvatar(): JSX.Element {
 
   function handleUpload(event: ChangeEvent<HTMLInputElement>): void {
     const file = event.target.files?.[0];
-    if (!file) return;
+    const user = Api.auth.currentUser;
+
+    if (!file || !user) return;
 
     setUploading(true);
 
-    const user = Api.auth.currentUser;
-
     Api.storage
-      .ref(`${user}/profilePicture/${file.name}`)
+      .ref(`${user.uid}/profileAvatar/${file.name}`)
       .put(file)
       .then((res) =>
         res.ref.getDownloadURL().then((photoURL) => {
