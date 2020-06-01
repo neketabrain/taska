@@ -7,6 +7,10 @@ import { ProfileCard } from "src/components";
 import { ROUTES } from "src/constants";
 
 import { Wrapper, LeftSideContainer, Menu } from "./User.styles";
+
+const SettingsPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./settings")
+);
 const LogoutPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./logout")
 );
@@ -24,9 +28,8 @@ function User(): JSX.Element {
       </LeftSideContainer>
 
       <Switch>
-        <Route exact path={ROUTES.TASKS} />
-        <Route exact path={ROUTES.NEW_TASK} />
-        <Route exact path={ROUTES.SETTINGS} />
+        <Route path={ROUTES.TASKS} />
+        <Route path={ROUTES.SETTINGS} component={SettingsPage} />
         <Route exact path={ROUTES.LOGOUT} component={LogoutPage} />
 
         <Redirect to={ROUTES.TASKS} />
