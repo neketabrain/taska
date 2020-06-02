@@ -1,9 +1,28 @@
 {
+  "pageTitle": "Taska. Settings",
+  "title": "Settings",
   "navMenu": {
     "email": "Change email",
     "password": "Change password",
     "profile": "Edit profile",
     "preferences": "Preferences"
   },
-  "title": "Settings"
+  "emailPage": {
+    "title": "Email",
+    "successful": "Your email address change was successful",
+    "form": {
+      "email": "New email",
+      "password": "Password",
+      "submit": "Change"
+    }
+  },
+  "passwordPage": {
+    "title": "Password",
+    "successful": "Your password change was successful",
+    "form": {
+      "oldPassword": "Old password",
+      "newPassword": "New password",
+      "submit": "Change"
+    }
+  }
 }

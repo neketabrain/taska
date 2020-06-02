@@ -9,7 +9,11 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const InputContainer = styled(Box)``;
+export const InputContainer = styled(Box)`
+  :not(:first-of-type) {
+    margin-top: 16px;
+  }
+`;
 
 export const SubmitButton = styled(Button)`
   margin-top: 24px;

@@ -1,4 +1,6 @@
+import loadable from "@loadable/component";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -6,28 +8,34 @@ import { SettingsMenu } from "src/components";
 
 import { ROUTES } from "../../../constants";
 
-import {
-  Wrapper,
-  MenuSection,
-  MenuContainer,
-  Title,
-} from "./SettingsPage.styles";
+import { Wrapper, MenuSection, Container, Title } from "./SettingsPage.styles";
+
+const ChangeEmailPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./email")
+);
+const ChangePasswordPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./password")
+);
 
 function SettingsPage(): JSX.Element {
   const { t } = useTranslation("settings");
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>{t("pageTitle")}</title>
+      </Helmet>
+
       <MenuSection>
-        <MenuContainer>
+        <Container>
           <Title>{t("title")}</Title>
           <SettingsMenu />
-        </MenuContainer>
+        </Container>
       </MenuSection>
 
       <Switch>
-        <Route path={ROUTES.SETTINGS_EMAIL} />
-        <Route path={ROUTES.SETTINGS_PASSWORD} />
+        <Route path={ROUTES.SETTINGS_EMAIL} component={ChangeEmailPage} />
+        <Route path={ROUTES.SETTINGS_PASSWORD} component={ChangePasswordPage} />
         <Route exact path={ROUTES.SETTINGS_PROFILE} />
         <Route exact path={ROUTES.SETTINGS_PREFERENCES} />
 

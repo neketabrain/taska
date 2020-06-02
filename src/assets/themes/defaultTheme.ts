@@ -21,6 +21,8 @@ const defaultTheme: DefaultTheme = {
       "inset 0 1px 2px rgba(27, 31, 35, 0.075), 0 0 0 0.2em rgba(3, 102, 214, 0.3)",
     opacityGrey: "rgba(0, 0, 0, 0.2)",
     opacityDarkGrey: "rgba(0, 0, 0, 0.5)",
+    successfulText: "#087613",
+    opacitySuccessful: "#D9FFDA",
 
     buttons: {
       primary: {
