@@ -7,6 +7,7 @@ type Event = ChangeEvent<HTMLInputElement>;
 interface UseForm<T> {
   values: T;
   onChange: (event: Event) => void;
+  resetValues: () => void;
 }
 
 function reduceByType<T>(event: Event): { [name: string]: boolean | string } {
@@ -34,7 +35,11 @@ function useForm<T>(initialValues: T, clearError?: ClearError): UseForm<T> {
     }));
   }
 
-  return { values, onChange };
+  function resetValues(): void {
+    setValues(initialValues);
+  }
+
+  return { values, onChange, resetValues };
 }
 
 export default useForm;
