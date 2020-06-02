@@ -13,8 +13,11 @@ export const MenuContainer = styled(Card)`
 `;
 
 export const Title = styled(H1)`
-  padding: 0 24px;
   margin-bottom: 32px;
+`;
+
+export const MenuTitle = styled(Title)`
+  padding: 0 24px;
 `;
 
 export const MenuSection = styled.section`
@@ -22,4 +25,10 @@ export const MenuSection = styled.section`
   max-width: 350px;
   width: 100%;
   margin-right: 16px;
+`;
+
+export const ContentSection = styled.section`
+  position: relative;
+  max-width: 460px;
+  width: 100%;
 `;
