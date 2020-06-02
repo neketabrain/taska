@@ -3,3 +3,4 @@ export * from "./RegistrationForm";
 export * from "./LoginForm";
 export * from "./ResetPasswordForm";
 export * from "./ChangeEmailForm";
+export * from "./ChangePasswordForm";
