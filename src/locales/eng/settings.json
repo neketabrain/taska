@@ -15,5 +15,14 @@
       "password": "Password",
       "submit": "Change"
     }
+  },
+  "passwordPage": {
+    "title": "Password",
+    "successful": "Your password change was successful",
+    "form": {
+      "oldPassword": "Old password",
+      "newPassword": "New password",
+      "submit": "Change"
+    }
   }
 }

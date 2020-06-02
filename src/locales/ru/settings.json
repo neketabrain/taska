@@ -15,5 +15,14 @@
       "password": "Пароль",
       "submit": "Изменить"
     }
+  },
+  "passwordPage": {
+    "title": "Пароль",
+    "successful": "Ваш пароль был успешно изменен",
+    "form": {
+      "oldPassword": "Старый пароль",
+      "newPassword": "Новый пароль",
+      "submit": "Изменить"
+    }
   }
 }

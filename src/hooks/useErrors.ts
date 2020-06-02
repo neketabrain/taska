@@ -7,7 +7,7 @@ export interface UseErrorsState {
   [name: string]: string;
 }
 
-export type AddError = (code: string) => void;
+export type AddError = (code: string, name?: string) => void;
 export type GetError = (name: string) => string;
 export type ClearError = (name: string) => void;
 export type ClearAllErrors = () => void;
@@ -24,9 +24,16 @@ function useErrors(): UseErrors {
   const { t } = useTranslation("errors");
   const [errors, setErrors] = useState<UseErrorsState>({});
 
-  function addError(code: string): void {
-    const errorName = ERRORS[code];
+  function addError(code: string, name?: string): void {
+    if (name) {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: code,
+      }));
+      return;
+    }
 
+    const errorName = ERRORS[code];
     if (errorName) {
       setErrors((prevState) => ({
         ...prevState,

@@ -13,6 +13,9 @@ import { Wrapper, MenuSection, Container, Title } from "./SettingsPage.styles";
 const ChangeEmailPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./email")
 );
+const ChangePasswordPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./password")
+);
 
 function SettingsPage(): JSX.Element {
   const { t } = useTranslation("settings");
@@ -32,7 +35,7 @@ function SettingsPage(): JSX.Element {
 
       <Switch>
         <Route path={ROUTES.SETTINGS_EMAIL} component={ChangeEmailPage} />
-        <Route path={ROUTES.SETTINGS_PASSWORD} />
+        <Route path={ROUTES.SETTINGS_PASSWORD} component={ChangePasswordPage} />
         <Route exact path={ROUTES.SETTINGS_PROFILE} />
         <Route exact path={ROUTES.SETTINGS_PREFERENCES} />
 
