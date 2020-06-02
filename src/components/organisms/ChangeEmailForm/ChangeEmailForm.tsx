@@ -20,7 +20,7 @@ function ChangeEmailForm(props: ChangeEmailFormProps): JSX.Element {
 
   const { t } = useTranslation("settings");
 
-  const { values, onChange } = useForm(defaultValues, clearError);
+  const { values, onChange, resetValues } = useForm(defaultValues, clearError);
   const [isSubmitting, setSubmitting] = useState(false);
 
   async function handleSubmit(
@@ -29,7 +29,7 @@ function ChangeEmailForm(props: ChangeEmailFormProps): JSX.Element {
     event.preventDefault();
 
     setSubmitting(true);
-    await onSubmit(values);
+    await onSubmit(values, resetValues);
     setSubmitting(false);
   }
 

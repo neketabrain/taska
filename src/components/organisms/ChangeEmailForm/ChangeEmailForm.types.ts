@@ -6,5 +6,8 @@ export interface ChangeEmailFormValues {
 }
 
 export interface ChangeEmailFormProps extends Partial<UseErrors> {
-  onSubmit: (values: ChangeEmailFormValues) => Promise<void>;
+  onSubmit: (
+    values: ChangeEmailFormValues,
+    resetValues: () => void
+  ) => Promise<void>;
 }

@@ -8,12 +8,7 @@ import { SettingsMenu } from "src/components";
 
 import { ROUTES } from "../../../constants";
 
-import {
-  Wrapper,
-  MenuSection,
-  MenuContainer,
-  MenuTitle,
-} from "./SettingsPage.styles";
+import { Wrapper, MenuSection, Container, Title } from "./SettingsPage.styles";
 
 const ChangeEmailPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./email")
@@ -29,10 +24,10 @@ function SettingsPage(): JSX.Element {
       </Helmet>
 
       <MenuSection>
-        <MenuContainer>
-          <MenuTitle>{t("title")}</MenuTitle>
+        <Container>
+          <Title>{t("title")}</Title>
           <SettingsMenu />
-        </MenuContainer>
+        </Container>
       </MenuSection>
 
       <Switch>

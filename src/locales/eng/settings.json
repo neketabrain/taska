@@ -9,6 +9,7 @@
   },
   "emailPage": {
     "title": "Email",
+    "successful": "Your email address change was successful",
     "form": {
       "email": "New email",
       "password": "Password",
