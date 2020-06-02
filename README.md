@@ -9,6 +9,13 @@ yarn install
 npm install
 ```
 
+### Build
+
+```sh
+yarn build
+npm run build
+```
+
 ### Start
 
 ```sh
@@ -22,14 +29,7 @@ Or run docker container
 docker-compose up
 ```
 
-### Build
-
-```sh
-yarn build
-npm run build
-```
-
-Start build on local server
+Or start production version (after `yarn build`)
 
 ```sh
 yarn serve
