@@ -25,6 +25,16 @@
       "submit": "Изменить"
     }
   },
+  "profilePage": {
+    "title": "Профиль",
+    "successful": "Ваш профиль был успешно изменен",
+    "form": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "photoURL": "Аватар",
+      "submit": "Изменить"
+    }
+  },
   "preferencesPage": {
     "title": "Параметры",
     "language": "Язык:",

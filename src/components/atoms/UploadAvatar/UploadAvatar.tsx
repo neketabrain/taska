@@ -10,8 +10,11 @@ import {
   FileInput,
   PhotoIcon,
 } from "./UploadAvatar.styles";
+import { UploadAvatarProps } from "./UploadAvatar.types";
 
-function UploadAvatar(): JSX.Element {
+function UploadAvatar(props: UploadAvatarProps): JSX.Element {
+  const { name } = props;
+
   const [isUploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
@@ -40,7 +43,7 @@ function UploadAvatar(): JSX.Element {
     <Wrapper>
       <FileInput
         type="file"
-        name="avatar"
+        name={name || "avatar"}
         accept="image/jpeg,image/png"
         onChange={handleUpload}
         disabled={isUploading}
