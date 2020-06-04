@@ -24,5 +24,14 @@
       "newPassword": "New password",
       "submit": "Change"
     }
+  },
+  "preferencesPage": {
+    "title": "Preferences",
+    "language": "Language:",
+    "russian": "Русский",
+    "english": "English",
+    "darkMode": "Dark mode:",
+    "on": "On",
+    "off": "Off"
   }
 }
