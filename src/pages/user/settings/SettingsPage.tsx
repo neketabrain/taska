@@ -16,6 +16,9 @@ const ChangeEmailPage = loadable(() =>
 const ChangePasswordPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./password")
 );
+const PreferencesPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./preferences")
+);
 
 function SettingsPage(): JSX.Element {
   const { t } = useTranslation("settings");
@@ -37,7 +40,11 @@ function SettingsPage(): JSX.Element {
         <Route path={ROUTES.SETTINGS_EMAIL} component={ChangeEmailPage} />
         <Route path={ROUTES.SETTINGS_PASSWORD} component={ChangePasswordPage} />
         <Route exact path={ROUTES.SETTINGS_PROFILE} />
-        <Route exact path={ROUTES.SETTINGS_PREFERENCES} />
+        <Route
+          exact
+          path={ROUTES.SETTINGS_PREFERENCES}
+          component={PreferencesPage}
+        />
 
         <Redirect to={ROUTES.SETTINGS_EMAIL} />
       </Switch>

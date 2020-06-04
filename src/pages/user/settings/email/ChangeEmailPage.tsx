@@ -10,7 +10,7 @@ import { Api } from "../../../../api";
 import {
   ContentSection,
   Container,
-  FormWrapper,
+  ContentWrapper,
   Title,
   AlertContainer,
 } from "../SettingsPage.styles";
@@ -55,13 +55,13 @@ function ChangeEmailPage(): JSX.Element {
           <AlertContainer>{t("emailPage.successful")}</AlertContainer>
         )}
 
-        <FormWrapper>
+        <ContentWrapper>
           <ChangeEmailForm
             onSubmit={handleSubmit}
             clearError={clearError}
             getError={getError}
           />
-        </FormWrapper>
+        </ContentWrapper>
       </Container>
     </ContentSection>
   );
