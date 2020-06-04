@@ -8,7 +8,7 @@ import { Api } from "../../../../api";
 import {
   ContentSection,
   Container,
-  FormWrapper,
+  ContentWrapper,
   Title,
   AlertContainer,
 } from "../SettingsPage.styles";
@@ -57,13 +57,13 @@ function ChangePasswordPage(): JSX.Element {
           <AlertContainer>{t("passwordPage.successful")}</AlertContainer>
         )}
 
-        <FormWrapper>
+        <ContentWrapper>
           <ChangePasswordForm
             onSubmit={handleSubmit}
             clearError={clearError}
             getError={getError}
           />
-        </FormWrapper>
+        </ContentWrapper>
       </Container>
     </ContentSection>
   );

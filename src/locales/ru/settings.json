@@ -24,5 +24,14 @@
       "newPassword": "Новый пароль",
       "submit": "Изменить"
     }
+  },
+  "preferencesPage": {
+    "title": "Параметры",
+    "language": "Язык:",
+    "russian": "Русский",
+    "english": "English",
+    "darkMode": "Темный интерфейс:",
+    "on": "Вкл",
+    "off": "Выкл"
   }
 }
