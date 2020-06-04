@@ -25,6 +25,16 @@
       "submit": "Change"
     }
   },
+  "profilePage": {
+    "title": "Profile",
+    "successful": "Your profile change was successful",
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "photoURL": "Avatar",
+      "submit": "Change"
+    }
+  },
   "preferencesPage": {
     "title": "Preferences",
     "language": "Language:",
