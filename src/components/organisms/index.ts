@@ -5,3 +5,4 @@ export * from "./ResetPasswordForm";
 export * from "./ChangeEmailForm";
 export * from "./ChangePasswordForm";
 export * from "./EditProfileForm";
+export * from "./EditTaskForm";

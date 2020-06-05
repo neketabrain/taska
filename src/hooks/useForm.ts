@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 
 import { ClearError } from "./useErrors";
 
-type Event = ChangeEvent<HTMLInputElement>;
+type Event = ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>;
 
 interface UseForm<T> {
   values: T;

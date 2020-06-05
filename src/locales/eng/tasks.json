@@ -1,0 +1,14 @@
+{
+  "newTask": {
+    "pageTitle": "Tasks. New task",
+    "title": "New task",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "date": "Date",
+      "time": "Time",
+      "address": "Address",
+      "submit": "Create"
+    }
+  }
+}
