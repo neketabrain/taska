@@ -4,6 +4,7 @@ import login from "./login.json";
 import registration from "./registration.json";
 import reset from "./reset.json";
 import settings from "./settings.json";
+import tasks from "./tasks.json";
 
 export default {
   common,
@@ -12,4 +13,5 @@ export default {
   registration,
   reset,
   settings,
+  tasks,
 };
