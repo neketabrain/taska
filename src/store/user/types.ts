@@ -1,19 +1,19 @@
 import { User } from "firebase/app";
 
 export enum UserTypes {
-  UPDATE = "USER_UPDATE",
-  SET = "USER_SET",
+  UPDATE = "UPDATE_USER",
+  SET = "SET_USER",
 }
 
 export type UserState = User | null;
 
 type SetUser = {
-  type: UserTypes.UPDATE;
+  type: UserTypes.SET;
   payload: UserState;
 };
 
 type UpdateUser = {
-  type: UserTypes.SET;
+  type: UserTypes.UPDATE;
   payload: Partial<UserState>;
 };
 

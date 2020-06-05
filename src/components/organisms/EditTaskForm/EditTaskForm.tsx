@@ -21,8 +21,12 @@ function EditTaskForm(props: EditTaskFormProps): JSX.Element {
     event.preventDefault();
 
     setSubmitting(true);
-    await onSubmit(values);
-    setSubmitting(false);
+
+    try {
+      await onSubmit(values);
+    } catch {
+      setSubmitting(false);
+    }
   }
 
   return (

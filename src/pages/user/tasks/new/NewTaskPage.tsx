@@ -2,15 +2,18 @@ import React, { useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { Api } from "src/api";
 import { EditTaskForm, EditTaskFormValues, Card } from "src/components";
-import { UserTypes } from "src/store";
+import { ROUTES } from "src/constants";
+import { TasksTypes } from "src/store";
 
 import { PrimarySection, Title } from "../TasksPages.styles";
 
 function NewTaskPage(): JSX.Element {
   const { t } = useTranslation("tasks");
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const initialState: EditTaskFormValues = {
@@ -21,17 +24,28 @@ function NewTaskPage(): JSX.Element {
     address: "",
   };
 
-  const handleSubmit = useCallback(async (values: EditTaskFormValues) => {
-    const { uid } = Api.auth.currentUser || {};
-    if (!uid) return;
+  const handleSubmit = useCallback(
+    async (values: EditTaskFormValues) => {
+      const { uid } = Api.auth.currentUser || {};
+      if (!uid) return;
 
-    return Api.db
-      .collection("users")
-      .doc(uid)
-      .collection("tasks")
-      .add({ ...values })
-      .then((res) => res.get().then((res) => console.log(res.data())));
-  }, []);
+      return Api.db
+        .collection("users")
+        .doc(uid)
+        .collection("tasks")
+        .add({ ...values })
+        .then((res) =>
+          res.get().then(async (res) => {
+            const { id } = res;
+            const data = await res.data();
+
+            dispatch({ type: TasksTypes.ADD, payload: { ...data, id } });
+            history.push(`${ROUTES.TASKS}/${id}`);
+          })
+        );
+    },
+    [dispatch, history]
+  );
 
   return (
     <PrimarySection>
