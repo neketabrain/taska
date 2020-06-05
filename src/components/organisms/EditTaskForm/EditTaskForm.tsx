@@ -8,11 +8,11 @@ import { Form, InputContainer, SubmitButton } from "./EditTaskForm.styles";
 import { EditTaskFormProps } from "./EditTaskForm.types";
 
 function EditTaskForm(props: EditTaskFormProps): JSX.Element {
-  const { initialState, onSubmit, getError, clearError } = props;
+  const { initialState, onSubmit } = props;
 
   const { t } = useTranslation("tasks");
 
-  const { values, onChange } = useForm(initialState, clearError);
+  const { values, onChange } = useForm(initialState);
   const [isSubmitting, setSubmitting] = useState(false);
 
   async function handleSubmit(
@@ -30,7 +30,6 @@ function EditTaskForm(props: EditTaskFormProps): JSX.Element {
       <InputContainer>
         <Input
           required
-          error={getError ? getError("name") : ""}
           label={t("newTask.form.name")}
           name="name"
           type="text"

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
+import { Api } from "src/api";
 import { ChangeEmailForm, ChangeEmailFormValues } from "src/components";
 import { useErrors } from "src/hooks";
 import { UserTypes } from "src/store";
 
-import { Api } from "../../../../api";
 import {
   ContentSection,
   Container,

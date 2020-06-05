@@ -1,5 +1,3 @@
-import { UseErrors } from "src/hooks/useErrors";
-
 export interface EditTaskFormValues {
   name: string;
   date: string;
@@ -8,7 +6,7 @@ export interface EditTaskFormValues {
   address?: string;
 }
 
-export interface EditTaskFormProps extends Partial<UseErrors> {
+export interface EditTaskFormProps {
   initialState: EditTaskFormValues;
   onSubmit: (values: EditTaskFormValues) => Promise<void>;
 }

@@ -6,6 +6,8 @@ const ROUTES = {
 
   TASKS: "/tasks",
   NEW_TASK: "/tasks/new",
+  TASK: "/tasks/:id",
+  EDIT_TASK: "/tasks/:id/edit",
 
   SETTINGS: "/settings",
   SETTINGS_EMAIL: "/settings/email",
