@@ -5,13 +5,16 @@ export enum TasksTypes {
 }
 
 export type Task = {
-  id: string;
   name: string;
   date: string;
   time: string;
+  completed: boolean;
+  id?: string;
   description?: string;
   address?: string;
 };
+
+export type TasksState = Task[] | null;
 
 type AddTask = {
   type: TasksTypes.ADD;

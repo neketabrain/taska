@@ -1,19 +1,25 @@
-import { Task, TasksActions, TasksTypes } from "./types";
+import { TasksActions, TasksTypes, TasksState } from "./types";
 
-function TasksReducer(state: Task[] = [], action: TasksActions): Task[] {
+function TasksReducer(
+  state: TasksState = null,
+  action: TasksActions
+): TasksState {
   switch (action.type) {
     case TasksTypes.ADD: {
-      return [...state, action.payload];
+      return [...(state || []), action.payload];
     }
 
     case TasksTypes.UPDATE: {
-      return state.map((task) => {
-        if (task.id === action.payload.id) {
-          return action.payload;
-        }
+      return (
+        state &&
+        state.map((task) => {
+          if (task.id === action.payload.id) {
+            return action.payload;
+          }
 
-        return task;
-      });
+          return task;
+        })
+      );
     }
 
     case TasksTypes.GET: {
