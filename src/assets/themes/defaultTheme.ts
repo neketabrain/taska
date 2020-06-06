@@ -23,6 +23,7 @@ const defaultTheme: DefaultTheme = {
     opacityDarkGrey: "rgba(0, 0, 0, 0.5)",
     successfulText: "#087613",
     opacitySuccessful: "#D9FFDA",
+    primaryOutline: "rgba(125, 124, 164, 0.4)",
 
     buttons: {
       primary: {
