@@ -37,9 +37,9 @@ function NewTaskPage(): JSX.Element {
         .collection("tasks")
         .add({ ...values })
         .then((res) =>
-          res.get().then(async (res) => {
+          res.get().then((res) => {
             const { id } = res;
-            const data = await res.data();
+            const data = res.data();
 
             dispatch({ type: TasksTypes.ADD, payload: { ...data, id } });
             history.push(`${ROUTES.TASKS}/${id}`);
