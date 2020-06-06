@@ -1,4 +1,9 @@
 {
+  "taskList": {
+    "pageTitle": "Taska. Список задач",
+    "emptyList": "Список задач пуст",
+    "createTask": "Добавить задачу"
+  },
   "newTask": {
     "pageTitle": "Tasks. Новая задача",
     "title": "Новая задача",

@@ -23,6 +23,7 @@ declare module "styled-components" {
       opacityDarkGrey: string;
       successfulText: string;
       opacitySuccessful: string;
+      primaryOutline: string;
 
       buttons: {
         primary: {

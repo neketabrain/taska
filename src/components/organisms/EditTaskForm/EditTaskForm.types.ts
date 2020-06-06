@@ -1,12 +1,6 @@
-export interface EditTaskFormValues {
-  name: string;
-  date: string;
-  time: string;
-  description?: string;
-  address?: string;
-}
+import { Task } from "src/store/tasks";
 
 export interface EditTaskFormProps {
-  initialState: EditTaskFormValues;
-  onSubmit: (values: EditTaskFormValues) => Promise<void>;
+  initialState: Task;
+  onSubmit: (values: Task) => Promise<void>;
 }

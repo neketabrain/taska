@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Api } from "src/api";
-import { EditTaskForm, EditTaskFormValues, Card } from "src/components";
+import { EditTaskForm, Card } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
+import { Task } from "src/store/tasks";
 
 import { PrimarySection, Title } from "../TasksPages.styles";
 
@@ -16,16 +17,17 @@ function NewTaskPage(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const initialState: EditTaskFormValues = {
+  const initialState: Task = {
     name: "",
     description: "",
     date: "",
     time: "",
     address: "",
+    completed: false,
   };
 
   const handleSubmit = useCallback(
-    async (values: EditTaskFormValues) => {
+    async (values: Task) => {
       const { uid } = Api.auth.currentUser || {};
       if (!uid) return;
 
@@ -35,9 +37,9 @@ function NewTaskPage(): JSX.Element {
         .collection("tasks")
         .add({ ...values })
         .then((res) =>
-          res.get().then(async (res) => {
+          res.get().then((res) => {
             const { id } = res;
-            const data = await res.data();
+            const data = res.data();
 
             dispatch({ type: TasksTypes.ADD, payload: { ...data, id } });
             history.push(`${ROUTES.TASKS}/${id}`);

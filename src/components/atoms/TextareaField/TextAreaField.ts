@@ -8,7 +8,6 @@ import styled, {
 const TextAreaField = styled.textarea<{ hasError?: boolean }>`
   position: relative;
   width: 100%;
-  height: 40px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }): string => theme.colors.border};
   border-radius: 4px;
@@ -20,7 +19,7 @@ const TextAreaField = styled.textarea<{ hasError?: boolean }>`
   resize: none;
 
   @media screen and (max-width: 480px) {
-    height: 50px;
+    padding: 15px 16px;
   }
 
   :focus {

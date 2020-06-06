@@ -2,16 +2,20 @@ export enum TasksTypes {
   ADD = "ADD_TASK",
   UPDATE = "UPDATE_TASK",
   GET = "GET_TASKS",
+  CLEAN = "CLEAN_TASKS",
 }
 
 export type Task = {
-  id: string;
   name: string;
   date: string;
   time: string;
+  completed: boolean;
+  id?: string;
   description?: string;
   address?: string;
 };
+
+export type TasksState = Task[] | null;
 
 type AddTask = {
   type: TasksTypes.ADD;
@@ -28,4 +32,8 @@ type GetTasks = {
   payload: Task[];
 };
 
-export type TasksActions = AddTask | UpdateTask | GetTasks;
+type CleanTasks = {
+  type: TasksTypes.CLEAN;
+};
+
+export type TasksActions = AddTask | UpdateTask | GetTasks | CleanTasks;

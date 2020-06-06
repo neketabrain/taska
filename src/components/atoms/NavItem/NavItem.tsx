@@ -4,11 +4,11 @@ import { Container, NavLink } from "./NavItem.styles";
 import { NavItemProps } from "./NavItem.types";
 
 function NavItem(props: NavItemProps): JSX.Element {
-  const { label, path, Icon, className, exact = false } = props;
+  const { label, Icon, className, ...rest } = props;
 
   return (
     <Container className={className}>
-      <NavLink to={path} exact={exact} activeClassName="active">
+      <NavLink activeClassName="active" {...rest}>
         {Icon && <Icon />}
         {label}
       </NavLink>

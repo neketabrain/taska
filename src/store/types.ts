@@ -1,10 +1,10 @@
 import { Reducer } from "redux";
 
-import { Task } from "./tasks";
+import { TasksState } from "./tasks";
 import { UserState } from "./user";
 
 export interface ApplicationStore {
-  tasks: Task[];
+  tasks: TasksState;
   user: UserState;
 }
 
