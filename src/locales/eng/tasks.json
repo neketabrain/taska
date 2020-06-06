@@ -1,4 +1,9 @@
 {
+  "taskList": {
+    "pageTitle": "Taska. Task list",
+    "emptyList": "Task list is empty",
+    "createTask": "Create task"
+  },
   "newTask": {
     "pageTitle": "Tasks. New task",
     "title": "New task",
