@@ -1,14 +1,10 @@
-import { TasksActions, TasksTypes, TasksState } from "./types";
+import { TasksTypes, TasksState, TasksActions } from "./types";
 
 function TasksReducer(
   state: TasksState = null,
   action: TasksActions
 ): TasksState {
   switch (action.type) {
-    case TasksTypes.ADD: {
-      return [...(state || []), action.payload];
-    }
-
     case TasksTypes.UPDATE: {
       return (
         state &&
@@ -22,8 +18,16 @@ function TasksReducer(
       );
     }
 
+    case TasksTypes.ADD: {
+      return [...(state || []), action.payload];
+    }
+
     case TasksTypes.GET: {
       return action.payload;
+    }
+
+    case TasksTypes.CLEAN: {
+      return null;
     }
 
     default: {

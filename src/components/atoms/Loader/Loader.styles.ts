@@ -32,7 +32,7 @@ export const LoaderContainer = styled(Box)`
 
     &:nth-child(4) {
       left: 60px;
-      animation-delay: 0.1s;
+      animation-delay: 0s;
     }
 
     @keyframes loader {
