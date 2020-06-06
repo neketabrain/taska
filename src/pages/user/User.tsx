@@ -8,6 +8,7 @@ import { ROUTES } from "src/constants";
 
 import { Wrapper, LeftSideContainer, Menu } from "./User.styles";
 
+const TasksPage = loadable(() => import(/* webpackPrefetch: true */ "./tasks"));
 const SettingsPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./settings")
 );
@@ -28,7 +29,7 @@ function User(): JSX.Element {
       </LeftSideContainer>
 
       <Switch>
-        <Route path={ROUTES.TASKS} />
+        <Route path={ROUTES.TASKS} component={TasksPage} />
         <Route path={ROUTES.SETTINGS} component={SettingsPage} />
         <Route exact path={ROUTES.LOGOUT} component={LogoutPage} />
 

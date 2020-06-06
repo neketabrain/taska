@@ -1,0 +1,19 @@
+{
+  "taskList": {
+    "pageTitle": "Taska. Список задач",
+    "emptyList": "Список задач пуст",
+    "createTask": "Добавить задачу"
+  },
+  "newTask": {
+    "pageTitle": "Tasks. Новая задача",
+    "title": "Новая задача",
+    "form": {
+      "name": "Название",
+      "description": "Описание",
+      "date": "Дата",
+      "time": "Время",
+      "address": "Адрес",
+      "submit": "Создать"
+    }
+  }
+}

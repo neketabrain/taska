@@ -12,3 +12,6 @@ export * from "./Card";
 export * from "./NavItem";
 export * from "./UploadAvatar";
 export * from "./SettingsMenuItem";
+export * from "./TextareaField";
+export * from "./ButtonLink";
+export * from "./Loader";

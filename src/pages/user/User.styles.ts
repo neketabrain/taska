@@ -6,6 +6,7 @@ export const Wrapper = styled(Flex)`
   position: relative;
   flex-direction: row;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   padding: 16px 32px 60px;
 

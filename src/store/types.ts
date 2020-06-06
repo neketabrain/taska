@@ -1,8 +1,10 @@
 import { Reducer } from "redux";
 
+import { TasksState } from "./tasks";
 import { UserState } from "./user";
 
 export interface ApplicationStore {
+  tasks: TasksState;
   user: UserState;
 }
 
