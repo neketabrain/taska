@@ -16,10 +16,10 @@ import {
   CheckButton,
   CheckIcon,
   FilledCheckIcon,
-} from "./TaskItem.styles";
-import { TaskItemProps } from "./TaskItem.types";
+} from "./TaskListItem.styles";
+import { TaskListItemProps } from "./TaskListItem.types";
 
-function TaskItem(props: TaskItemProps): JSX.Element {
+function TaskListItem(props: TaskListItemProps): JSX.Element {
   const { task, className } = props;
   const { id, name, time, completed } = task;
 
@@ -94,4 +94,4 @@ function TaskItem(props: TaskItemProps): JSX.Element {
   );
 }
 
-export default TaskItem;
+export default TaskListItem;
