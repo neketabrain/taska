@@ -30,7 +30,7 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
   const { pathname } = useLocation();
 
   const path = `${ROUTES.TASKS}/${id}`;
-  const isActive = new RegExp(path).test(pathname);
+  const isActive = new RegExp(`^${path}(/edit)?$`, "is").test(pathname);
 
   const handleClick = useCallback(() => history.push(path), [history, path]);
   const handleKeyPress = useCallback(
