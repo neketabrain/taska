@@ -1,6 +1,6 @@
 import { Task } from "src/store/tasks";
 
-export interface TaskItemProps {
+export interface TaskListItemProps {
   task: Task;
   className?: string;
 }
