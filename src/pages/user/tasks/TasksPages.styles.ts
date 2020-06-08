@@ -20,6 +20,7 @@ export const PrimarySection = styled.section`
 
 export const SecondarySection = styled(PrimarySection)`
   max-width: 350px;
+  margin-right: 16px;
 `;
 
 export const ListContainer = styled(Card)`

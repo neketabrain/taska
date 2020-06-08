@@ -1,4 +1,4 @@
-import { TasksTypes, TasksState, TasksActions } from "./types";
+import { TasksActions, TasksState, TasksTypes } from "./types";
 
 function TasksReducer(
   state: TasksState = null,
@@ -20,6 +20,10 @@ function TasksReducer(
 
     case TasksTypes.ADD: {
       return [...(state || []), action.payload];
+    }
+
+    case TasksTypes.DELETE: {
+      return state && state.filter((task) => task.id !== action.payload);
     }
 
     case TasksTypes.GET: {

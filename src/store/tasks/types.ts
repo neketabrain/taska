@@ -3,6 +3,7 @@ export enum TasksTypes {
   UPDATE = "UPDATE_TASK",
   GET = "GET_TASKS",
   CLEAN = "CLEAN_TASKS",
+  DELETE = "DELETE_TASK",
 }
 
 export type Task = {
@@ -36,4 +37,14 @@ type CleanTasks = {
   type: TasksTypes.CLEAN;
 };
 
-export type TasksActions = AddTask | UpdateTask | GetTasks | CleanTasks;
+type DeleteTask = {
+  type: TasksTypes.DELETE;
+  payload: string;
+};
+
+export type TasksActions =
+  | AddTask
+  | UpdateTask
+  | GetTasks
+  | CleanTasks
+  | DeleteTask;

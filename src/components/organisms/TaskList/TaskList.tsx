@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { TaskItem } from "src/components";
+import { TaskListItem } from "src/components";
 import { ROUTES } from "src/constants";
 
 import { List, EmptyContainer, EmptyText, Button } from "./TaskList.styles";
@@ -14,7 +14,7 @@ function TaskList(props: TaskListProps): JSX.Element {
 
   return (
     <List className={className}>
-      {tasks && tasks.map((task) => <TaskItem key={task.id} task={task} />)}
+      {tasks && tasks.map((task) => <TaskListItem key={task.id} task={task} />)}
 
       {tasks && tasks.length < 1 && (
         <EmptyContainer>
