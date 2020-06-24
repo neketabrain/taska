@@ -1,33 +1,43 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { TextArea, Input, Box, Flex } from "src/components";
+import { Box, Flex, Input, TextArea } from "src/components";
 import { useForm } from "src/hooks";
 
-import { Form, InputContainer, SubmitButton } from "./EditTaskForm.styles";
+import {
+  Button,
+  ButtonContainer,
+  Form,
+  InputContainer,
+} from "./EditTaskForm.styles";
 import { EditTaskFormProps } from "./EditTaskForm.types";
 
 function EditTaskForm(props: EditTaskFormProps): JSX.Element {
-  const { initialState, onSubmit } = props;
+  const { initialState, isEditing, onSubmit } = props;
 
   const { t } = useTranslation("tasks");
+  const history = useHistory();
 
   const { values, onChange } = useForm(initialState);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
 
-    setSubmitting(true);
+      setSubmitting(true);
 
-    try {
-      await onSubmit(values);
-    } catch {
-      setSubmitting(false);
-    }
-  }
+      try {
+        await onSubmit(values);
+      } catch {
+        setSubmitting(false);
+      }
+    },
+    [onSubmit, values]
+  );
+
+  const cancel = useCallback(() => history.goBack(), [history]);
 
   return (
     <Form id="editTask" onSubmit={handleSubmit}>
@@ -94,9 +104,23 @@ function EditTaskForm(props: EditTaskFormProps): JSX.Element {
         />
       </InputContainer>
 
-      <SubmitButton variant="primary" type="submit" disabled={isSubmitting}>
-        {t("newTask.form.submit")}
-      </SubmitButton>
+      <ButtonContainer>
+        <Button variant="primary" type="submit" disabled={isSubmitting}>
+          {!isEditing && t("newTask.form.submit")}
+          {!!isEditing && t("editTask.form.submit")}
+        </Button>
+
+        {!!isEditing && (
+          <Button
+            onClick={cancel}
+            variant="secondary"
+            type="button"
+            disabled={isSubmitting}
+          >
+            {t("editTask.form.cancel")}
+          </Button>
+        )}
+      </ButtonContainer>
     </Form>
   );
 }

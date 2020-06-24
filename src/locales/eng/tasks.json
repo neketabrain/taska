@@ -1,19 +1,27 @@
 {
-  "taskList": {
-    "pageTitle": "Taska. Task list",
-    "emptyList": "Task list is empty",
-    "createTask": "Create task"
+  "editTask": {
+    "form": {
+      "cancel": "Cancel",
+      "submit": "Save"
+    },
+    "pageTitle": "Taska. Editing",
+    "title": "Task editing"
   },
   "newTask": {
-    "pageTitle": "Tasks. New task",
-    "title": "New task",
     "form": {
-      "name": "Name",
-      "description": "Description",
-      "date": "Date",
-      "time": "Time",
       "address": "Address",
-      "submit": "Create"
-    }
+      "date": "Date",
+      "description": "Description",
+      "name": "Name",
+      "submit": "Create",
+      "time": "Time"
+    },
+    "pageTitle": "Tasks. New task",
+    "title": "New task"
+  },
+  "taskList": {
+    "createTask": "Create task",
+    "emptyList": "Task list is empty",
+    "pageTitle": "Taska. Task list"
   }
 }
