@@ -1,19 +1,27 @@
 {
-  "taskList": {
-    "pageTitle": "Taska. Список задач",
-    "emptyList": "Список задач пуст",
-    "createTask": "Добавить задачу"
+  "editTask": {
+    "form": {
+      "cancel": "Отменить",
+      "submit": "Сохранить"
+    },
+    "pageTitle": "Taska. Редактирование",
+    "title": "Редактирование задачи"
   },
   "newTask": {
-    "pageTitle": "Tasks. Новая задача",
-    "title": "Новая задача",
     "form": {
-      "name": "Название",
-      "description": "Описание",
-      "date": "Дата",
-      "time": "Время",
       "address": "Адрес",
-      "submit": "Создать"
-    }
+      "date": "Дата",
+      "description": "Описание",
+      "name": "Название",
+      "submit": "Создать",
+      "time": "Время"
+    },
+    "pageTitle": "Tasks. Новая задача",
+    "title": "Новая задача"
+  },
+  "taskList": {
+    "createTask": "Добавить задачу",
+    "emptyList": "Список задач пуст",
+    "pageTitle": "Taska. Список задач"
   }
 }
