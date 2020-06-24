@@ -6,6 +6,9 @@ import { ROUTES } from "../../../constants";
 
 import { Wrapper } from "./TasksPages.styles";
 
+const EditTaskPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./edit")
+);
 const TaskListPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./list")
 );
@@ -23,7 +26,7 @@ function TasksPage(): JSX.Element {
 
           <Switch>
             <Route exact path={ROUTES.TASK} component={TaskPage} />
-            <Route exact path={ROUTES.EDIT_TASK} />
+            <Route exact path={ROUTES.EDIT_TASK} component={EditTaskPage} />
 
             <Redirect to={ROUTES.TASKS} />
           </Switch>

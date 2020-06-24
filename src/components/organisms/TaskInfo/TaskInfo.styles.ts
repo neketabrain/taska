@@ -72,6 +72,7 @@ export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
 
 export const Description = styled(Text)`
   margin: 0;
+  white-space: pre-line;
 `;
 
 export const PinIcon = styled(Icons.FilledPin)`
