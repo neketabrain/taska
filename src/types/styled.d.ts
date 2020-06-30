@@ -15,6 +15,7 @@ declare module "styled-components" {
       secondary: string;
       border: string;
       borderDarker: string;
+      borderDarkest: string;
       error: string;
       disabledInputBackground: string;
       errorInputBackground: string;

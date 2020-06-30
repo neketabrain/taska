@@ -14,6 +14,7 @@ const defaultTheme: DefaultTheme = {
     secondary: "#4B49AB",
     border: "#E4E3E8",
     borderDarker: "#C4BFD8",
+    borderDarkest: "#AEAEB4",
     error: "#BC3B3B",
     disabledInputBackground: "#FAFAFC",
     errorInputBackground: "#F5E9E9",

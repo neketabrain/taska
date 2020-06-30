@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "node scripts/test.js --passWithNoTests",
     "test:ci": "cross-env CI=true npm run test --env=jsdom",
     "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
     "serve": "serve -s build"
@@ -13,6 +13,7 @@
   "dependencies": {
     "@loadable/component": "^5.12.0",
     "camelcase": "^5.3.1",
+    "date-fns": "^2.14.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "firebase": "^7.14.5",
@@ -23,6 +24,7 @@
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
     "react-custom-scrollbars": "^4.2.1",
+    "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.6",
     "react-i18next": "^11.5.0",
@@ -50,6 +52,7 @@
     "@types/node": "^14.0.5",
     "@types/react": "^16.9.35",
     "@types/react-custom-scrollbars": "^4.0.6",
+    "@types/react-datepicker": "^3.0.2",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",

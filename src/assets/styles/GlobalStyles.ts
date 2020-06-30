@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
   
   html {
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 14px;
     
     @media screen and (max-width: 480px) {

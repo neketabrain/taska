@@ -6,3 +6,4 @@ export * from "./SettingsMenu";
 export * from "./Switch";
 export * from "./TextArea";
 export * from "./TaskListItem";
+export * from "./DatePicker";
