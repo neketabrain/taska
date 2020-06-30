@@ -1,10 +1,14 @@
 {
-  "navMenu": {
-    "newTask": "New task",
-    "taskList": "Tasks",
-    "settings": "Settings",
-    "logout": "Sign out"
+  "datePicker": {
+    "time": "Time",
+    "today": "Today"
   },
-  "switchLanguage": "Сменить язык на русский",
-  "mobileSwitchLanguage": "Русский"
+  "mobileSwitchLanguage": "Русский",
+  "navMenu": {
+    "logout": "Sign out",
+    "newTask": "New task",
+    "settings": "Settings",
+    "taskList": "Tasks"
+  },
+  "switchLanguage": "Сменить язык на русский"
 }
