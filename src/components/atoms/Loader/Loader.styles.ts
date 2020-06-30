@@ -7,44 +7,44 @@ export const LoaderContainer = styled(Box)`
   width: 72px;
 
   span {
+    animation: loader 1.7s infinite ease-in-out both;
+    background-color: ${({ theme }): string => theme.colors.primary};
+    border-radius: 50%;
+    height: 12px;
+    margin-right: 5px;
     position: absolute;
     width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: ${({ theme }): string => theme.colors.primary};
-    animation: loader 1.7s infinite ease-in-out both;
-    margin-right: 5px;
 
     &:nth-child(1) {
-      left: 0;
       animation-delay: 0.6s;
+      left: 0;
     }
 
     &:nth-child(2) {
-      left: 20px;
       animation-delay: 0.4s;
+      left: 20px;
     }
 
     &:nth-child(3) {
-      left: 40px;
       animation-delay: 0.2s;
+      left: 40px;
     }
 
     &:nth-child(4) {
-      left: 60px;
       animation-delay: 0s;
+      left: 60px;
     }
 
     @keyframes loader {
       0%,
       80%,
       100% {
-        transform: scale(0);
         opacity: 0;
+        transform: scale(0);
       }
       40% {
-        transform: scale(1);
         opacity: 1;
+        transform: scale(1);
       }
     }
   }

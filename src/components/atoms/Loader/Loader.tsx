@@ -1,8 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
+
+import { ClassName } from "src/types";
 
 import { LoaderContainer } from "./Loader.styles";
 
-function Loader(props: { className?: string }): JSX.Element {
+const Loader: FC<ClassName> = (props) => {
   const { className } = props;
 
   return (
@@ -13,6 +15,6 @@ function Loader(props: { className?: string }): JSX.Element {
       <span />
     </LoaderContainer>
   );
-}
+};
 
 export default Loader;

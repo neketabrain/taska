@@ -1,18 +1,18 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Container, NavLink } from "./SettingsMenuItem.styles";
 import { SettingsMenuItemProps } from "./SettingsMenuItem.types";
 
-function SettingsMenuItem(props: SettingsMenuItemProps): JSX.Element {
-  const { label, path, className, exact = false } = props;
+const SettingsMenuItem: FC<SettingsMenuItemProps> = (props) => {
+  const { className, exact, label, path } = props;
 
   return (
     <Container className={className}>
-      <NavLink to={path} exact={exact} activeClassName="active">
+      <NavLink activeClassName="active" exact={exact} to={path}>
         {label}
       </NavLink>
     </Container>
   );
-}
+};
 
 export default SettingsMenuItem;

@@ -1,22 +1,22 @@
 import styled, {
   css,
+  DefaultTheme,
   FlattenInterpolation,
   ThemeProps,
-  DefaultTheme,
 } from "styled-components";
 
 const TextAreaField = styled.textarea<{ hasError?: boolean }>`
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: inherit;
   border: 1px solid ${({ theme }): string => theme.colors.border};
   border-radius: 4px;
+  box-sizing: border-box;
   color: ${({ theme }): string => theme.colors.text};
   font-family: "Open Sans", sans-serif;
-  padding: 10px 16px;
   outline: 0;
-  background-color: inherit;
+  padding: 10px 16px;
+  position: relative;
   resize: none;
+  width: 100%;
 
   @media screen and (max-width: 480px) {
     padding: 15px 16px;
@@ -28,10 +28,10 @@ const TextAreaField = styled.textarea<{ hasError?: boolean }>`
   }
 
   :disabled {
-    cursor: not-allowed;
-    color: ${({ theme }): string => theme.colors.additionalText};
     background-color: ${({ theme }): string =>
       theme.colors.disabledInputBackground};
+    color: ${({ theme }): string => theme.colors.additionalText};
+    cursor: not-allowed;
   }
 
   ${({
@@ -39,9 +39,9 @@ const TextAreaField = styled.textarea<{ hasError?: boolean }>`
   }): FlattenInterpolation<ThemeProps<DefaultTheme>> | false | undefined =>
     hasError &&
     css`
-      border-color: ${({ theme }): string => theme.colors.error} !important;
       background-color: ${({ theme }): string =>
         theme.colors.errorInputBackground};
+      border-color: ${({ theme }): string => theme.colors.error} !important;
     `};
 `;
 

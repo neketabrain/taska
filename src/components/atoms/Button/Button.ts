@@ -1,17 +1,17 @@
 import styled, {
   css,
+  DefaultTheme,
   FlattenInterpolation,
   ThemeProps,
-  DefaultTheme,
 } from "styled-components";
 
 import { ButtonProps } from "./Button.types";
 
 const variants = {
   primary: css`
-    color: ${({ theme }): string => theme.colors.buttons.primary.color};
     background-color: ${({ theme }): string =>
       theme.colors.buttons.primary.background};
+    color: ${({ theme }): string => theme.colors.buttons.primary.color};
 
     :focus {
       box-shadow: ${({ theme }): string =>
@@ -29,11 +29,11 @@ const variants = {
     }
   `,
   secondary: css`
-    color: ${({ theme }): string => theme.colors.buttons.secondary.color};
     background-color: ${({ theme }): string =>
       theme.colors.buttons.secondary.background};
     border: 1px solid
       ${({ theme }): string => theme.colors.buttons.secondary.border};
+    color: ${({ theme }): string => theme.colors.buttons.secondary.color};
 
     :focus {
       box-shadow: ${({ theme }): string =>
@@ -54,20 +54,20 @@ const variants = {
 };
 
 const Button = styled.button<ButtonProps>`
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  outline: 0;
+  padding: 0;
   position: relative;
   width: 100%;
-  height: 40px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  padding: 0;
-  cursor: pointer;
-  outline: 0;
-  font-size: 14px;
-  border: none;
 
   :disabled {
     cursor: not-allowed;
@@ -75,8 +75,8 @@ const Button = styled.button<ButtonProps>`
   }
 
   @media screen and (max-width: 480px) {
-    height: 50px;
     font-size: 16px;
+    height: 50px;
   }
 
   ${({ variant }): FlattenInterpolation<ThemeProps<DefaultTheme>> =>

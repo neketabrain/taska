@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Container, NavLink } from "./NavItem.styles";
 import { NavItemProps } from "./NavItem.types";
 
-function NavItem(props: NavItemProps): JSX.Element {
-  const { label, Icon, className, ...rest } = props;
+const NavItem: FC<NavItemProps> = (props) => {
+  const { className, Icon, label, ...rest } = props;
 
   return (
     <Container className={className}>
@@ -14,6 +14,6 @@ function NavItem(props: NavItemProps): JSX.Element {
       </NavLink>
     </Container>
   );
-}
+};
 
 export default NavItem;
