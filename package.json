@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "node scripts/test.js --passWithNoTests",
     "test:ci": "cross-env CI=true npm run test --env=jsdom",
     "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
     "serve": "serve -s build"
