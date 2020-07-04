@@ -5,6 +5,7 @@ import { openSansFonts } from "../fonts";
 const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
   }
   
   html {
@@ -18,21 +19,21 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
+    background-color: ${({ theme }): string => theme.colors.background};
+    box-sizing: border-box;
+    color: ${({ theme }): string => theme.colors.text};
     height: 100vh;
     margin: 0;
-    box-sizing: border-box;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    background-color: ${({ theme }): string => theme.colors.background};
-    color: ${({ theme }): string => theme.colors.text};
   }
   
   #root {
-    height: 100%;
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
   }
   
   ${openSansFonts}
