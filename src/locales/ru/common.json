@@ -3,6 +3,9 @@
     "time": "Время",
     "today": "Сегодня"
   },
+  "imageAlts": {
+    "avatar": "Аватар"
+  },
   "mobileSwitchLanguage": "English",
   "navMenu": {
     "logout": "Выйти",

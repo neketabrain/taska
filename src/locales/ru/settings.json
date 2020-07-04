@@ -1,47 +1,47 @@
 {
-  "pageTitle": "Taska. Настройки",
-  "title": "Настройки",
-  "navMenu": {
-    "email": "Сменить адрес электронной почты",
-    "password": "Сменить пароль",
-    "profile": "Редактировать профиль",
-    "preferences": "Параметры"
-  },
   "emailPage": {
-    "title": "Электронная почта",
-    "successful": "Ваш адрес электронной почты был успешно изменен",
     "form": {
       "email": "Новый адрес электронной почты",
       "password": "Пароль",
       "submit": "Изменить"
-    }
+    },
+    "successful": "Ваш адрес электронной почты был успешно изменен",
+    "title": "Электронная почта"
   },
+  "navMenu": {
+    "email": "Сменить адрес электронной почты",
+    "password": "Сменить пароль",
+    "preferences": "Параметры",
+    "profile": "Редактировать профиль"
+  },
+  "pageTitle": "Taska. Настройки",
   "passwordPage": {
-    "title": "Пароль",
-    "successful": "Ваш пароль был успешно изменен",
     "form": {
-      "oldPassword": "Старый пароль",
       "newPassword": "Новый пароль",
+      "oldPassword": "Старый пароль",
       "submit": "Изменить"
-    }
+    },
+    "successful": "Ваш пароль был успешно изменен",
+    "title": "Пароль"
+  },
+  "preferencesPage": {
+    "darkMode": "Темный интерфейс:",
+    "english": "English",
+    "language": "Язык:",
+    "off": "Выкл",
+    "on": "Вкл",
+    "russian": "Русский",
+    "title": "Параметры"
   },
   "profilePage": {
-    "title": "Профиль",
-    "successful": "Ваш профиль был успешно изменен",
     "form": {
       "firstName": "Имя",
       "lastName": "Фамилия",
       "photoURL": "Аватар",
       "submit": "Изменить"
-    }
+    },
+    "successful": "Ваш профиль был успешно изменен",
+    "title": "Профиль"
   },
-  "preferencesPage": {
-    "title": "Параметры",
-    "language": "Язык:",
-    "russian": "Русский",
-    "english": "English",
-    "darkMode": "Темный интерфейс:",
-    "on": "Вкл",
-    "off": "Выкл"
-  }
+  "title": "Настройки"
 }

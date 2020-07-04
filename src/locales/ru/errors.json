@@ -1,8 +1,8 @@
 {
+  "auth/email-already-in-use": "Такой адрес уже используется",
   "auth/invalid-email": "Неверный адрес электронной почты",
   "auth/user-disabled": "Пользователь заблокирован",
   "auth/user-not-found": "Пользователь не найден",
-  "auth/wrong-password": "Неверный пароль",
-  "auth/email-already-in-use": "Такой адрес уже используется",
-  "auth/weak-password": "Минимальная длина пароля 6 символов"
+  "auth/weak-password": "Минимальная длина пароля 6 символов",
+  "auth/wrong-password": "Неверный пароль"
 }
