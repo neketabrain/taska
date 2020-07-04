@@ -27,6 +27,7 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.6",
+    "react-hooks-pack": "^0.8.2",
     "react-i18next": "^11.5.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
@@ -117,15 +118,15 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
   },
   "jest": {

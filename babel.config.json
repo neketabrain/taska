@@ -1,12 +1,12 @@
 {
-  "presets": ["react-app"],
   "plugins": [
+    "@loadable/babel-plugin",
     [
       "babel-plugin-styled-components",
       {
         "displayName": true
       }
-    ],
-    "@loadable/babel-plugin"
-  ]
+    ]
+  ],
+  "presets": ["react-app"]
 }
