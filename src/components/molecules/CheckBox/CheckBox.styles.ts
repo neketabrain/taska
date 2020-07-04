@@ -1,38 +1,40 @@
 import styled from "styled-components";
 
-import { Icons, Box } from "../../atoms";
+import { Box, Icons } from "../../atoms";
 
 export const CheckBoxContainer = styled(Box)`
   display: inline-block;
 `;
 
 export const CheckIcon = styled(Icons.Check)`
-  width: 16px;
-  height: 16px;
+  display: none;
   fill: ${({ theme }): string => theme.colors.text};
+  height: 16px;
+  left: 1px;
   position: absolute;
   top: 1px;
-  left: 1px;
+  width: 16px;
   z-index: 2;
 
   @media screen and (max-width: 480px) {
-    width: 18px;
     height: 18px;
-    top: 2px;
     left: 2px;
+    top: 2px;
+    width: 18px;
   }
 `;
 
 export const NativeCheckbox = styled.input`
-  border: 0;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;
-  white-space: nowrap;
-  width: 0;
-  position: absolute;
+  clip: rect(0 0 0 0);
+  height: 1px;
   margin: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+
+  :checked ~ ${CheckIcon} {
+    display: inline-block;
+  }
 
   :disabled ~ ${CheckIcon} {
     fill: ${({ theme }): string => theme.colors.additionalText};
@@ -40,19 +42,19 @@ export const NativeCheckbox = styled.input`
 `;
 
 export const CustomCheckbox = styled.div`
-  display: inline-block;
-  margin-right: 16px;
-  width: 18px;
-  height: 18px;
   background-color: inherit;
   border: 1px solid ${({ theme }): string => theme.colors.border};
-  box-sizing: border-box;
   border-radius: 4px;
+  box-sizing: border-box;
   cursor: pointer;
+  display: inline-block;
+  height: 18px;
+  margin-right: 16px;
+  width: 18px;
 
   @media screen and (max-width: 480px) {
-    width: 22px;
     height: 22px;
+    width: 22px;
   }
 
   ${NativeCheckbox}:focus + & {
@@ -61,18 +63,18 @@ export const CustomCheckbox = styled.div`
   }
 
   ${NativeCheckbox}:disabled + & {
-    cursor: not-allowed;
     background-color: ${({ theme }): string =>
       theme.colors.disabledInputBackground};
+    cursor: not-allowed;
   }
 `;
 
 export const Label = styled.label`
-  font-family: "Open Sans", sans-serif;
-  position: relative;
-  padding: 0;
-  line-height: 18px;
-  display: flex;
   align-items: center;
   color: ${({ theme }): string => theme.colors.text};
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  line-height: 18px;
+  padding: 0;
+  position: relative;
 `;

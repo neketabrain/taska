@@ -6,14 +6,14 @@ export const Wrapper = styled(Box)`
   width: 100%;
 
   .react-datepicker {
+    background-color: ${({ theme }): string => theme.colors.cardBackground};
     border-color: ${({ theme }): string => theme.colors.borderDarkest};
     font-family: "Open Sans", sans-serif !important;
-    background-color: ${({ theme }): string => theme.colors.cardBackground};
   }
 
   .react-datepicker-wrapper {
-    width: 100%;
     position: relative;
+    width: 100%;
   }
 
   .react-datepicker__header {
@@ -22,9 +22,9 @@ export const Wrapper = styled(Box)`
   }
 
   .react-datepicker__triangle {
-    left: 50% !important;
     border-bottom-color: ${({ theme }): string =>
       theme.colors.primaryDarkest} !important;
+    left: 50% !important;
 
     :before {
       border-bottom-color: ${({ theme }): string =>
@@ -67,8 +67,8 @@ export const Wrapper = styled(Box)`
   }
 
   .react-datepicker__day--selected {
-    color: ${({ theme }): string => theme.colors.invertedText};
     background-color: ${({ theme }): string => theme.colors.primaryDark};
+    color: ${({ theme }): string => theme.colors.invertedText};
 
     :hover {
       background-color: ${({ theme }): string => theme.colors.primaryDark};
@@ -76,8 +76,8 @@ export const Wrapper = styled(Box)`
   }
 
   .react-datepicker__day--keyboard-selected {
-    color: ${({ theme }): string => theme.colors.invertedText};
     background-color: ${({ theme }): string => theme.colors.primary};
+    color: ${({ theme }): string => theme.colors.invertedText};
 
     :hover {
       background-color: ${({ theme }): string => theme.colors.primary};
@@ -104,19 +104,19 @@ export const Wrapper = styled(Box)`
   }
 
   .react-datepicker__today-button {
-    border-top-color: ${({ theme }): string => theme.colors.borderDarkest};
     background-color: ${({ theme }): string => theme.colors.border};
-    color: ${({ theme }): string => theme.colors.text};
     border-radius: 0 0 4px 4px;
+    border-top-color: ${({ theme }): string => theme.colors.borderDarkest};
+    color: ${({ theme }): string => theme.colors.text};
   }
 
   .react-datepicker__close-icon {
-    height: 40px;
     bottom: 0;
-    top: initial;
+    font-weight: bold;
+    height: 40px;
     padding: 0;
     right: 16px;
-    font-weight: bold;
+    top: initial;
 
     :after {
       background-color: ${({ theme }): string =>

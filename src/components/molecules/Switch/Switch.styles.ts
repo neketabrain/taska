@@ -19,41 +19,42 @@ export const RightLabel = styled(LeftLabel)`
 `;
 
 export const SwitchContainer = styled.label`
-  position: relative;
-  height: 100%;
-  width: 48px;
   display: inline-block;
+  height: 100%;
+  position: relative;
+  width: 48px;
 `;
 
 export const Switcher = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 4px;
-  overflow: hidden;
+  background-color: ${({ theme }): string => theme.colors.primary};
   border: 1px solid ${({ theme }): string => theme.colors.border};
+  border-radius: 4px;
+  bottom: 0;
   box-sizing: border-box;
+  cursor: pointer;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
 
   :before {
-    position: absolute;
+    background-color: ${({ theme }): string => theme.colors.cardBackground};
+    border-radius: 2px;
+    bottom: 0;
     content: "";
     height: 100%;
-    width: 20px;
     left: 0;
-    bottom: 0;
-    background-color: ${({ theme }): string => theme.colors.primary};
+    position: absolute;
     transition: transform 0.4s;
-    border-radius: 2px;
+    width: 20px;
   }
 `;
 
 export const NativeInput = styled.input`
+  height: 0;
   opacity: 0;
   width: 0;
-  height: 0;
 
   :focus + ${Switcher} {
     border-color: ${({ theme }): string => theme.colors.secondary};
@@ -65,12 +66,12 @@ export const NativeInput = styled.input`
   }
 
   :disabled + ${Switcher} {
+    background-color: ${({ theme }): string => theme.colors.borderDarker};
     cursor: not-allowed;
-    background-color: ${({ theme }): string =>
-      theme.colors.disabledInputBackground};
 
     :before {
-      background-color: ${({ theme }): string => theme.colors.borderDarker};
+      background-color: ${({ theme }): string =>
+        theme.colors.disabledInputBackground};
     }
   }
 `;

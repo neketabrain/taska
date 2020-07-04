@@ -5,16 +5,16 @@ import styled, {
   ThemeProps,
 } from "styled-components";
 
-import { Text, Box, Icons } from "src/components";
+import { Box, Icons, Text } from "src/components";
 
 export const Wrapper = styled.li<{ isActive?: boolean }>`
-  margin: 0;
-  padding: 12px 24px;
-  width: 100%;
-  position: relative;
-  display: flex;
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
   cursor: pointer;
+  display: flex;
+  margin: 0;
+  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  padding: 12px 24px;
+  position: relative;
+  width: 100%;
 
   :hover {
     background-color: ${({ theme }): string => theme.colors.primaryLightest};
@@ -31,8 +31,8 @@ export const Wrapper = styled.li<{ isActive?: boolean }>`
 `;
 
 export const InfoContainer = styled(Box)`
-  width: 100%;
   margin-left: 16px;
+  width: 100%;
 `;
 
 export const Name = styled(Text)`
@@ -40,45 +40,45 @@ export const Name = styled(Text)`
 `;
 
 export const Time = styled(Text)`
-  font-size: 12px;
-  color: ${({ theme }): string => theme.colors.primary};
-  margin: 4px 0 0;
-  display: flex;
   align-items: center;
+  color: ${({ theme }): string => theme.colors.primary};
+  display: flex;
+  font-size: 12px;
+  margin: 4px 0 0;
 `;
 
 export const ClockIcon = styled(Icons.Clock)`
-  width: 12px;
-  height: 12px;
   fill: ${({ theme }): string => theme.colors.primary};
+  height: 12px;
   margin-right: 4px;
+  width: 12px;
 `;
 
 export const CheckIcon = styled(Icons.CircleCheck)`
+  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
+  height: 24px;
   position: relative;
   width: 24px;
-  height: 24px;
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
 `;
 
 export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
+  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
+  height: 24px;
   position: relative;
   width: 24px;
-  height: 24px;
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
 `;
 
 export const CheckButton = styled.button`
-  position: relative;
-  padding: 0;
-  margin: 0;
-  border: none;
-  display: flex;
   align-items: center;
-  justify-content: center;
   background-color: transparent;
+  border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin: 0;
   outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  padding: 0;
+  position: relative;
 
   :disabled {
     cursor: not-allowed;

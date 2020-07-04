@@ -1,8 +1,10 @@
 import { ReactDatePickerProps } from "react-datepicker";
 
-export type DatePickerProps = ReactDatePickerProps & {
-  name: string;
+import { ClassName } from "src/types";
 
-  className?: string;
-  time?: boolean;
-};
+export type DatePickerProps = ReactDatePickerProps &
+  ClassName & {
+    name: string;
+
+    time?: boolean;
+  };

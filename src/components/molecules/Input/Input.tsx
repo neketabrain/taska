@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef, FC } from "react";
 
-import { InputContainer, Label, Field, Error } from "./Input.styles";
+import { Error, Field, InputContainer, Label } from "./Input.styles";
 import { InputProps } from "./Input.types";
 
-function Input(props: InputProps): JSX.Element {
-  const { label, className, error, ...rest } = props;
+const Input: FC<InputProps> = forwardRef((props, _) => {
+  const { className, error, label, ...rest } = props;
 
   return (
     <InputContainer className={className}>
@@ -16,6 +16,6 @@ function Input(props: InputProps): JSX.Element {
       {!!error && <Error>{error}</Error>}
     </InputContainer>
   );
-}
+});
 
 export default Input;

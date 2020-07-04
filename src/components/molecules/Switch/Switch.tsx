@@ -1,16 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 
 import {
-  Wrapper,
-  SwitchContainer,
   LeftLabel,
-  RightLabel,
-  Switcher,
   NativeInput,
+  RightLabel,
+  SwitchContainer,
+  Switcher,
+  Wrapper,
 } from "./Switch.styles";
 import { SwitchProps } from "./Switch.types";
 
-function Switch(props: SwitchProps): JSX.Element {
+const Switch: FC<SwitchProps> = (props) => {
   const { className, leftLabel, rightLabel, ...rest } = props;
 
   return (
@@ -25,6 +25,6 @@ function Switch(props: SwitchProps): JSX.Element {
       {!!rightLabel && <RightLabel>{rightLabel}</RightLabel>}
     </Wrapper>
   );
-}
+};
 
 export default Switch;

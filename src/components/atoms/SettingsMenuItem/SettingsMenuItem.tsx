@@ -7,8 +7,8 @@ const SettingsMenuItem: FC<SettingsMenuItemProps> = (props) => {
   const { className, exact, label, path } = props;
 
   return (
-    <Container className={className}>
-      <NavLink activeClassName="active" exact={exact} to={path}>
+    <Container className={className} role="presentation">
+      <NavLink activeClassName="active" exact={exact} role="menuitem" to={path}>
         {label}
       </NavLink>
     </Container>

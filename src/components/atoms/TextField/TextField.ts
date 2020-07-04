@@ -12,6 +12,7 @@ const TextField = styled.input<{ hasError?: boolean }>`
   box-sizing: border-box;
   color: ${({ theme }): string => theme.colors.text};
   font-family: "Open Sans", sans-serif;
+  font-size: 14px;
   max-height: 40px;
   outline: 0;
   padding: 10px 16px;
@@ -19,6 +20,7 @@ const TextField = styled.input<{ hasError?: boolean }>`
   width: 100%;
 
   @media screen and (max-width: 480px) {
+    font-size: 16px;
     max-height: 50px;
     padding: 15px 16px;
   }
