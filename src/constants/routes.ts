@@ -1,8 +1,8 @@
 const ROUTES = {
   LOGIN: "/login",
+  LOGOUT: "/logout",
   REGISTRATION: "/registration",
   RESET: "/reset",
-  LOGOUT: "/logout",
 
   TASKS: "/tasks",
   NEW_TASK: "/tasks/new",
@@ -12,8 +12,8 @@ const ROUTES = {
   SETTINGS: "/settings",
   SETTINGS_EMAIL: "/settings/email",
   SETTINGS_PASSWORD: "/settings/password",
-  SETTINGS_PROFILE: "/settings/profile",
   SETTINGS_PREFERENCES: "/settings/preferences",
+  SETTINGS_PROFILE: "/settings/profile",
 };
 
 export default ROUTES;
