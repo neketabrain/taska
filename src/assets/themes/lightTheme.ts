@@ -1,10 +1,11 @@
 import { DefaultTheme } from "styled-components";
 
-const defaultTheme: DefaultTheme = {
+const lightTheme: DefaultTheme = {
   colors: {
     background: "#F5F5F5",
     backgroundHover: "#E5E5E6",
     border: "#C5C5C7",
+    cardBoxShadow: "0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8",
     error: "#FF3B30",
     errorOpacity: "rgba(255, 59, 48, 0.1)",
     errorOutline: "0 0 0 3px rgba(255, 59, 48, 0.3)",
@@ -17,12 +18,11 @@ const defaultTheme: DefaultTheme = {
     secondary: "#34C759",
     secondaryActive: "#3ED163",
     secondaryHover: "#2ABD4F",
+    secondaryOpacity: "rgba(52, 199, 89, 0.2)",
     secondaryOutline: "0 0 0 3px rgba(52, 199, 89, 0.3)",
-    successful: "#087613",
-    successfulOpacity: "#D9FFDA",
     text: "#000000",
     textSecondary: "#8A8A8E",
   },
 };
 
-export default defaultTheme;
+export default lightTheme;

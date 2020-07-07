@@ -98,7 +98,7 @@ const RegistrationPage: FC = () => {
           <Divider />
         </DividerContainer>
 
-        <Button onClick={signInWithGoogle} type="button" variant="secondary">
+        <Button onClick={signInWithGoogle} type="button" variant="basic">
           <GoogleIcon />
           {t("withGoogle")}
         </Button>

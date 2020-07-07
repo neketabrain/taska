@@ -28,7 +28,7 @@ export const SwitchContainer = styled.label`
 export const Switcher = styled.span`
   background-color: ${({ theme }): string => theme.colors.backgroundHover};
   border: 1px solid ${({ theme }): string => theme.colors.border};
-  border-radius: 8px;
+  border-radius: 14px;
   bottom: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -40,14 +40,14 @@ export const Switcher = styled.span`
 
   :before {
     background-color: ${({ theme }): string => theme.colors.foreground};
-    border-radius: 6px;
-    bottom: 0;
+    border-radius: 50%;
+    bottom: 1px;
     content: "";
-    height: 100%;
-    left: 0;
+    height: calc(100% - 2px);
+    left: 1px;
     position: absolute;
     transition: transform 0.4s;
-    width: 18px;
+    width: 16px;
   }
 `;
 

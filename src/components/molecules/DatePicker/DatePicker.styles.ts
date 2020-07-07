@@ -96,6 +96,7 @@ export const Wrapper = styled(Box)`
   }
 
   .react-datepicker__time-list-item {
+    background-color: ${({ theme }): string => theme.colors.foreground};
     color: ${({ theme }): string => theme.colors.text};
 
     :hover {
@@ -134,6 +135,7 @@ export const Wrapper = styled(Box)`
 
     :after {
       background-color: ${({ theme }): string => theme.colors.primary};
+      color: ${({ theme }): string => theme.colors.foreground};
     }
 
     :hover:after {

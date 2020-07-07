@@ -6,6 +6,7 @@ declare module "styled-components" {
       background: string;
       backgroundHover: string;
       border: string;
+      cardBoxShadow: string;
       error: string;
       errorOpacity: string;
       errorOutline: string;
@@ -18,9 +19,8 @@ declare module "styled-components" {
       secondary: string;
       secondaryActive: string;
       secondaryHover: string;
+      secondaryOpacity: string;
       secondaryOutline: string;
-      successful: string;
-      successfulOpacity: string;
       text: string;
       textSecondary: string;
     };
