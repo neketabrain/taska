@@ -1,11 +1,12 @@
-import React, { useMemo, FC } from "react";
+import React, { useContext, useMemo, FC } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import "./i18n";
 
-import { darkTheme, GlobalStyles, lightTheme } from "./assets";
+import { GlobalStyles } from "./assets";
+import { ThemeContext } from "./context/themeContext";
 import Router from "./pages";
 import { configureStore } from "./store";
 import { getLocale } from "./utils";
@@ -13,6 +14,7 @@ import { getLocale } from "./utils";
 const store = configureStore();
 
 const App: FC = () => {
+  const { theme } = useContext(ThemeContext);
   const language = useMemo(() => getLocale(), []);
 
   return (
@@ -21,7 +23,7 @@ const App: FC = () => {
         <html lang={language} />
       </Helmet>
 
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Provider store={store}>
           <Router />
