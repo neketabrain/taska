@@ -1,19 +1,20 @@
 export enum TasksTypes {
   ADD = "ADD_TASK",
-  UPDATE = "UPDATE_TASK",
-  GET = "GET_TASKS",
   CLEAN = "CLEAN_TASKS",
   DELETE = "DELETE_TASK",
+  GET = "GET_TASKS",
+  UPDATE = "UPDATE_TASK",
 }
 
 export type Task = {
-  name: string;
-  date: string;
-  time: string;
   completed: boolean;
-  id?: string;
-  description?: string;
+  date: string;
+  name: string;
+  time: string;
+
   address?: string;
+  description?: string;
+  id?: string;
 };
 
 export type TasksState = Task[] | null;
@@ -21,16 +22,6 @@ export type TasksState = Task[] | null;
 type AddTask = {
   type: TasksTypes.ADD;
   payload: Task;
-};
-
-type UpdateTask = {
-  type: TasksTypes.UPDATE;
-  payload: Task;
-};
-
-type GetTasks = {
-  type: TasksTypes.GET;
-  payload: Task[];
 };
 
 type CleanTasks = {
@@ -42,9 +33,19 @@ type DeleteTask = {
   payload: string;
 };
 
+type GetTasks = {
+  type: TasksTypes.GET;
+  payload: Task[];
+};
+
+type UpdateTask = {
+  type: TasksTypes.UPDATE;
+  payload: Task;
+};
+
 export type TasksActions =
   | AddTask
-  | UpdateTask
-  | GetTasks
   | CleanTasks
-  | DeleteTask;
+  | DeleteTask
+  | GetTasks
+  | UpdateTask;
