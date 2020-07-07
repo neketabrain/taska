@@ -91,7 +91,8 @@ export const CheckButton = styled.button`
     box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 
-  :hover {
+  :hover,
+  :focus {
     ${CheckIcon}, ${FilledCheckIcon} {
       fill: ${({ theme }): string => theme.colors.primaryHover};
     }

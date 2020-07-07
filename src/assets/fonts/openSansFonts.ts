@@ -28,7 +28,10 @@ const openSansFontFaces = openSansFonts.map(
     @font-face {
       font-family: "Open Sans";
       font-weight: ${font.weight};
-      src: local(${`Open Sans ${font.name}`}),
+      src: url(${require(`../../../static/fonts/OpenSans/${font.name}.woff2`)})
+          format("woff2"),
+        url(${require(`../../../static/fonts/OpenSans/${font.name}.woff`)})
+          format("woff"),
         url(${require(`../../../static/fonts/OpenSans/${font.name}.ttf`)})
           format("truetype");
     }

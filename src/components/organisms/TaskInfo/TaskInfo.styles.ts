@@ -148,7 +148,8 @@ export const CheckButton = styled(IconButton)`
     box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 
-  :hover {
+  :hover,
+  :focus {
     ${CheckIcon}, ${FilledCheckIcon} {
       fill: ${({ theme }): string => theme.colors.primaryHover};
     }
@@ -167,7 +168,8 @@ export const DeleteButton = styled(IconButton)`
     box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 
-  :hover {
+  :hover,
+  :focus {
     ${TrashIcon} {
       fill: ${({ theme }): string => theme.colors.error};
     }
@@ -178,7 +180,8 @@ export const EditButton = styled(Link)`
   color: ${({ theme }): string => theme.colors.border};
   fill: ${({ theme }): string => theme.colors.border};
 
-  :hover {
+  :hover,
+  :focus {
     text-decoration: none;
     ${PenIcon} {
       fill: ${({ theme }): string => theme.colors.text};
