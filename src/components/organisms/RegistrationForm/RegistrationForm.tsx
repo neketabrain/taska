@@ -16,10 +16,9 @@ const RegistrationForm: FC<RegistrationFormProps> = (props) => {
   const { values, onChange, setValues } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const resetValues = useCallback(
-    () => setValues({ email: "", password: "" }),
-    [setValues]
-  );
+  const resetValues = useCallback(() => setValues({ password: "" }), [
+    setValues,
+  ]);
 
   const handleSubmit = useCallback(
     async (event: OnSubmitEvent) => {
@@ -88,7 +87,7 @@ const RegistrationForm: FC<RegistrationFormProps> = (props) => {
         />
       </InputContainer>
 
-      <SubmitButton disabled={isSubmitting} type="submit" variant="primary">
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("button")}
       </SubmitButton>
     </Form>

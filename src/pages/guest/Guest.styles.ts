@@ -44,7 +44,7 @@ export const Title = styled(H1)`
 `;
 
 export const ChevronIcon = styled(Icons.ChevronRight)`
-  fill: ${({ theme }): string => theme.colors.secondary};
+  fill: ${({ theme }): string => theme.colors.primary};
   height: 20px;
   vertical-align: sub;
   width: 20px;

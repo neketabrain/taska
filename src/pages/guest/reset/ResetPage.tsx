@@ -23,15 +23,14 @@ const ResetPage: FC = () => {
   const { addError, getError, setErrors } = useErrors();
 
   const handleSubmit = useCallback(
-    async (values: ResetPasswordFormValues, resetValues: VoidFunction) => {
+    async (values: ResetPasswordFormValues) => {
       const { email } = values;
 
       setErrors({}, true);
 
-      await Api.auth.sendPasswordResetEmail(email).catch((err) => {
-        addError(err?.code);
-        resetValues();
-      });
+      await Api.auth
+        .sendPasswordResetEmail(email)
+        .catch((err) => addError(err?.code));
     },
     [addError, setErrors]
   );

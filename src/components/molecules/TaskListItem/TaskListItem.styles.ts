@@ -11,13 +11,14 @@ export const Wrapper = styled.li<{ isActive?: boolean }>`
   cursor: pointer;
   display: flex;
   margin: 0;
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  outline: 0;
   padding: 12px 24px;
   position: relative;
   width: 100%;
 
-  :hover {
-    background-color: ${({ theme }): string => theme.colors.primaryLightest};
+  :hover,
+  :focus {
+    background-color: ${({ theme }): string => theme.colors.foregroundHover};
   }
 
   ${({
@@ -25,8 +26,8 @@ export const Wrapper = styled.li<{ isActive?: boolean }>`
   }): FlattenInterpolation<ThemeProps<DefaultTheme>> | false | undefined =>
     isActive &&
     css`
-      background-color: ${({ theme }): string => theme.colors.primaryLightest};
-      border-right: 2px solid ${({ theme }): string => theme.colors.primaryDark};
+      background-color: ${({ theme }): string => theme.colors.foregroundHover};
+      border-right: 3px solid ${({ theme }): string => theme.colors.primary};
     `};
 `;
 
@@ -41,28 +42,28 @@ export const Name = styled(Text)`
 
 export const Time = styled(Text)`
   align-items: center;
-  color: ${({ theme }): string => theme.colors.primary};
+  color: ${({ theme }): string => theme.colors.textSecondary};
   display: flex;
   font-size: 12px;
   margin: 4px 0 0;
 `;
 
 export const ClockIcon = styled(Icons.Clock)`
-  fill: ${({ theme }): string => theme.colors.primary};
+  fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 12px;
   margin-right: 4px;
   width: 12px;
 `;
 
 export const CheckIcon = styled(Icons.CircleCheck)`
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
+  fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 24px;
   position: relative;
   width: 24px;
 `;
 
 export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
+  fill: ${({ theme }): string => theme.colors.primary};
   height: 24px;
   position: relative;
   width: 24px;
@@ -76,7 +77,7 @@ export const CheckButton = styled.button`
   display: flex;
   justify-content: center;
   margin: 0;
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  outline: 0;
   padding: 0;
   position: relative;
 
@@ -85,10 +86,20 @@ export const CheckButton = styled.button`
     opacity: 0.5;
   }
 
+  :focus {
+    border-radius: 50%;
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
+  }
+
   :hover {
     ${CheckIcon}, ${FilledCheckIcon} {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+      fill: ${({ theme }): string => theme.colors.primaryHover};
+    }
+  }
+
+  :active {
+    ${CheckIcon}, ${FilledCheckIcon} {
+      fill: ${({ theme }): string => theme.colors.primaryActive};
     }
   }
 `;

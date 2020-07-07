@@ -6,8 +6,9 @@ export const Wrapper = styled(Box)`
   width: 100%;
 
   .react-datepicker {
-    background-color: ${({ theme }): string => theme.colors.cardBackground};
-    border-color: ${({ theme }): string => theme.colors.borderDarkest};
+    background-color: ${({ theme }): string => theme.colors.foreground};
+    border-color: ${({ theme }): string => theme.colors.border};
+    border-radius: 14px;
     font-family: "Open Sans", sans-serif !important;
   }
 
@@ -17,71 +18,81 @@ export const Wrapper = styled(Box)`
   }
 
   .react-datepicker__header {
-    background-color: ${({ theme }): string => theme.colors.primaryDarkest};
-    border-bottom: none;
+    background-color: ${({ theme }): string => theme.colors.background};
+    border-color: ${({ theme }): string => theme.colors.border};
+    border-radius: 14px 14px 0 0;
   }
 
   .react-datepicker__triangle {
     border-bottom-color: ${({ theme }): string =>
-      theme.colors.primaryDarkest} !important;
+      theme.colors.background} !important;
     left: 50% !important;
 
     :before {
       border-bottom-color: ${({ theme }): string =>
-        theme.colors.borderDarkest} !important;
+        theme.colors.border} !important;
     }
   }
 
   .react-datepicker__navigation--previous {
-    border-right-color: ${({ theme }): string => theme.colors.borderDarkest};
+    border-right-color: ${({ theme }): string => theme.colors.textSecondary};
 
     :hover {
-      border-right-color: ${({ theme }): string => theme.colors.invertedText};
+      border-right-color: ${({ theme }): string => theme.colors.text};
     }
   }
 
   .react-datepicker__navigation--next {
-    border-left-color: ${({ theme }): string => theme.colors.borderDarkest};
+    border-left-color: ${({ theme }): string => theme.colors.textSecondary};
 
     :hover {
-      border-left-color: ${({ theme }): string => theme.colors.invertedText};
+      border-left-color: ${({ theme }): string => theme.colors.text};
     }
   }
 
   .react-datepicker__current-month,
   .react-datepicker-time__header {
-    color: ${({ theme }): string => theme.colors.invertedText};
+    color: ${({ theme }): string => theme.colors.text};
     text-transform: capitalize;
   }
 
   .react-datepicker__day-name {
-    color: ${({ theme }): string => theme.colors.invertedText};
+    color: ${({ theme }): string => theme.colors.text};
   }
 
   .react-datepicker__day {
     color: ${({ theme }): string => theme.colors.text};
 
     :hover {
-      background-color: ${({ theme }): string => theme.colors.border};
+      background-color: ${({ theme }): string => theme.colors.backgroundHover};
     }
   }
 
   .react-datepicker__day--selected {
-    background-color: ${({ theme }): string => theme.colors.primaryDark};
-    color: ${({ theme }): string => theme.colors.invertedText};
-
-    :hover {
-      background-color: ${({ theme }): string => theme.colors.primaryDark};
-    }
-  }
-
-  .react-datepicker__day--keyboard-selected {
     background-color: ${({ theme }): string => theme.colors.primary};
-    color: ${({ theme }): string => theme.colors.invertedText};
+    color: ${({ theme }): string => theme.colors.foreground};
 
     :hover {
       background-color: ${({ theme }): string => theme.colors.primary};
     }
+  }
+
+  .react-datepicker__day--keyboard-selected {
+    background-color: ${({ theme }): string => theme.colors.backgroundHover};
+    color: ${({ theme }): string => theme.colors.text};
+
+    :hover {
+      background-color: ${({ theme }): string => theme.colors.backgroundHover};
+    }
+  }
+
+  .react-datepicker__time {
+    border-radius: 14px;
+  }
+
+  .react-datepicker__time-box {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 
   .react-datepicker__time-list-item {
@@ -89,25 +100,28 @@ export const Wrapper = styled(Box)`
 
     :hover {
       background-color: ${({ theme }): string =>
-        theme.colors.border} !important;
+        theme.colors.backgroundHover} !important;
     }
+  }
 
-    &--selected {
+  .react-datepicker__time-list-item--selected {
+    background-color: ${({ theme }): string => theme.colors.primary} !important;
+
+    :hover {
       background-color: ${({ theme }): string =>
-        theme.colors.primaryDark} !important;
-
-      :hover {
-        background-color: ${({ theme }): string =>
-          theme.colors.primaryDark} !important;
-      }
+        theme.colors.primary} !important;
     }
   }
 
   .react-datepicker__today-button {
-    background-color: ${({ theme }): string => theme.colors.border};
-    border-radius: 0 0 4px 4px;
-    border-top-color: ${({ theme }): string => theme.colors.borderDarkest};
+    background-color: ${({ theme }): string => theme.colors.background};
+    border-radius: 0 0 14px 14px;
+    border-top-color: ${({ theme }): string => theme.colors.border};
     color: ${({ theme }): string => theme.colors.text};
+
+    :hover {
+      background-color: ${({ theme }): string => theme.colors.backgroundHover};
+    }
   }
 
   .react-datepicker__close-icon {
@@ -119,12 +133,15 @@ export const Wrapper = styled(Box)`
     top: initial;
 
     :after {
-      background-color: ${({ theme }): string =>
-        theme.colors.buttons.primary.background};
+      background-color: ${({ theme }): string => theme.colors.primary};
     }
+
     :hover:after {
-      background-color: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+      background-color: ${({ theme }): string => theme.colors.primaryHover};
+    }
+
+    :active:after {
+      background-color: ${({ theme }): string => theme.colors.primaryActive};
     }
   }
 `;

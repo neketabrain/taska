@@ -43,10 +43,11 @@ export const FilterInput = styled(TextField)`
   font-weight: 600;
   max-height: 50px;
   padding: 15px 24px;
+  border-radius: 14px;
 `;
 
 export const DateInput = styled(DatePicker)`
-  border-radius: 4px;
+  border-radius: 14px;
 
   .react-datepicker__close-icon {
     height: 48px;

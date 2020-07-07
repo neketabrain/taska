@@ -16,7 +16,7 @@ export const NavItemList = styled.ul`
 `;
 
 export const Divider = styled(Box)`
-  background-color: ${({ theme }): string => theme.colors.borderDarker};
+  background-color: ${({ theme }): string => theme.colors.border};
   height: 1px;
   margin: 16px 0 16px 44px;
   position: relative;

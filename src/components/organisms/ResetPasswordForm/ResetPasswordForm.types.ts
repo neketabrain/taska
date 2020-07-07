@@ -8,9 +8,6 @@ export type ResetPasswordFormValues = {
 export type ResetPasswordFormProps = ClassName & {
   getError: GetError;
   initialValues: ResetPasswordFormValues;
-  onSubmit: (
-    values: ResetPasswordFormValues,
-    resetValues: VoidFunction
-  ) => Promise<void>;
+  onSubmit: (values: ResetPasswordFormValues) => Promise<void>;
   setErrors: SetErrors;
 };

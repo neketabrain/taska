@@ -120,7 +120,7 @@ const EditTaskForm: FC<EditTaskFormProps> = (props) => {
       </InputContainer>
 
       <ButtonContainer>
-        <Button disabled={isSubmitting} type="submit" variant="primary">
+        <Button disabled={isSubmitting} type="submit" variant="secondary">
           {!isEditing && t("newTask.form.submit")}
           {!!isEditing && t("editTask.form.submit")}
         </Button>
@@ -130,7 +130,7 @@ const EditTaskForm: FC<EditTaskFormProps> = (props) => {
             disabled={isSubmitting}
             onClick={cancel}
             type="button"
-            variant="secondary"
+            variant="basic"
           >
             {t("editTask.form.cancel")}
           </Button>

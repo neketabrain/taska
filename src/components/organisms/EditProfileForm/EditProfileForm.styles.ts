@@ -75,7 +75,7 @@ export const MockAvatar = styled(Box)`
   align-items: center;
   background-color: ${({ theme }): string => theme.colors.primary};
   border-radius: 50%;
-  color: ${({ theme }): string => theme.colors.invertedText};
+  color: ${({ theme }): string => theme.colors.foreground};
   display: flex;
   font-size: 24px;
   font-weight: 600;

@@ -33,7 +33,7 @@ export const UserName = styled(Text)`
 `;
 
 export const UserEmail = styled(UserName)`
-  color: ${({ theme }): string => theme.colors.primary};
+  color: ${({ theme }): string => theme.colors.textSecondary};
   font-size: 14px;
   font-weight: normal;
   margin-top: 4px;
@@ -56,7 +56,7 @@ export const MockAvatar = styled(Box)`
   align-items: center;
   background-color: ${({ theme }): string => theme.colors.primary};
   border-radius: 50%;
-  color: ${({ theme }): string => theme.colors.invertedText};
+  color: ${({ theme }): string => theme.colors.foreground};
   display: flex;
   font-size: 24px;
   font-weight: 600;

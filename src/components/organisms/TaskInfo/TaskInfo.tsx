@@ -12,15 +12,16 @@ import {
   ButtonContainer,
   ButtonWrapper,
   CalendarIcon,
+  CheckButton,
   CheckIcon,
   ClockIcon,
   Container,
   DateText,
+  DeleteButton,
   Description,
   EditButton,
   FilledCheckIcon,
   Header,
-  IconButton,
   Name,
   NameContainer,
   PenIcon,
@@ -103,10 +104,10 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
     <Wrapper className={className}>
       <Header withBorder={!!description || !!address}>
         <Box>
-          <IconButton disabled={isPending} onClick={handleCheck}>
+          <CheckButton disabled={isPending} onClick={handleCheck}>
             {completed && <FilledCheckIcon />}
             {!completed && <CheckIcon />}
-          </IconButton>
+          </CheckButton>
         </Box>
 
         <NameContainer>
@@ -133,9 +134,9 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
 
             <VerticalDivider />
 
-            <IconButton disabled={isPending} onClick={handleDelete}>
+            <DeleteButton disabled={isPending} onClick={handleDelete}>
               <TrashIcon />
-            </IconButton>
+            </DeleteButton>
           </ButtonContainer>
         </ButtonWrapper>
       </Header>

@@ -16,10 +16,9 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = (props) => {
   const { onChange, setValues, values } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const resetValues = useCallback(
-    () => setValues({ email: "", password: "" }),
-    [setValues]
-  );
+  const resetValues = useCallback(() => setValues({ password: "" }), [
+    setValues,
+  ]);
 
   const handleSubmit = useCallback(
     async (event: OnSubmitEvent) => {
@@ -60,7 +59,7 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = (props) => {
         />
       </InputContainer>
 
-      <SubmitButton disabled={isSubmitting} type="submit" variant="primary">
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("emailPage.form.submit")}
       </SubmitButton>
     </Form>

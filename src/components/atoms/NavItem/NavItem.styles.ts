@@ -10,38 +10,28 @@ export const Container = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-  border-radius: 4px;
-  color: ${({ theme }): string => theme.colors.buttons.primary.background};
+  border-radius: 10px;
+  color: ${({ theme }): string => theme.colors.textSecondary};
   height: 32px;
   padding: 0 8px;
   width: 100%;
 
-  :hover {
-    background-color: ${({ theme }): string => theme.colors.border};
-    color: ${({ theme }): string =>
-      theme.colors.buttons.primary.backgroundHover};
-    text-decoration: none;
-
-    svg {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
-    }
-  }
-
+  :hover,
   :focus {
-    border-radius: 4px;
-    box-shadow: ${({ theme }): string => theme.colors.buttons.primary.outline};
+    background-color: ${({ theme }): string => theme.colors.backgroundHover};
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: none;
   }
 
   svg {
-    fill: ${({ theme }): string => theme.colors.buttons.primary.background};
+    fill: ${({ theme }): string => theme.colors.textSecondary};
     height: 20px;
     margin-right: 16px;
     width: 20px;
   }
 
   &.active {
-    background-color: ${({ theme }): string => theme.colors.border};
     color: ${({ theme }): string => theme.colors.text};
     font-weight: 600;
 
