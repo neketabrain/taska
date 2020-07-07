@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-import { Box, Flex, H1, Card, Text, Icons } from "src/components";
+import { Box, Card, Flex, H1, Icons, Text } from "src/components";
 
 export const Main = styled.main`
-  position: relative;
   margin: 0 auto;
   padding: 60px 0;
+  position: relative;
 
   @media screen and (max-width: 480px) {
-    max-width: 100%;
     height: 100%;
+    max-width: 100%;
     padding: 0;
   }
 `;
@@ -17,13 +17,13 @@ export const Main = styled.main`
 export const Container = styled(Card)`
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   max-width: 420px;
   width: 100%;
-  margin: 0 auto;
 
   @media screen and (max-width: 480px) {
-    max-width: 100%;
     height: 100%;
+    max-width: 100%;
     padding: 60px 24px;
   }
 
@@ -33,29 +33,29 @@ export const Container = styled(Card)`
 `;
 
 export const Header = styled(Flex)`
+  align-items: baseline;
   justify-content: space-between;
   margin-bottom: 32px;
-  align-items: baseline;
 `;
 
 export const Title = styled(H1)`
-  max-width: 70%;
   margin: 0;
+  max-width: 70%;
 `;
 
 export const ChevronIcon = styled(Icons.ChevronRight)`
-  width: 20px;
-  height: 20px;
   fill: ${({ theme }): string => theme.colors.secondary};
+  height: 20px;
   vertical-align: sub;
+  width: 20px;
 `;
 
 export const DividerContainer = styled(Flex)`
-  width: 100%;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin: 24px 0;
   position: relative;
+  width: 100%;
 `;
 
 export const DividerText = styled(Text)`
@@ -63,13 +63,13 @@ export const DividerText = styled(Text)`
 `;
 
 export const Divider = styled(Box)`
+  background-color: ${({ theme }): string => theme.colors.border};
   height: 1px;
   width: 100%;
-  background-color: ${({ theme }): string => theme.colors.border};
 `;
 
 export const GoogleIcon = styled(Icons.Google)`
-  width: 20px;
   height: 20px;
   margin-right: 16px;
+  width: 20px;
 `;

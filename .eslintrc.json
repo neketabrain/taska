@@ -1,51 +1,29 @@
 {
-  "root": true,
-  "parser": "babel-eslint",
   "env": {
+    "browser": true,
     "es6": true,
-    "jest": true,
-    "browser": true
+    "jest": true
   },
   "extends": [
-    "react-app",
-    "plugin:jsx-a11y/recommended",
     "prettier",
     "prettier/babel",
     "prettier/react",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "react-app"
   ],
-  "plugins": ["jsx-a11y", "babel", "react", "prettier", "import"],
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"],
-        "moduleDirectory": ["node_modules", "./"]
-      }
-    }
-  },
+  "parser": "babel-eslint",
+  "plugins": ["babel", "import", "jsx-a11y", "prettier", "react"],
+  "root": true,
   "rules": {
-    "strict": "off",
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-    "no-unused-vars": "warn",
-    "prettier/prettier": "error",
-    "max-len": [
-      "warn",
-      {
-        "ignoreComments": true,
-        "code": 120
-      }
-    ],
-    "no-multi-spaces": "error",
-    "no-console": "warn",
     "import/named": "off",
     "import/order": [
       "error",
       {
         "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
+          "caseInsensitive": true,
+          "order": "asc"
         },
         "groups": [
           ["builtin", "external"],
@@ -56,25 +34,48 @@
         ],
         "newlines-between": "always"
       }
-    ]
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreComments": true
+      }
+    ],
+    "no-console": "warn",
+    "no-multi-spaces": "error",
+    "no-unused-vars": "warn",
+    "prettier/prettier": "error",
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "strict": "off"
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "./"]
+      }
+    }
+  },
+
   "overrides": [
     {
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+        "prettier/@typescript-eslint"
+      ],
       "files": ["*.ts", "*.tsx"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "sourceType": "module",
         "ecmaFeatures": {
           "jsx": true,
           "modules": true
         },
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.json",
+        "sourceType": "module"
       },
-      "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:import/typescript"
-      ],
       "plugins": ["@typescript-eslint"],
       "rules": {
         "@typescript-eslint/interface-name-prefix": [

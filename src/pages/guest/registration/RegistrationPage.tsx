@@ -1,60 +1,75 @@
-import React from "react";
+import React, { useCallback, FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 import { Api } from "src/api";
 import {
-  RegistrationForm,
-  RegistrationFormValues,
   Button,
   Link,
+  RegistrationForm,
+  RegistrationFormValues,
 } from "src/components";
 import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
 import { UserTypes } from "src/store";
 
 import {
-  Main,
-  Container,
-  Header,
-  Title,
   ChevronIcon,
-  DividerContainer,
+  Container,
   Divider,
+  DividerContainer,
   DividerText,
   GoogleIcon,
+  Header,
+  Main,
+  Title,
 } from "../Guest.styles";
 
-function RegistrationPage(): JSX.Element {
+const initialValues: RegistrationFormValues = {
+  email: "",
+  firstName: "",
+  lastName: "",
+  password: "",
+};
+
+const RegistrationPage: FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation("registration");
 
-  const { clearError, getError, addError, clearAllErrors } = useErrors();
+  const { addError, getError, setErrors } = useErrors();
 
-  async function handleSubmit(values: RegistrationFormValues): Promise<void> {
-    const { firstName, lastName, email, password } = values;
-    const displayName = `${firstName} ${lastName}`;
+  const handleSubmit = useCallback(
+    async (values: RegistrationFormValues, resetValues: VoidFunction) => {
+      const { email, firstName, lastName, password } = values;
+      const displayName = `${firstName} ${lastName}`;
 
-    clearAllErrors();
+      setErrors({}, true);
 
-    Api.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((res) =>
-        res.user
-          ?.updateProfile({ displayName })
-          .then(() =>
-            dispatch({ type: UserTypes.UPDATE, payload: { displayName } })
-          )
-      )
-      .catch((err) => addError(err.code));
-  }
+      await Api.auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((res) =>
+          res.user
+            ?.updateProfile({ displayName })
+            .then(() =>
+              dispatch({ type: UserTypes.UPDATE, payload: { displayName } })
+            )
+        )
+        .catch((err) => {
+          addError(err?.code);
+          resetValues();
+        });
+    },
+    [addError, dispatch, setErrors]
+  );
 
-  function signInWithGoogle(): void {
-    Api.auth
-      .signInWithPopup(Api.googleAuthProvider)
-      .catch((err) => addError(err.code));
-  }
+  const signInWithGoogle = useCallback(
+    () =>
+      Api.auth
+        .signInWithPopup(Api.googleAuthProvider)
+        .catch((err) => addError(err.code)),
+    [addError]
+  );
 
   return (
     <Main>
@@ -71,9 +86,10 @@ function RegistrationPage(): JSX.Element {
         </Header>
 
         <RegistrationForm
-          onSubmit={handleSubmit}
-          clearError={clearError}
           getError={getError}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          setErrors={setErrors}
         />
 
         <DividerContainer>
@@ -82,13 +98,13 @@ function RegistrationPage(): JSX.Element {
           <Divider />
         </DividerContainer>
 
-        <Button type="button" variant="secondary" onClick={signInWithGoogle}>
+        <Button onClick={signInWithGoogle} type="button" variant="secondary">
           <GoogleIcon />
           {t("withGoogle")}
         </Button>
       </Container>
     </Main>
   );
-}
+};
 
 export default RegistrationPage;

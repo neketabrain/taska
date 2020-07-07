@@ -1,6 +1,6 @@
 import { TasksState } from "src/store/tasks";
+import { ClassName } from "src/types";
 
-export interface TaskListProps {
+export type TaskListProps = ClassName & {
   tasks: TasksState;
-  className?: string;
-}
+};

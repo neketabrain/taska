@@ -14,9 +14,9 @@ function Clock(props: GlyphProps): JSX.Element {
 }
 
 Clock.defaultProps = {
-  width: "24px",
-  height: "24px",
   fill: "black",
+  height: "24px",
+  width: "24px",
 };
 
 export default Clock;

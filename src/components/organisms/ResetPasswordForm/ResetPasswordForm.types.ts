@@ -1,9 +1,16 @@
-import { UseErrors } from "src/hooks/useErrors";
+import { GetError, SetErrors } from "src/hooks/useErrors/useErrors.types";
+import { ClassName } from "src/types";
 
-export interface ResetPasswordFormValues {
+export type ResetPasswordFormValues = {
   email: string;
-}
+};
 
-export interface ResetPasswordFormProps extends Partial<UseErrors> {
-  onSubmit: (values: ResetPasswordFormValues) => Promise<void>;
-}
+export type ResetPasswordFormProps = ClassName & {
+  getError: GetError;
+  initialValues: ResetPasswordFormValues;
+  onSubmit: (
+    values: ResetPasswordFormValues,
+    resetValues: VoidFunction
+  ) => Promise<void>;
+  setErrors: SetErrors;
+};

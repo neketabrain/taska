@@ -6,9 +6,9 @@ export const Container = styled.nav`
 `;
 
 export const SettingsMenuItemList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   position: relative;
   width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
 `;

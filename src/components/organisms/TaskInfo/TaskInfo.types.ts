@@ -1,6 +1,6 @@
 import { Task } from "src/store/tasks";
+import { ClassName } from "src/types";
 
-export interface TaskInfoProps {
+export type TaskInfoProps = ClassName & {
   task: Task;
-  className?: string;
-}
+};

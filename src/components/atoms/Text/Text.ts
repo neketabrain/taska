@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import {
-  compose,
-  space,
   color,
-  typography,
+  compose,
   layout,
   position,
+  space,
+  typography,
 } from "styled-system";
 
 const Text = styled.p`
-  font-family: "Open Sans", sans-serif;
   color: ${({ theme }): string => theme.colors.text};
-  ${compose(space, color, typography, layout, position)};
+  font-family: "Open Sans", sans-serif;
+  ${compose(color, layout, position, space, typography)};
 `;
 
 export default Text;

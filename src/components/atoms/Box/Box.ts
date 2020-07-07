@@ -1,21 +1,21 @@
 import styled from "styled-components";
 import {
   compose,
-  space,
   layout,
   position,
-  SpaceProps,
+  space,
   LayoutProps,
   PositionProps,
+  SpaceProps,
 } from "styled-system";
 
-type BoxProps = SpaceProps | LayoutProps | PositionProps;
+type BoxProps = LayoutProps & PositionProps & SpaceProps;
 
 const Box = styled.div<BoxProps>`
-  position: relative;
-  box-sizing: border-box;
   background-color: inherit;
-  ${compose(space, layout, position)};
+  box-sizing: border-box;
+  position: relative;
+  ${compose(layout, position, space)};
 `;
 
 export default Box;

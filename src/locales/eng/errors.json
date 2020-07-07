@@ -1,8 +1,8 @@
 {
+  "auth/email-already-in-use": "This email is already in use",
   "auth/invalid-email": "Email address is not valid",
   "auth/user-disabled": "User is disabled",
   "auth/user-not-found": "User not found",
-  "auth/wrong-password": "Wrong password",
-  "auth/email-already-in-use": "This email is already in use",
-  "auth/weak-password": "Minimum password length is 6 characters"
+  "auth/weak-password": "Minimum password length is 6 characters",
+  "auth/wrong-password": "Wrong password"
 }

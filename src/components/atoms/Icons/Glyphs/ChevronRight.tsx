@@ -11,9 +11,9 @@ function ChevronRight(props: GlyphProps): JSX.Element {
 }
 
 ChevronRight.defaultProps = {
-  width: "24px",
-  height: "24px",
   fill: "black",
+  height: "24px",
+  width: "24px",
 };
 
 export default ChevronRight;

@@ -8,19 +8,19 @@ export const Container = styled.nav`
 `;
 
 export const NavItemList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   position: relative;
   width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
 `;
 
 export const Divider = styled(Box)`
+  background-color: ${({ theme }): string => theme.colors.borderDarker};
+  height: 1px;
+  margin: 16px 0 16px 44px;
   position: relative;
   width: 100% - 44px;
-  margin: 16px 0 16px 44px;
-  height: 1px;
-  background-color: ${({ theme }): string => theme.colors.borderDarker};
 `;
 
 export const MenuItem = styled(NavItem)`

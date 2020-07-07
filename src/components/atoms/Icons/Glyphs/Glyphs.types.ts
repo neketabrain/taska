@@ -1,6 +1,7 @@
-export interface GlyphProps {
-  width?: string;
-  height?: string;
+import { ClassName } from "src/types";
+
+export type GlyphProps = ClassName & {
   fill?: string;
-  className?: string;
-}
+  height?: string;
+  width?: string;
+};

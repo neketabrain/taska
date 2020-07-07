@@ -1,33 +1,31 @@
-import i18next from "i18next";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Switch } from "src/components";
 import { i18n } from "src/i18n";
+import { getLocale } from "src/utils";
 
 import {
-  ContentSection,
   Container,
+  ContentSection,
   ContentWrapper,
-  Title,
   FieldContainer,
-  FieldLabel,
   FieldHandler,
+  FieldLabel,
+  Title,
 } from "../SettingsPage.styles";
 
-function PreferencesPage(): JSX.Element {
+const PreferencesPage: FC = () => {
   const { t } = useTranslation("settings");
 
-  const [isRussian, setRussian] = useState(
-    /ru/.test(window.localStorage.getItem("i18nextLng") || i18next.language)
-  );
+  const [isRussian, setRussian] = useState(/ru/.test(getLocale()));
 
   const handleChangeLanguage = useCallback(async () => {
     const newLanguage = isRussian ? "en" : "ru";
     setRussian((prevState) => !prevState);
 
     await i18n.changeLanguage(newLanguage);
-  }, [isRussian]);
+  }, [isRussian, setRussian]);
 
   return (
     <ContentSection>
@@ -40,10 +38,10 @@ function PreferencesPage(): JSX.Element {
 
             <FieldHandler>
               <Switch
-                name="language"
                 checked={isRussian}
-                onChange={handleChangeLanguage}
                 leftLabel={t("preferencesPage.english")}
+                name="language"
+                onChange={handleChangeLanguage}
                 rightLabel={t("preferencesPage.russian")}
               />
             </FieldHandler>
@@ -55,8 +53,8 @@ function PreferencesPage(): JSX.Element {
             <FieldHandler>
               <Switch
                 disabled={true}
-                name="darkMode"
                 leftLabel={t("preferencesPage.off")}
+                name="darkMode"
                 rightLabel={t("preferencesPage.on")}
               />
             </FieldHandler>
@@ -65,6 +63,6 @@ function PreferencesPage(): JSX.Element {
       </Container>
     </ContentSection>
   );
-}
+};
 
 export default PreferencesPage;

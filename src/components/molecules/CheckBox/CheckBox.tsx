@@ -1,27 +1,27 @@
-import React from "react";
+import React, { FC } from "react";
 
 import {
   CheckBoxContainer,
   CheckIcon,
+  CustomCheckbox,
   Label,
   NativeCheckbox,
-  CustomCheckbox,
 } from "./CheckBox.styles";
 import { CheckBoxProps } from "./CheckBox.types";
 
-function CheckBox(props: CheckBoxProps): JSX.Element {
-  const { className, label, checked, ...rest } = props;
+const CheckBox: FC<CheckBoxProps> = (props) => {
+  const { className, label, ...rest } = props;
 
   return (
     <CheckBoxContainer className={className}>
       <Label>
-        <NativeCheckbox type="checkbox" checked={checked} {...rest} />
+        <NativeCheckbox type="checkbox" {...rest} />
         <CustomCheckbox />
-        {checked && <CheckIcon />}
+        <CheckIcon />
         {label}
       </Label>
     </CheckBoxContainer>
   );
-}
+};
 
 export default CheckBox;

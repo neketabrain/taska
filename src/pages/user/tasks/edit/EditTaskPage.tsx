@@ -1,41 +1,42 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
+import { Api } from "src/api";
 import { Card, EditTaskForm } from "src/components";
 import { ROUTES } from "src/constants";
 import { ApplicationStore, TasksTypes } from "src/store";
 import { Task } from "src/store/tasks";
 
-import { Api } from "../../../../api";
 import { PrimarySection, Title } from "../TasksPages.styles";
 
-function EditTaskPage(): JSX.Element {
+const EditTaskPage: FC = () => {
   const { t } = useTranslation("tasks");
-  const dispatch = useDispatch();
+
   const history = useHistory();
   const { id } = useParams();
 
+  const dispatch = useDispatch();
   const tasks = useSelector((state: ApplicationStore) => state.tasks);
   const task = useMemo(() => tasks?.find((item) => item.id === id), [
-    tasks,
     id,
+    tasks,
   ]);
 
   useEffect(() => {
     if (!!tasks?.length && task?.id !== id) {
       history.push(ROUTES.TASKS);
     }
-  }, [tasks, task, id, history]);
+  }, [history, id, task, tasks]);
 
   const handleSubmit = useCallback(
     async (values: Task) => {
       const { uid } = Api.auth.currentUser || {};
       if (!uid) return;
 
-      return Api.db
+      await Api.db
         .collection("users")
         .doc(uid)
         .collection("tasks")
@@ -64,13 +65,13 @@ function EditTaskPage(): JSX.Element {
       <Card>
         <Title>{t("editTask.title")}</Title>
         <EditTaskForm
-          initialState={task}
-          onSubmit={handleSubmit}
+          initialValues={task}
           isEditing={true}
+          onSubmit={handleSubmit}
         />
       </Card>
     </PrimarySection>
   );
-}
+};
 
 export default EditTaskPage;

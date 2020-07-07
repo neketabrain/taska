@@ -1,22 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { TaskListItem } from "src/components";
 import { ROUTES } from "src/constants";
 
-import { List, EmptyContainer, EmptyText, Button } from "./TaskList.styles";
+import { Button, EmptyContainer, EmptyText, List } from "./TaskList.styles";
 import { TaskListProps } from "./TaskList.types";
 
-function TaskList(props: TaskListProps): JSX.Element {
-  const { tasks, className } = props;
+const TaskList: FC<TaskListProps> = (props) => {
+  const { className, tasks } = props;
 
   const { t } = useTranslation("tasks");
 
   return (
     <List className={className}>
-      {tasks && tasks.map((task) => <TaskListItem key={task.id} task={task} />)}
+      {!!tasks &&
+        tasks.length > 0 &&
+        tasks.map((task) => <TaskListItem key={task.id} task={task} />)}
 
-      {tasks && tasks.length < 1 && (
+      {!!tasks && tasks.length < 1 && (
         <EmptyContainer>
           <EmptyText>{t("taskList.emptyList")}</EmptyText>
           <Button to={ROUTES.NEW_TASK}>{t("taskList.createTask")}</Button>
@@ -24,6 +26,6 @@ function TaskList(props: TaskListProps): JSX.Element {
       )}
     </List>
   );
-}
+};
 
 export default TaskList;

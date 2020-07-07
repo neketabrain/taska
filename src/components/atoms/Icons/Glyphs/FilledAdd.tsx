@@ -13,9 +13,9 @@ function FilledAdd(props: GlyphProps): JSX.Element {
 }
 
 FilledAdd.defaultProps = {
-  width: "24px",
-  height: "24px",
   fill: "black",
+  height: "24px",
+  width: "24px",
 };
 
 export default FilledAdd;

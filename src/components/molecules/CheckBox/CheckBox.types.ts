@@ -1,7 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
+export type CheckBoxProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   name: string;
-  className?: string;
-}
+};

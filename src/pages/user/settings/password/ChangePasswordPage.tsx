@@ -1,52 +1,58 @@
-import React, { useState } from "react";
+import React, { useCallback, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 
+import { Api } from "src/api";
 import { ChangePasswordForm, ChangePasswordFormValues } from "src/components";
 import { useErrors } from "src/hooks";
 
-import { Api } from "../../../../api";
 import {
-  ContentSection,
+  AlertContainer,
   Container,
+  ContentSection,
   ContentWrapper,
   Title,
-  AlertContainer,
 } from "../SettingsPage.styles";
 
-function ChangePasswordPage(): JSX.Element {
+const initialValues: ChangePasswordFormValues = {
+  newPassword: "",
+  oldPassword: "",
+};
+
+const ChangePasswordPage: FC = () => {
   const { t } = useTranslation("settings");
 
-  const { clearError, getError, addError, clearAllErrors } = useErrors();
+  const { addError, getError, setErrors } = useErrors();
   const [isSuccessful, setSuccessful] = useState(false);
 
-  async function handleSubmit(
-    values: ChangePasswordFormValues,
-    resetValues: () => void
-  ): Promise<void> {
-    const { email } = Api.auth.currentUser || {};
-    if (!email) return;
+  const handleSubmit = useCallback(
+    async (values: ChangePasswordFormValues, resetValues: VoidFunction) => {
+      const { email } = Api.auth.currentUser || {};
+      if (!email) return;
 
-    const { oldPassword, newPassword } = values;
+      const { newPassword, oldPassword } = values;
 
-    clearAllErrors();
-    setSuccessful(false);
+      setErrors({}, true);
+      setSuccessful(false);
 
-    return Api.auth
-      .signInWithEmailAndPassword(email, oldPassword)
-      .then((res) =>
-        res.user?.updatePassword(newPassword).then(() => {
+      await Api.auth
+        .signInWithEmailAndPassword(email, oldPassword)
+        .then((res) =>
+          res.user?.updatePassword(newPassword).then(() => {
+            resetValues();
+            setSuccessful(true);
+          })
+        )
+        .catch((err) => {
+          if (err?.code === "auth/weak-password") {
+            addError(err?.code, "newPassword");
+          } else {
+            addError(err?.code, "oldPassword");
+          }
           resetValues();
-          setSuccessful(true);
-        })
-      )
-      .catch(({ code }) => {
-        if (code === "auth/weak-password") {
-          addError(code, "newPassword");
-        } else {
-          addError(code, "oldPassword");
-        }
-      });
-  }
+        });
+    },
+    [addError, setErrors]
+  );
 
   return (
     <ContentSection>
@@ -59,14 +65,15 @@ function ChangePasswordPage(): JSX.Element {
 
         <ContentWrapper>
           <ChangePasswordForm
-            onSubmit={handleSubmit}
-            clearError={clearError}
             getError={getError}
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            setErrors={setErrors}
           />
         </ContentWrapper>
       </Container>
     </ContentSection>
   );
-}
+};
 
 export default ChangePasswordPage;

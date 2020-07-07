@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { Box, Button, Flex } from "src/components";
 
 export const Form = styled.form`
-  position: relative;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  position: relative;
   width: 100%;
 `;
 
@@ -16,26 +16,26 @@ export const FlexContainer = styled(Flex)`
 `;
 
 export const AvatarContainer = styled(Flex)`
-  width: 100%;
-  max-width: 120px;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
+  max-width: 120px;
+  width: 100%;
 `;
 
 export const Picture = styled.picture`
-  position: relative;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 120px;
-  width: 100%;
-  max-height: 120px;
-  height: 120px;
-  overflow: hidden;
-  border-radius: 50%;
   border: 1px solid ${({ theme }): string => theme.colors.border};
+  border-radius: 50%;
+  display: flex;
+  height: 120px;
+  justify-content: center;
   margin: 0;
+  max-height: 120px;
+  max-width: 120px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 `;
 
 export const AvatarLabel = styled.label`
@@ -62,27 +62,27 @@ export const SubmitButton = styled(Button)`
 `;
 
 export const UserAvatar = styled.img`
-  max-width: 120px;
-  width: 100%;
-  max-height: 120px;
+  border-radius: 50%;
   height: 100%;
+  max-height: 120px;
+  max-width: 120px;
   object-fit: cover;
   position: relative;
-  border-radius: 50%;
+  width: 100%;
 `;
 
 export const MockAvatar = styled(Box)`
-  max-width: 120px;
-  width: 100%;
-  max-height: 120px;
-  height: 120px;
+  align-items: center;
   background-color: ${({ theme }): string => theme.colors.primary};
   border-radius: 50%;
   color: ${({ theme }): string => theme.colors.invertedText};
-  font-weight: 600;
-  font-size: 24px;
   display: flex;
-  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  height: 120px;
   justify-content: center;
+  max-height: 120px;
+  max-width: 120px;
   text-transform: uppercase;
+  width: 100%;
 `;

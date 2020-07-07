@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, FC } from "react";
 import { useDispatch } from "react-redux";
 
 import { Api } from "src/api";
 import { TasksTypes } from "src/store";
 
-function LogoutPage(): JSX.Element {
+const LogoutPage: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     Api.auth.signOut().then(() => dispatch({ type: TasksTypes.CLEAN }));
   }, [dispatch]);
+
   return <></>;
-}
+};
 
 export default LogoutPage;

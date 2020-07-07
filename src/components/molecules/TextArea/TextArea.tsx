@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { TextAreaContainer, Label, Field, Error } from "./TextArea.styles";
+import { Error, Field, Label, TextAreaContainer } from "./TextArea.styles";
 import { TextAreaProps } from "./TextArea.types";
 
-function TextArea(props: TextAreaProps): JSX.Element {
-  const { label, className, error, ...rest } = props;
+const TextArea: FC<TextAreaProps> = (props) => {
+  const { className, error, label, ...rest } = props;
 
   return (
     <TextAreaContainer className={className}>
@@ -16,6 +16,6 @@ function TextArea(props: TextAreaProps): JSX.Element {
       {!!error && <Error>{error}</Error>}
     </TextAreaContainer>
   );
-}
+};
 
 export default TextArea;

@@ -22,6 +22,7 @@
   "taskList": {
     "createTask": "Create task",
     "emptyList": "Task list is empty",
+    "filter": "Filter by date",
     "pageTitle": "Taska. Task list"
   }
 }

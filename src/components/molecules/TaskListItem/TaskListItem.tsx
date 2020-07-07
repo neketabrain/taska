@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -6,22 +6,23 @@ import { Api } from "src/api";
 import { Box } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
+import { getLocale } from "src/utils";
 
 import {
-  Wrapper,
+  CheckButton,
+  CheckIcon,
+  ClockIcon,
+  FilledCheckIcon,
   InfoContainer,
   Name,
   Time,
-  ClockIcon,
-  CheckButton,
-  CheckIcon,
-  FilledCheckIcon,
+  Wrapper,
 } from "./TaskListItem.styles";
 import { TaskListItemProps } from "./TaskListItem.types";
 
-function TaskListItem(props: TaskListItemProps): JSX.Element {
-  const { task, className } = props;
-  const { id, name, time, completed } = task;
+const TaskListItem: FC<TaskListItemProps> = (props) => {
+  const { className, task } = props;
+  const { completed, id, name, time } = task;
 
   const [isPending, setPending] = useState(false);
 
@@ -29,8 +30,20 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const path = `${ROUTES.TASKS}/${id}`;
-  const isActive = new RegExp(`^${path}(/edit)?$`, "is").test(pathname);
+  const path = useMemo(() => `${ROUTES.TASKS}/${id}`, [id]);
+  const isActive = useMemo(
+    () => new RegExp(`^${path}(/edit)?$`, "is").test(pathname),
+    [path, pathname]
+  );
+
+  const parsedTime = useMemo(
+    () =>
+      new Date(time).toLocaleTimeString(getLocale(), {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    [time]
+  );
 
   const handleClick = useCallback(() => history.push(path), [history, path]);
   const handleKeyPress = useCallback(
@@ -70,14 +83,14 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
 
   return (
     <Wrapper
-      tabIndex={0}
       className={className}
+      isActive={isActive}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
-      isActive={isActive}
+      tabIndex={0}
     >
       <Box>
-        <CheckButton onClick={handleCheck} disabled={isPending}>
+        <CheckButton disabled={isPending} onClick={handleCheck}>
           {completed && <FilledCheckIcon />}
           {!completed && <CheckIcon />}
         </CheckButton>
@@ -87,11 +100,11 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
         <Name>{name}</Name>
         <Time>
           <ClockIcon />
-          {time}
+          {parsedTime}
         </Time>
       </InfoContainer>
     </Wrapper>
   );
-}
+};
 
 export default TaskListItem;

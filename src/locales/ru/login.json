@@ -1,16 +1,16 @@
 {
-  "title": "Вход",
-  "toRegistration": "Регистрация",
+  "button": "Войти",
+  "divider": "или",
   "email": {
     "label": "Электронная почта"
   },
+  "forgot": "Забыли пароль?",
+  "pageTitle": "Taska. Вход",
   "password": {
     "label": "Пароль"
   },
-  "button": "Войти",
-  "divider": "или",
-  "withGoogle": "Войти через Google",
-  "forgot": "Забыли пароль?",
   "remember": "Запомнить меня",
-  "pageTitle": "Taska. Вход"
+  "title": "Вход",
+  "toRegistration": "Регистрация",
+  "withGoogle": "Войти через Google"
 }

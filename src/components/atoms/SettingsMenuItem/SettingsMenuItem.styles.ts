@@ -3,22 +3,22 @@ import styled from "styled-components";
 import { Link } from "../Link";
 
 export const Container = styled.li`
+  margin: 0;
+  padding: 0;
   position: relative;
   width: 100%;
-  padding: 0;
-  margin: 0;
 `;
 
 export const NavLink = styled(Link)`
-  width: 100%;
-  height: 45px;
-  color: ${({ theme }): string => theme.colors.text};
   box-sizing: border-box;
+  color: ${({ theme }): string => theme.colors.text};
+  height: 45px;
   padding: 0 24px;
+  width: 100%;
 
   :hover {
-    text-decoration: none;
     background-color: ${({ theme }): string => theme.colors.primaryLightest};
+    text-decoration: none;
   }
 
   :focus {

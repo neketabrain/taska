@@ -1,8 +1,8 @@
 import { InputHTMLAttributes } from "react";
 
-export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
+export type SwitchProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
-  className?: string;
+
   leftLabel?: string;
   rightLabel?: string;
-}
+};

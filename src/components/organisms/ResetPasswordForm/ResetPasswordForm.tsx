@@ -1,57 +1,54 @@
-import React, { FormEvent, useState } from "react";
+import React, { useCallback, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Input } from "src/components";
+import { Box, Input } from "src/components";
 import { useForm } from "src/hooks";
+import { OnSubmitEvent } from "src/types";
 
-import { Form, InputContainer, SubmitButton } from "./ResetPasswordForm.styles";
-import {
-  ResetPasswordFormValues,
-  ResetPasswordFormProps,
-} from "./ResetPasswordForm.types";
+import { Form, SubmitButton } from "./ResetPasswordForm.styles";
+import { ResetPasswordFormProps } from "./ResetPasswordForm.types";
 
-const defaultValues: ResetPasswordFormValues = {
-  email: "",
-};
-
-function ResetPasswordForm(props: ResetPasswordFormProps): JSX.Element {
-  const { onSubmit, getError, clearError } = props;
+const ResetPasswordForm: FC<ResetPasswordFormProps> = (props) => {
+  const { className, getError, initialValues, onSubmit, setErrors } = props;
 
   const { t } = useTranslation("reset");
 
-  const { values, onChange } = useForm(defaultValues, clearError);
+  const { values, onChange, setValues } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> {
-    event.preventDefault();
+  const resetValues = useCallback(() => setValues({ email: "" }), [setValues]);
 
-    setSubmitting(true);
-    await onSubmit(values);
-    setSubmitting(false);
-  }
+  const handleSubmit = useCallback(
+    async (event: OnSubmitEvent) => {
+      event.preventDefault();
+
+      setSubmitting(true);
+      await onSubmit(values, resetValues);
+      setSubmitting(false);
+    },
+    [onSubmit, resetValues, setSubmitting, values]
+  );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputContainer>
+    <Form className={className} onSubmit={handleSubmit}>
+      <Box>
         <Input
-          required
+          disabled={isSubmitting}
           error={getError ? getError("email") : ""}
           label={t("email.label")}
           name="email"
+          onChange={onChange}
+          required={true}
           type="email"
           value={values.email}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
-      </InputContainer>
+      </Box>
 
-      <SubmitButton variant="primary" type="submit" disabled={isSubmitting}>
+      <SubmitButton disabled={isSubmitting} type="submit" variant="primary">
         {t("button")}
       </SubmitButton>
     </Form>
   );
-}
+};
 
 export default ResetPasswordForm;

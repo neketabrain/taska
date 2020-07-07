@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { Box, Button } from "src/components";
 
 export const Form = styled.form`
-  position: relative;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  position: relative;
   width: 100%;
 `;
 

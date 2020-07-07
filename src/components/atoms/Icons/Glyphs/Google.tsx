@@ -40,8 +40,8 @@ function Google(props: GlyphProps): JSX.Element {
 }
 
 Google.defaultProps = {
-  width: "24px",
   height: "24px",
+  width: "24px",
 };
 
 export default Google;
