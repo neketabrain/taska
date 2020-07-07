@@ -12,6 +12,8 @@ export const CheckIcon = styled(Icons.Check)`
   height: 16px;
   left: 1px;
   position: absolute;
+  stroke: ${({ theme }): string => theme.colors.foreground};
+  stroke-width: 2px;
   top: 1px;
   width: 16px;
   z-index: 2;

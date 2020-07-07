@@ -1,4 +1,5 @@
 import { Location } from "history";
+import { FC } from "react";
 import { match } from "react-router";
 import { NavLinkProps } from "react-router-dom";
 
@@ -13,6 +14,6 @@ export interface NavItemProps extends ClassName, NavLinkProps {
   label: string;
   to: string;
 
-  Icon?: <T>(props: T) => JSX.Element;
+  Icon?: FC;
   isActive?: ActiveFunc;
 }

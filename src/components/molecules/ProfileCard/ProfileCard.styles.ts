@@ -45,10 +45,12 @@ export const UserEmail = styled(UserName)`
 export const UserAvatar = styled.img`
   border-radius: 50%;
   height: 100%;
+  line-height: 100px;
   max-height: 100px;
   max-width: 100px;
   object-fit: cover;
   position: relative;
+  text-align: center;
   width: 100%;
 `;
 

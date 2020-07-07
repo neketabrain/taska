@@ -12,7 +12,7 @@ export const Wrapper = styled(Flex)`
   z-index: 2;
 `;
 
-export const PhotoIcon = styled(Icons.FilledPhoto)`
+export const PhotoIcon = styled(Icons.Camera)`
   fill: ${({ theme }): string => theme.colors.text};
   height: 64px;
   opacity: 0.5;

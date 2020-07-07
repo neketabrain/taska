@@ -56,14 +56,14 @@ export const ClockIcon = styled(Icons.Clock)`
   width: 14px;
 `;
 
-export const CheckIcon = styled(Icons.CircleCheck)`
+export const CheckIcon = styled(Icons.CheckCircle)`
   fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 36px;
   position: relative;
   width: 36px;
 `;
 
-export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
+export const FilledCheckIcon = styled(Icons.CheckCircleFilled)`
   fill: ${({ theme }): string => theme.colors.primary};
   height: 36px;
   position: relative;
@@ -75,7 +75,7 @@ export const Description = styled(Text)`
   white-space: pre-line;
 `;
 
-export const PinIcon = styled(Icons.FilledPin)`
+export const PinIcon = styled(Icons.Pin)`
   fill: ${({ theme }): string => theme.colors.primary};
   height: 16px;
   margin-right: 4px;
@@ -105,13 +105,13 @@ export const ButtonContainer = styled(Flex)`
   width: 100%;
 `;
 
-export const PenIcon = styled(Icons.FilledPen)`
+export const PenIcon = styled(Icons.Edit)`
   fill: ${({ theme }): string => theme.colors.border};
   height: 24px;
   width: 24px;
 `;
 
-export const TrashIcon = styled(Icons.FilledTrash)`
+export const TrashIcon = styled(Icons.Delete)`
   fill: ${({ theme }): string => theme.colors.border};
   height: 24px;
   width: 24px;

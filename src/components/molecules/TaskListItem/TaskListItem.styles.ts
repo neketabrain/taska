@@ -55,14 +55,14 @@ export const ClockIcon = styled(Icons.Clock)`
   width: 12px;
 `;
 
-export const CheckIcon = styled(Icons.CircleCheck)`
+export const CheckIcon = styled(Icons.CheckCircle)`
   fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 24px;
   position: relative;
   width: 24px;
 `;
 
-export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
+export const FilledCheckIcon = styled(Icons.CheckCircleFilled)`
   fill: ${({ theme }): string => theme.colors.primary};
   height: 24px;
   position: relative;
