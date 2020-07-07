@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import { H1, Card, TextField, Loader } from "src/components";
+import { Card, DatePicker, H1, Loader, TextField } from "src/components";
 
 export const Wrapper = styled.main`
+  display: flex;
   position: relative;
   width: 100%;
-  display: flex;
 `;
 
 export const Title = styled(H1)`
@@ -13,21 +13,21 @@ export const Title = styled(H1)`
 `;
 
 export const PrimarySection = styled.section`
-  position: relative;
   max-width: 460px;
+  position: relative;
   width: 100%;
 `;
 
 export const SecondarySection = styled(PrimarySection)`
-  max-width: 350px;
   margin-right: 16px;
+  max-width: 350px;
 `;
 
 export const ListContainer = styled(Card)`
-  padding: 24px 0;
-  height: calc(100% - 88px - 16px);
   display: flex;
+  height: calc(100% - 88px - 16px);
   margin-top: 16px;
+  padding: 24px 0;
 `;
 
 export const ListLoader = styled(Loader)`
@@ -40,7 +40,16 @@ export const FilterContainer = styled(Card)`
 
 export const FilterInput = styled(TextField)`
   border: none;
-  padding: 15px 24px;
   font-weight: 600;
   max-height: 50px;
+  padding: 15px 24px;
+`;
+
+export const DateInput = styled(DatePicker)`
+  border-radius: 4px;
+
+  .react-datepicker__close-icon {
+    height: 48px;
+    right: 24px;
+  }
 `;

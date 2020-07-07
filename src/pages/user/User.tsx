@@ -1,22 +1,22 @@
 import loadable from "@loadable/component";
-import React from "react";
+import React, { FC } from "react";
 import { Helmet } from "react-helmet-async";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import { ProfileCard } from "src/components";
 import { ROUTES } from "src/constants";
 
-import { Wrapper, LeftSideContainer, Menu } from "./User.styles";
+import { LeftSideContainer, Menu, Wrapper } from "./User.styles";
 
-const TasksPage = loadable(() => import(/* webpackPrefetch: true */ "./tasks"));
-const SettingsPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./settings")
-);
 const LogoutPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./logout")
 );
+const SettingsPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./settings")
+);
+const TasksPage = loadable(() => import(/* webpackPrefetch: true */ "./tasks"));
 
-function User(): JSX.Element {
+const User: FC = () => {
   return (
     <Wrapper>
       <Helmet>
@@ -29,14 +29,14 @@ function User(): JSX.Element {
       </LeftSideContainer>
 
       <Switch>
-        <Route path={ROUTES.TASKS} component={TasksPage} />
-        <Route path={ROUTES.SETTINGS} component={SettingsPage} />
-        <Route exact path={ROUTES.LOGOUT} component={LogoutPage} />
+        <Route component={TasksPage} path={ROUTES.TASKS} />
+        <Route component={SettingsPage} path={ROUTES.SETTINGS} />
+        <Route component={LogoutPage} exact={true} path={ROUTES.LOGOUT} />
 
         <Redirect to={ROUTES.TASKS} />
       </Switch>
     </Wrapper>
   );
-}
+};
 
 export default User;

@@ -1,13 +1,17 @@
-import { UseErrors } from "src/hooks/useErrors";
+import { GetError, SetErrors } from "src/hooks/useErrors/useErrors.types";
+import { ClassName } from "src/types";
 
-export interface ChangeEmailFormValues {
+export type ChangeEmailFormValues = {
   email: string;
   password: string;
-}
+};
 
-export interface ChangeEmailFormProps extends Partial<UseErrors> {
+export type ChangeEmailFormProps = ClassName & {
+  getError: GetError;
+  initialValues: ChangeEmailFormValues;
   onSubmit: (
     values: ChangeEmailFormValues,
-    resetValues: () => void
+    resetValues: VoidFunction
   ) => Promise<void>;
-}
+  setErrors: SetErrors;
+};

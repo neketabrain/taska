@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { Api } from "src/api";
 import { UserTypes } from "src/store";
-import { InputChangeEvent } from "src/types";
+import { InputOnChangeEvent } from "src/types";
 
 import {
   Container,
@@ -21,7 +21,7 @@ const UploadAvatar: FC<UploadAvatarProps> = (props) => {
   const dispatch = useDispatch();
 
   const handleUpload = useCallback(
-    (event: InputChangeEvent): void => {
+    (event: InputOnChangeEvent): void => {
       const file = event.target.files?.[0];
       const user = Api.auth.currentUser;
 

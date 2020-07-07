@@ -9,7 +9,7 @@ import {
   SpaceProps,
 } from "styled-system";
 
-type BoxProps = LayoutProps | PositionProps | SpaceProps;
+type BoxProps = LayoutProps & PositionProps & SpaceProps;
 
 const Box = styled.div<BoxProps>`
   background-color: inherit;

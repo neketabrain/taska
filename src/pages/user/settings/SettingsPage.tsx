@@ -1,14 +1,14 @@
 import loadable from "@loadable/component";
-import React from "react";
+import React, { FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import { SettingsMenu } from "src/components";
 
 import { ROUTES } from "../../../constants";
 
-import { Wrapper, MenuSection, Container, Title } from "./SettingsPage.styles";
+import { Container, MenuSection, Title, Wrapper } from "./SettingsPage.styles";
 
 const ChangeEmailPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./email")
@@ -16,14 +16,14 @@ const ChangeEmailPage = loadable(() =>
 const ChangePasswordPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./password")
 );
-const ProfilePage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./profile")
-);
 const PreferencesPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./preferences")
 );
+const ProfilePage = loadable(() =>
+  import(/* webpackPrefetch: true */ "./profile")
+);
 
-function SettingsPage(): JSX.Element {
+const SettingsPage: FC = () => {
   const { t } = useTranslation("settings");
 
   return (
@@ -40,19 +40,23 @@ function SettingsPage(): JSX.Element {
       </MenuSection>
 
       <Switch>
-        <Route path={ROUTES.SETTINGS_EMAIL} component={ChangeEmailPage} />
-        <Route path={ROUTES.SETTINGS_PASSWORD} component={ChangePasswordPage} />
-        <Route exact path={ROUTES.SETTINGS_PROFILE} component={ProfilePage} />
+        <Route component={ChangeEmailPage} path={ROUTES.SETTINGS_EMAIL} />
+        <Route component={ChangePasswordPage} path={ROUTES.SETTINGS_PASSWORD} />
         <Route
-          exact
-          path={ROUTES.SETTINGS_PREFERENCES}
+          component={ProfilePage}
+          exact={true}
+          path={ROUTES.SETTINGS_PROFILE}
+        />
+        <Route
           component={PreferencesPage}
+          exact={true}
+          path={ROUTES.SETTINGS_PREFERENCES}
         />
 
         <Redirect to={ROUTES.SETTINGS_EMAIL} />
       </Switch>
     </Wrapper>
   );
-}
+};
 
 export default SettingsPage;

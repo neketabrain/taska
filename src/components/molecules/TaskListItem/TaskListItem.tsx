@@ -6,6 +6,7 @@ import { Api } from "src/api";
 import { Box } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
+import { getLocale } from "src/utils";
 
 import {
   CheckButton,
@@ -33,6 +34,15 @@ const TaskListItem: FC<TaskListItemProps> = (props) => {
   const isActive = useMemo(
     () => new RegExp(`^${path}(/edit)?$`, "is").test(pathname),
     [path, pathname]
+  );
+
+  const parsedTime = useMemo(
+    () =>
+      new Date(time).toLocaleTimeString(getLocale(), {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    [time]
   );
 
   const handleClick = useCallback(() => history.push(path), [history, path]);
@@ -90,7 +100,7 @@ const TaskListItem: FC<TaskListItemProps> = (props) => {
         <Name>{name}</Name>
         <Time>
           <ClockIcon />
-          {time}
+          {parsedTime}
         </Time>
       </InfoContainer>
     </Wrapper>

@@ -1,6 +1,6 @@
 import loadable from "@loadable/component";
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { FC } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import { ROUTES } from "src/constants";
 
@@ -10,16 +10,20 @@ const RegistrationPage = loadable(() =>
 );
 const ResetPage = loadable(() => import(/* webpackPrefetch: true */ "./reset"));
 
-function Guest(): JSX.Element {
+const Guest: FC = () => {
   return (
     <Switch>
-      <Route exact path={ROUTES.LOGIN} component={LoginPage} />
-      <Route exact path={ROUTES.REGISTRATION} component={RegistrationPage} />
-      <Route exact path={ROUTES.RESET} component={ResetPage} />
+      <Route component={LoginPage} exact={true} path={ROUTES.LOGIN} />
+      <Route
+        component={RegistrationPage}
+        exact={true}
+        path={ROUTES.REGISTRATION}
+      />
+      <Route component={ResetPage} exact={true} path={ROUTES.RESET} />
 
       <Redirect to={ROUTES.LOGIN} />
     </Switch>
   );
-}
+};
 
 export default Guest;

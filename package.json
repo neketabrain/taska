@@ -1,6 +1,7 @@
 {
   "name": "taska",
   "version": "0.1.0",
+  "author": "Nikita Karapuzov <karapuzov.nikita@gmail.com>",
   "private": true,
   "scripts": {
     "start": "node scripts/start.js",
@@ -8,6 +9,8 @@
     "test": "node scripts/test.js --passWithNoTests",
     "test:ci": "cross-env CI=true npm run test --env=jsdom",
     "lint": "eslint --cache src/**/*.{ts,tsx} --config .eslintrc.json",
+    "lint:fix": "yarn lint --fix",
+    "lint:types": "tsc --noEmit",
     "serve": "serve -s build"
   },
   "dependencies": {
@@ -27,7 +30,6 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.6",
-    "react-hooks-pack": "^0.8.2",
     "react-i18next": "^11.5.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
@@ -182,14 +184,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && lint-staged",
-      "pre-push": "npm run lint && npm run test:ci"
+      "pre-commit": "yarn lint:types && lint-staged",
+      "pre-push": "yarn lint:types && yarn test:ci"
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "eslint --fix",
-      "git add"
+    "*.{js,ts,tsx}": [
+      "yarn lint:fix"
     ]
   }
 }

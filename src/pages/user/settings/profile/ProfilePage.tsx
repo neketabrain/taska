@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Api } from "src/api";
 import { EditProfileForm, EditProfileFormValues } from "src/components";
 import { ApplicationStore, UserTypes } from "src/store";
 
-import { Api } from "../../../../api";
 import {
-  ContentSection,
+  AlertContainer,
   Container,
+  ContentSection,
   ContentWrapper,
   Title,
-  AlertContainer,
 } from "../SettingsPage.styles";
 
-function ProfilePage(): JSX.Element {
+const ProfilePage: FC = () => {
   const { t } = useTranslation("settings");
 
   const dispatch = useDispatch();
@@ -24,25 +24,31 @@ function ProfilePage(): JSX.Element {
 
   const [firstName, lastName] = user?.displayName?.split(" ") || [];
 
-  const initialState: EditProfileFormValues = {
-    firstName: firstName || "",
-    lastName: lastName || "",
-  };
+  const initialValues: EditProfileFormValues = useMemo(
+    () => ({
+      firstName: firstName || "",
+      lastName: lastName || "",
+    }),
+    [firstName, lastName]
+  );
 
-  async function handleSubmit(values: EditProfileFormValues): Promise<void> {
-    const { currentUser } = Api.auth;
-    if (!currentUser) return;
+  const handleSubmit = useCallback(
+    async (values: EditProfileFormValues) => {
+      const { currentUser } = Api.auth;
+      if (!currentUser) return;
 
-    const { firstName, lastName } = values;
-    const displayName = `${firstName} ${lastName}`;
+      const { firstName, lastName } = values;
+      const displayName = `${firstName} ${lastName}`;
 
-    setSuccessful(false);
+      setSuccessful(false);
 
-    return currentUser.updateProfile({ displayName }).then(() => {
-      dispatch({ type: UserTypes.UPDATE, payload: { displayName } });
-      setSuccessful(true);
-    });
-  }
+      await currentUser.updateProfile({ displayName }).then(() => {
+        dispatch({ type: UserTypes.UPDATE, payload: { displayName } });
+        setSuccessful(true);
+      });
+    },
+    [dispatch, setSuccessful]
+  );
 
   return (
     <ContentSection>
@@ -55,13 +61,13 @@ function ProfilePage(): JSX.Element {
 
         <ContentWrapper>
           <EditProfileForm
-            initialState={initialState}
+            initialValues={initialValues}
             onSubmit={handleSubmit}
           />
         </ContentWrapper>
       </Container>
     </ContentSection>
   );
-}
+};
 
 export default ProfilePage;

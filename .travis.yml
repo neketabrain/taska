@@ -6,5 +6,6 @@ node_js:
   - 14
 script:
   - npm run lint
+  - npm run lint:types
   - npm run test
   - cross-env CI=false npm run build

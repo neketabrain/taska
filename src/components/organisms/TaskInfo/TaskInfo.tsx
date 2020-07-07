@@ -1,52 +1,63 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Box, NativeLink, Flex } from "src/components";
+import { Box, Flex, NativeLink } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
+import { getLocale } from "src/utils";
 
 import {
-  Wrapper,
-  Header,
-  NameContainer,
-  Name,
-  Time,
-  ClockIcon,
-  IconButton,
-  FilledCheckIcon,
-  CheckIcon,
-  Container,
-  Description,
-  PinIcon,
-  DateText,
-  CalendarIcon,
-  VerticalDivider,
   ButtonContainer,
-  PenIcon,
-  TrashIcon,
-  EditButton,
   ButtonWrapper,
+  CalendarIcon,
+  CheckIcon,
+  ClockIcon,
+  Container,
+  DateText,
+  Description,
+  EditButton,
+  FilledCheckIcon,
+  Header,
+  IconButton,
+  Name,
+  NameContainer,
+  PenIcon,
+  PinIcon,
+  Time,
+  TrashIcon,
+  VerticalDivider,
+  Wrapper,
 } from "./TaskInfo.styles";
 import { TaskInfoProps } from "./TaskInfo.types";
 
-function TaskInfo(props: TaskInfoProps): JSX.Element {
-  const { task, className } = props;
-  const { id, name, time, date, description, completed, address } = task;
+const TaskInfo: FC<TaskInfoProps> = (props) => {
+  const { className, task } = props;
+  const { address, completed, date, description, id, name, time } = task;
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [isPending, setPending] = useState(false);
-  const [isDeleting, setDeleting] = useState(false);
 
-  const parsedDate = useMemo(() => new Date(date).toLocaleDateString(), [date]);
   const addressPath = useMemo(
     () => `https://www.google.com/maps/search/${address}`,
     [address]
   );
   const editPath = useMemo(() => `${ROUTES.TASKS}/${id}/edit`, [id]);
+  const parsedDate = useMemo(
+    () => new Date(date).toLocaleDateString(getLocale()),
+    [date]
+  );
+  const parsedTime = useMemo(
+    () =>
+      new Date(time).toLocaleTimeString(getLocale(), {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    [time]
+  );
 
   const handleCheck = useCallback(() => {
     const { uid } = Api.auth.currentUser || {};
@@ -73,7 +84,7 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
     const { uid } = Api.auth.currentUser || {};
     if (!uid) return;
 
-    setDeleting(true);
+    setPending(true);
 
     Api.db
       .collection("users")
@@ -85,14 +96,14 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
         dispatch({ type: TasksTypes.DELETE, payload: id });
         history.push(ROUTES.TASKS);
       })
-      .catch(() => setDeleting(false));
+      .catch(() => setPending(false));
   }, [dispatch, history, id]);
 
   return (
     <Wrapper className={className}>
       <Header withBorder={!!description || !!address}>
         <Box>
-          <IconButton onClick={handleCheck} disabled={isPending}>
+          <IconButton disabled={isPending} onClick={handleCheck}>
             {completed && <FilledCheckIcon />}
             {!completed && <CheckIcon />}
           </IconButton>
@@ -109,7 +120,7 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
 
             <Time>
               <ClockIcon />
-              {time}
+              {parsedTime}
             </Time>
           </Flex>
         </NameContainer>
@@ -122,7 +133,7 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
 
             <VerticalDivider />
 
-            <IconButton onClick={handleDelete} disabled={isDeleting}>
+            <IconButton disabled={isPending} onClick={handleDelete}>
               <TrashIcon />
             </IconButton>
           </ButtonContainer>
@@ -137,13 +148,17 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
 
       {!!address && (
         <Container>
-          <NativeLink href={addressPath} target="_blank" rel="noreferrer">
+          <NativeLink
+            href={addressPath}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
             <PinIcon /> {address}
           </NativeLink>
         </Container>
       )}
     </Wrapper>
   );
-}
+};
 
 export default TaskInfo;

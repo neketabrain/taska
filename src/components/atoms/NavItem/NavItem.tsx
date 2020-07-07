@@ -7,8 +7,8 @@ const NavItem: FC<NavItemProps> = (props) => {
   const { className, Icon, label, ...rest } = props;
 
   return (
-    <Container className={className} role="presentation">
-      <NavLink activeClassName="active" role="menuitem" {...rest}>
+    <Container className={className} role="menuitem">
+      <NavLink activeClassName="active" {...rest}>
         {Icon && <Icon aria-hidden="true" />}
         {label}
       </NavLink>

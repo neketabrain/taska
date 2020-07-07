@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Flex, NavMenu } from "src/components";
 
 export const Wrapper = styled(Flex)`
-  position: relative;
   flex-direction: row;
-  width: 100%;
   height: 100%;
   margin: 0 auto;
   padding: 16px 32px 60px;
+  position: relative;
+  width: 100%;
 
   @media screen and (max-width: 480px) {
     padding: 16px 24px 60px;
@@ -20,10 +20,10 @@ export const Wrapper = styled(Flex)`
 `;
 
 export const LeftSideContainer = styled.aside`
-  position: relative;
-  max-width: 250px;
-  width: 100%;
   margin-right: 16px;
+  max-width: 250px;
+  position: relative;
+  width: 100%;
 `;
 
 export const Menu = styled(NavMenu)`

@@ -1,37 +1,38 @@
-import i18next from "i18next";
-import React from "react";
+import React, { useCallback, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { i18n } from "src/i18n";
 import { ApplicationStore } from "src/store";
+import { ClassName } from "src/types";
+import { getLocale } from "src/utils";
 
 import {
-  Wrapper,
-  Container,
   Button,
-  MobileButton,
+  Container,
   HeaderLogo,
+  MobileButton,
+  Wrapper,
 } from "./Header.styles";
 
-function Header(): JSX.Element {
+const Header: FC<ClassName> = (props) => {
+  const { className } = props;
+
   const { t } = useTranslation("common");
 
   const { user } = useSelector((state: ApplicationStore) => state);
 
-  async function switchLanguage(): Promise<void> {
-    const currentLanguage =
-      window.localStorage.getItem("i18nextLng") || i18next.language || "en";
-    const newLanguage = /ru/.test(currentLanguage) ? "en" : "ru";
+  const switchLanguage = useCallback(async () => {
+    const newLanguage = /ru/gim.test(getLocale()) ? "en" : "ru";
     await i18n.changeLanguage(newLanguage);
-  }
+  }, []);
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Container>
-        <HeaderLogo isAuthorized={!!user} />
+        <HeaderLogo isAuthorized={!!user?.uid} />
 
-        {!user && (
+        {!user?.uid && (
           <>
             <Button onClick={switchLanguage}>{t("switchLanguage")}</Button>
             <MobileButton onClick={switchLanguage}>
@@ -42,6 +43,6 @@ function Header(): JSX.Element {
       </Container>
     </Wrapper>
   );
-}
+};
 
 export default Header;

@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import React from "react";
+import React, { FC } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
@@ -12,7 +12,7 @@ import { configureStore } from "./store";
 
 const store = configureStore();
 
-function App(): JSX.Element {
+const App: FC = () => {
   const language =
     window.localStorage.getItem("i18nextLng") || i18next.language || "en";
 
@@ -30,6 +30,6 @@ function App(): JSX.Element {
       </ThemeProvider>
     </HelmetProvider>
   );
-}
+};
 
 export default App;

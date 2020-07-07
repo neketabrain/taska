@@ -1,71 +1,63 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState, FC } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { Api } from "src/api";
 import { TaskList } from "src/components";
-import { ApplicationStore, TasksTypes } from "src/store";
+import { ApplicationStore } from "src/store";
 import { TasksState } from "src/store/tasks";
-import { formatDate } from "src/utils";
+import { resetTime } from "src/utils";
 
 import {
-  SecondarySection,
-  ListContainer,
-  ListLoader,
+  DateInput,
   FilterContainer,
   FilterInput,
+  ListContainer,
+  ListLoader,
+  SecondarySection,
 } from "../TasksPages.styles";
 
-function TaskListPage(): JSX.Element {
+import { TaskListPageProps } from "./TaskListPage.types";
+
+const TaskListPage: FC<TaskListPageProps> = (props) => {
+  const { isFetching } = props;
+
   const { t } = useTranslation("tasks");
-  const dispatch = useDispatch();
-
-  const [isFetching, setFetching] = useState(false);
-  const [date, setDate] = useState(formatDate(new Date()));
-  const [tasks, setTasks] = useState<TasksState>(null);
-
   const cachedTasks = useSelector((state: ApplicationStore) => state.tasks);
 
-  const handleChangeDate = useCallback(
-    (event) => setDate(event.target.value),
-    []
+  const [filter, setFilter] = useState<Date | null>(null);
+  const [tasks, setTasks] = useState<TasksState>(null);
+
+  const handleChangeFilter = useCallback(
+    (newDate: Date | null) => setFilter(newDate),
+    [setFilter]
   );
 
   useEffect(() => {
-    if (!cachedTasks) {
-      const { uid } = Api.auth.currentUser || {};
-      if (!uid) return;
+    const filterDate = resetTime(filter);
 
-      setFetching(true);
-
-      Api.db
-        .collection("users")
-        .doc(uid)
-        .collection("tasks")
-        .get()
-        .then((res) => {
-          const fetchedTasks = res.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-
-          dispatch({ type: TasksTypes.GET, payload: fetchedTasks });
-        })
-        .finally(() => setFetching(false));
-    }
-  }, [cachedTasks, dispatch]);
-
-  useEffect(() => {
     const filteredTasks =
-      cachedTasks && cachedTasks.filter((task) => task.date === date);
+      filterDate && cachedTasks
+        ? cachedTasks.filter((task) => {
+            const taskDate = new Date(task.date);
+            taskDate.setHours(0);
+            taskDate.setMinutes(0);
+            taskDate.setSeconds(0);
+            taskDate.setMilliseconds(0);
+
+            return taskDate.getTime() === filterDate.getTime();
+          })
+        : cachedTasks;
+
     const sortedTasksByTime =
       filteredTasks &&
-      filteredTasks.sort((a, b) => a.time.localeCompare(b.time));
+      filteredTasks.sort(
+        (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
+      );
 
     setTasks(sortedTasksByTime);
-  }, [cachedTasks, date]);
+  }, [cachedTasks, filter, setTasks]);
 
   return (
     <SecondarySection>
@@ -74,7 +66,15 @@ function TaskListPage(): JSX.Element {
       </Helmet>
 
       <FilterContainer>
-        <FilterInput type="date" value={date} onChange={handleChangeDate} />
+        <DateInput
+          autoComplete="off"
+          customInput={<FilterInput />}
+          isClearable={true}
+          name="date"
+          onChange={handleChangeFilter}
+          placeholderText={t("taskList.filter")}
+          selected={filter}
+        />
       </FilterContainer>
 
       <ListContainer>
@@ -88,6 +88,6 @@ function TaskListPage(): JSX.Element {
       </ListContainer>
     </SecondarySection>
   );
-}
+};
 
 export default TaskListPage;

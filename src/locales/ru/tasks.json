@@ -22,6 +22,7 @@
   "taskList": {
     "createTask": "Добавить задачу",
     "emptyList": "Список задач пуст",
+    "filter": "Фильтр по дате",
     "pageTitle": "Taska. Список задач"
   }
 }
