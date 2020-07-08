@@ -3,16 +3,13 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Box } from "src/components";
+import { Box, CheckButton } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
 import { getLocale } from "src/utils";
 
 import {
-  CheckButton,
-  CheckIcon,
   ClockIcon,
-  FilledCheckIcon,
   InfoContainer,
   Name,
   Time,
@@ -45,7 +42,10 @@ const TaskListItem: FC<TaskListItemProps> = (props) => {
     [time]
   );
 
-  const handleClick = useCallback(() => history.push(path), [history, path]);
+  const handleClick = useCallback(() => {
+    history.push(path);
+  }, [history, path]);
+
   const handleKeyPress = useCallback(
     (event) => {
       if (event.key === "Enter") {
@@ -56,9 +56,7 @@ const TaskListItem: FC<TaskListItemProps> = (props) => {
   );
 
   const handleCheck = useCallback(
-    (event) => {
-      event.stopPropagation();
-
+    (checked: boolean) => {
       const { uid } = Api.auth.currentUser || {};
       if (!uid) return;
 
@@ -69,16 +67,16 @@ const TaskListItem: FC<TaskListItemProps> = (props) => {
         .doc(uid)
         .collection("tasks")
         .doc(id)
-        .update("completed", !completed)
+        .update("completed", checked)
         .then(() =>
           dispatch({
             type: TasksTypes.UPDATE,
-            payload: { ...task, completed: !completed },
+            payload: { ...task, completed: checked },
           })
         )
         .finally(() => setPending(false));
     },
-    [completed, dispatch, id, task]
+    [dispatch, id, task]
   );
 
   return (
@@ -90,10 +88,11 @@ const TaskListItem: FC<TaskListItemProps> = (props) => {
       tabIndex={0}
     >
       <Box>
-        <CheckButton disabled={isPending} onClick={handleCheck}>
-          {completed && <FilledCheckIcon />}
-          {!completed && <CheckIcon />}
-        </CheckButton>
+        <CheckButton
+          checked={completed}
+          disabled={isPending}
+          onChange={handleCheck}
+        />
       </Box>
 
       <InfoContainer>

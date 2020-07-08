@@ -24,6 +24,8 @@ const TaskListPage: FC<TaskListPageProps> = (props) => {
   const { isFetching } = props;
 
   const { t } = useTranslation("tasks");
+  const { t: tA11y } = useTranslation("accessibility");
+
   const cachedTasks = useSelector((state: ApplicationStore) => state.tasks);
 
   const [filter, setFilter] = useState<Date | null>(null);
@@ -68,7 +70,7 @@ const TaskListPage: FC<TaskListPageProps> = (props) => {
       <FilterContainer>
         <DateInput
           autoComplete="off"
-          customInput={<FilterInput />}
+          customInput={<FilterInput aria-label={tA11y("filterByDate")} />}
           isClearable={true}
           name="date"
           onChange={handleChangeFilter}

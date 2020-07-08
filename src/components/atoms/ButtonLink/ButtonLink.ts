@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 const ButtonLink = styled(NavLink)`
   align-items: center;
-  background-color: ${({ theme }): string =>
-    theme.colors.buttons.primary.background};
-  border-radius: 4px;
-  color: ${({ theme }): string => theme.colors.buttons.primary.color};
+  background-color: ${({ theme }): string => theme.colors.secondary};
+  border-radius: 10px;
+  color: ${({ theme }): string => theme.colors.foreground};
   cursor: pointer;
   display: flex;
   font-family: "Open Sans", sans-serif;
@@ -14,20 +13,22 @@ const ButtonLink = styled(NavLink)`
   font-weight: 600;
   height: 40px;
   justify-content: center;
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  outline: 0;
   padding: 0;
   position: relative;
   text-decoration: none;
   width: 100%;
 
   :hover {
-    background-color: ${({ theme }): string =>
-      theme.colors.buttons.primary.backgroundHover};
+    background-color: ${({ theme }): string => theme.colors.secondaryHover};
   }
 
   :active {
-    background-color: ${({ theme }): string =>
-      theme.colors.buttons.primary.backgroundActive};
+    background-color: ${({ theme }): string => theme.colors.secondaryActive};
+  }
+
+  :focus {
+    box-shadow: ${({ theme }): string => theme.colors.secondaryOutline};
   }
 `;
 

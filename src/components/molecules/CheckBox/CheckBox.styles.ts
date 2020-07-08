@@ -8,10 +8,12 @@ export const CheckBoxContainer = styled(Box)`
 
 export const CheckIcon = styled(Icons.Check)`
   display: none;
-  fill: ${({ theme }): string => theme.colors.text};
+  fill: ${({ theme }): string => theme.colors.foreground};
   height: 16px;
   left: 1px;
   position: absolute;
+  stroke: ${({ theme }): string => theme.colors.foreground};
+  stroke-width: 2px;
   top: 1px;
   width: 16px;
   z-index: 2;
@@ -35,21 +37,17 @@ export const NativeCheckbox = styled.input`
   :checked ~ ${CheckIcon} {
     display: inline-block;
   }
-
-  :disabled ~ ${CheckIcon} {
-    fill: ${({ theme }): string => theme.colors.additionalText};
-  }
 `;
 
 export const CustomCheckbox = styled.div`
   background-color: inherit;
   border: 1px solid ${({ theme }): string => theme.colors.border};
-  border-radius: 4px;
+  border-radius: 6px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
   height: 18px;
-  margin-right: 16px;
+  margin-right: 8px;
   width: 18px;
 
   @media screen and (max-width: 480px) {
@@ -57,15 +55,24 @@ export const CustomCheckbox = styled.div`
     width: 22px;
   }
 
-  ${NativeCheckbox}:focus + & {
-    border-color: ${({ theme }): string => theme.colors.secondary};
-    box-shadow: ${({ theme }): string => theme.colors.outline};
+  ${NativeCheckbox}:active + &, ${NativeCheckbox}:focus + & {
+    border-color: ${({ theme }): string => theme.colors.primary};
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 
   ${NativeCheckbox}:disabled + & {
-    background-color: ${({ theme }): string =>
-      theme.colors.disabledInputBackground};
+    background-color: ${({ theme }): string => theme.colors.background};
     cursor: not-allowed;
+  }
+
+  ${NativeCheckbox}:checked + & {
+    background-color: ${({ theme }): string => theme.colors.primary};
+    border: none;
+  }
+
+  ${NativeCheckbox}:disabled:checked + & {
+    background-color: ${({ theme }): string => theme.colors.textSecondary};
+    border: none;
   }
 `;
 

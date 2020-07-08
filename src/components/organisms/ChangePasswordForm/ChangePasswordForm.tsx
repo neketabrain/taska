@@ -20,10 +20,9 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = (props) => {
   const { onChange, setValues, values } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const resetValues = useCallback(
-    () => setValues({ newPassword: "", oldPassword: "" }),
-    [setValues]
-  );
+  const resetValues = useCallback(() => setValues({ oldPassword: "" }), [
+    setValues,
+  ]);
 
   const handleSubmit = useCallback(
     async (event: OnSubmitEvent) => {
@@ -64,7 +63,7 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = (props) => {
         />
       </InputContainer>
 
-      <SubmitButton disabled={isSubmitting} type="submit" variant="primary">
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("passwordPage.form.submit")}
       </SubmitButton>
     </Form>

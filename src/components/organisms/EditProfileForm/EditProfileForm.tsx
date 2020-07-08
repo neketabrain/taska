@@ -92,7 +92,7 @@ const EditProfileForm: FC<EditProfileFormProps> = (props) => {
         </InputsContainer>
       </FlexContainer>
 
-      <SubmitButton disabled={isSubmitting} type="submit" variant="primary">
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("profilePage.form.submit")}
       </SubmitButton>
     </Form>

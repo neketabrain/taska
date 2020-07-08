@@ -37,8 +37,8 @@ export const ContentWrapper = styled(Box)`
 
 export const AlertContainer = styled(Flex)`
   align-items: center;
-  background-color: ${({ theme }): string => theme.colors.opacitySuccessful};
-  color: ${({ theme }): string => theme.colors.successfulText};
+  background-color: ${({ theme }): string => theme.colors.secondaryOpacity};
+  color: ${({ theme }): string => theme.colors.secondary};
   font-weight: 600;
   justify-content: center;
   margin-bottom: 16px;

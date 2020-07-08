@@ -16,17 +16,15 @@ export const NavLink = styled(Link)`
   padding: 0 24px;
   width: 100%;
 
-  :hover {
-    background-color: ${({ theme }): string => theme.colors.primaryLightest};
-    text-decoration: none;
-  }
-
+  :hover,
   :focus {
-    box-shadow: ${({ theme }): string => theme.colors.buttons.primary.outline};
+    background-color: ${({ theme }): string => theme.colors.foregroundHover};
+    text-decoration: none;
+    box-shadow: none;
   }
 
   &.active {
-    background-color: ${({ theme }): string => theme.colors.primaryLightest};
-    border-right: 2px solid ${({ theme }): string => theme.colors.primaryDark};
+    background-color: ${({ theme }): string => theme.colors.foregroundHover};
+    border-right: 3px solid ${({ theme }): string => theme.colors.primary};
   }
 `;

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState, FC } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -12,15 +13,14 @@ import {
   ButtonContainer,
   ButtonWrapper,
   CalendarIcon,
-  CheckIcon,
+  CheckTaskButton,
   ClockIcon,
   Container,
   DateText,
+  DeleteButton,
   Description,
   EditButton,
-  FilledCheckIcon,
   Header,
-  IconButton,
   Name,
   NameContainer,
   PenIcon,
@@ -35,6 +35,8 @@ import { TaskInfoProps } from "./TaskInfo.types";
 const TaskInfo: FC<TaskInfoProps> = (props) => {
   const { className, task } = props;
   const { address, completed, date, description, id, name, time } = task;
+
+  const { t } = useTranslation("accessibility");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -59,26 +61,29 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
     [time]
   );
 
-  const handleCheck = useCallback(() => {
-    const { uid } = Api.auth.currentUser || {};
-    if (!uid) return;
+  const handleCheck = useCallback(
+    (checked: boolean) => {
+      const { uid } = Api.auth.currentUser || {};
+      if (!uid) return;
 
-    setPending(true);
+      setPending(true);
 
-    Api.db
-      .collection("users")
-      .doc(uid)
-      .collection("tasks")
-      .doc(id)
-      .update("completed", !completed)
-      .then(() =>
-        dispatch({
-          type: TasksTypes.UPDATE,
-          payload: { ...task, completed: !completed },
-        })
-      )
-      .finally(() => setPending(false));
-  }, [completed, dispatch, id, task]);
+      Api.db
+        .collection("users")
+        .doc(uid)
+        .collection("tasks")
+        .doc(id)
+        .update("completed", checked)
+        .then(() =>
+          dispatch({
+            type: TasksTypes.UPDATE,
+            payload: { ...task, completed: checked },
+          })
+        )
+        .finally(() => setPending(false));
+    },
+    [dispatch, id, task]
+  );
 
   const handleDelete = useCallback(() => {
     const { uid } = Api.auth.currentUser || {};
@@ -103,10 +108,11 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
     <Wrapper className={className}>
       <Header withBorder={!!description || !!address}>
         <Box>
-          <IconButton disabled={isPending} onClick={handleCheck}>
-            {completed && <FilledCheckIcon />}
-            {!completed && <CheckIcon />}
-          </IconButton>
+          <CheckTaskButton
+            checked={completed}
+            disabled={isPending}
+            onChange={handleCheck}
+          />
         </Box>
 
         <NameContainer>
@@ -127,15 +133,19 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
 
         <ButtonWrapper>
           <ButtonContainer>
-            <EditButton to={editPath}>
+            <EditButton aria-label={t("editTask")} to={editPath}>
               <PenIcon />
             </EditButton>
 
             <VerticalDivider />
 
-            <IconButton disabled={isPending} onClick={handleDelete}>
+            <DeleteButton
+              aria-label={t("deleteTask")}
+              disabled={isPending}
+              onClick={handleDelete}
+            >
               <TrashIcon />
-            </IconButton>
+            </DeleteButton>
           </ButtonContainer>
         </ButtonWrapper>
       </Header>

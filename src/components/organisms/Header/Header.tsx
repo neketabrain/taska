@@ -9,6 +9,7 @@ import { getLocale } from "src/utils";
 
 import {
   Button,
+  ChevronIcon,
   Container,
   HeaderLogo,
   MobileButton,
@@ -30,13 +31,16 @@ const Header: FC<ClassName> = (props) => {
   return (
     <Wrapper className={className}>
       <Container>
-        <HeaderLogo isAuthorized={!!user?.uid} />
+        <HeaderLogo />
 
         {!user?.uid && (
           <>
-            <Button onClick={switchLanguage}>{t("switchLanguage")}</Button>
+            <Button onClick={switchLanguage}>
+              {t("switchLanguage")} <ChevronIcon />
+            </Button>
+
             <MobileButton onClick={switchLanguage}>
-              {t("mobileSwitchLanguage")}
+              {t("mobileSwitchLanguage")} <ChevronIcon />
             </MobileButton>
           </>
         )}

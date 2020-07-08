@@ -1,33 +1,33 @@
+import AddFilled from "./AddFilled";
 import Calendar from "./Calendar";
+import Camera from "./Camera";
 import Check from "./Check";
+import CheckCircle from "./CheckCircle";
+import CheckCircleFilled from "./CheckCircleFilled";
 import ChevronRight from "./ChevronRight";
-import CircleCheck from "./CircleCheck";
 import Clock from "./Clock";
-import FilledAdd from "./FilledAdd";
-import FilledCircleCheck from "./FilledCircleCheck";
-import FilledExit from "./FilledExit";
-import FilledList from "./FilledList";
-import FilledPen from "./FilledPen";
-import FilledPhoto from "./FilledPhoto";
-import FilledPin from "./FilledPin";
-import FilledSettings from "./FilledSettings";
-import FilledTrash from "./FilledTrash";
+import Delete from "./Delete";
+import Edit from "./Edit";
+import ExitFilled from "./ExitFilled";
 import Google from "./Google";
+import ListFilled from "./ListFilled";
+import Pin from "./Pin";
+import Settings from "./Settings";
 
 export default {
+  AddFilled,
   Calendar,
+  Camera,
   Check,
+  CheckCircle,
+  CheckCircleFilled,
   ChevronRight,
-  CircleCheck,
   Clock,
-  FilledAdd,
-  FilledCircleCheck,
-  FilledExit,
-  FilledList,
-  FilledPen,
-  FilledPhoto,
-  FilledPin,
-  FilledSettings,
-  FilledTrash,
+  Delete,
+  Edit,
+  ExitFilled,
   Google,
+  ListFilled,
+  Pin,
+  Settings,
 };

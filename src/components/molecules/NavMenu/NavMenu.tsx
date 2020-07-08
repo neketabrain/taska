@@ -11,19 +11,19 @@ import { Container, Divider, MenuItem, NavItemList } from "./NavMenu.styles";
 const navItems: NavItemProps[] = [
   {
     exact: true,
-    Icon: Icons.FilledAdd,
+    Icon: Icons.AddFilled,
     label: "newTask",
     to: ROUTES.NEW_TASK,
   },
   {
-    Icon: Icons.FilledList,
+    Icon: Icons.ListFilled,
     isActive: (_, { pathname }): boolean =>
       /tasks/.test(pathname) && !/new/.test(pathname),
     label: "taskList",
     to: ROUTES.TASKS,
   },
   {
-    Icon: Icons.FilledSettings,
+    Icon: Icons.Settings,
     label: "settings",
     to: ROUTES.SETTINGS,
   },
@@ -49,7 +49,7 @@ const NavMenu: FC<ClassName> = (props) => {
 
         <MenuItem
           exact={true}
-          Icon={Icons.FilledExit}
+          Icon={Icons.ExitFilled}
           label={t("navMenu.logout")}
           to={ROUTES.LOGOUT}
         />

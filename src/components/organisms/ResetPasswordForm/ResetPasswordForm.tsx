@@ -13,20 +13,18 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = (props) => {
 
   const { t } = useTranslation("reset");
 
-  const { values, onChange, setValues } = useForm(initialValues, setErrors);
+  const { values, onChange } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
-
-  const resetValues = useCallback(() => setValues({ email: "" }), [setValues]);
 
   const handleSubmit = useCallback(
     async (event: OnSubmitEvent) => {
       event.preventDefault();
 
       setSubmitting(true);
-      await onSubmit(values, resetValues);
+      await onSubmit(values);
       setSubmitting(false);
     },
-    [onSubmit, resetValues, setSubmitting, values]
+    [onSubmit, setSubmitting, values]
   );
 
   return (
@@ -44,7 +42,7 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = (props) => {
         />
       </Box>
 
-      <SubmitButton disabled={isSubmitting} type="submit" variant="primary">
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("button")}
       </SubmitButton>
     </Form>

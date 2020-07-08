@@ -5,7 +5,7 @@ import styled, {
   ThemeProps,
 } from "styled-components";
 
-import { Box, Flex, Icons, Link, Text } from "src/components";
+import { Box, CheckButton, Flex, Icons, Link, Text } from "src/components";
 
 export const Wrapper = styled(Box)`
   width: 100%;
@@ -43,30 +43,21 @@ export const Name = styled(Text)`
 
 export const DateText = styled(Text)`
   align-items: center;
-  color: ${({ theme }): string => theme.colors.primary};
+  color: ${({ theme }): string => theme.colors.textSecondary};
   display: flex;
   font-size: 14px;
   margin: 4px 0 0;
 `;
 
 export const ClockIcon = styled(Icons.Clock)`
-  fill: ${({ theme }): string => theme.colors.primary};
+  fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 14px;
   margin-right: 4px;
   width: 14px;
 `;
 
-export const CheckIcon = styled(Icons.CircleCheck)`
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
+export const CheckTaskButton = styled(CheckButton)`
   height: 36px;
-  position: relative;
-  width: 36px;
-`;
-
-export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
-  height: 36px;
-  position: relative;
   width: 36px;
 `;
 
@@ -75,8 +66,8 @@ export const Description = styled(Text)`
   white-space: pre-line;
 `;
 
-export const PinIcon = styled(Icons.FilledPin)`
-  fill: ${({ theme }): string => theme.colors.secondary};
+export const PinIcon = styled(Icons.Pin)`
+  fill: ${({ theme }): string => theme.colors.primary};
   height: 16px;
   margin-right: 4px;
   position: relative;
@@ -88,7 +79,7 @@ export const Time = styled(DateText)`
 `;
 
 export const CalendarIcon = styled(Icons.Calendar)`
-  fill: ${({ theme }): string => theme.colors.primary};
+  fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 14px;
   margin-right: 4px;
   width: 14px;
@@ -105,13 +96,13 @@ export const ButtonContainer = styled(Flex)`
   width: 100%;
 `;
 
-export const PenIcon = styled(Icons.FilledPen)`
+export const PenIcon = styled(Icons.Edit)`
   fill: ${({ theme }): string => theme.colors.border};
   height: 24px;
   width: 24px;
 `;
 
-export const TrashIcon = styled(Icons.FilledTrash)`
+export const TrashIcon = styled(Icons.Delete)`
   fill: ${({ theme }): string => theme.colors.border};
   height: 24px;
   width: 24px;
@@ -124,7 +115,7 @@ export const VerticalDivider = styled(Box)`
   width: 1px;
 `;
 
-export const IconButton = styled.button`
+export const DeleteButton = styled.button`
   align-items: center;
   background-color: transparent;
   border: none;
@@ -132,23 +123,24 @@ export const IconButton = styled.button`
   display: flex;
   justify-content: center;
   margin: 0;
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  outline: 0;
   padding: 0;
   position: relative;
 
   :disabled {
     cursor: not-allowed;
     opacity: 0.5;
-    
-    ${TrashIcon} {
-      fill: ${({ theme }): string => theme.colors.primary};
-    }
   }
 
-  :hover {
-    ${CheckIcon}, ${FilledCheckIcon}, ${TrashIcon} {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+  :focus {
+    border-radius: 2px;
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
+  }
+
+  :hover,
+  :focus {
+    ${TrashIcon} {
+      fill: ${({ theme }): string => theme.colors.error};
     }
   }
 `;
@@ -157,11 +149,11 @@ export const EditButton = styled(Link)`
   color: ${({ theme }): string => theme.colors.border};
   fill: ${({ theme }): string => theme.colors.border};
 
-  :hover {
+  :hover,
+  :focus {
     text-decoration: none;
     ${PenIcon} {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+      fill: ${({ theme }): string => theme.colors.text};
     }
   }
 `;

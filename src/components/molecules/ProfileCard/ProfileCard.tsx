@@ -2,7 +2,6 @@ import React, { useMemo, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { UploadAvatar } from "src/components";
 import { ApplicationStore } from "src/store";
 import { ClassName } from "src/types";
 import { getUserInitials } from "src/utils";
@@ -30,8 +29,6 @@ const ProfileCard: FC<ClassName> = (props) => {
   return (
     <Container className={className}>
       <Picture>
-        <UploadAvatar />
-
         {!!userAvatar && (
           <UserAvatar alt={t("imageAlts.avatar")} src={userAvatar} />
         )}

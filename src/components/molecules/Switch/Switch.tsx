@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   LeftLabel,
@@ -11,14 +12,21 @@ import {
 import { SwitchProps } from "./Switch.types";
 
 const Switch: FC<SwitchProps> = (props) => {
-  const { className, leftLabel, rightLabel, ...rest } = props;
+  const { className, leftLabel, name, rightLabel, ...rest } = props;
+
+  const { t } = useTranslation("accessibility");
 
   return (
     <Wrapper className={className}>
       {!!leftLabel && <LeftLabel>{leftLabel}</LeftLabel>}
 
       <SwitchContainer>
-        <NativeInput type="checkbox" {...rest} />
+        <NativeInput
+          aria-label={t(name)}
+          name={name}
+          type="checkbox"
+          {...rest}
+        />
         <Switcher />
       </SwitchContainer>
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Link = styled(NavLink)`
   align-items: center;
-  color: ${({ theme }): string => theme.colors.secondary};
+  color: ${({ theme }): string => theme.colors.primary};
   display: flex;
   font-family: "Open Sans", sans-serif;
   outline: 0;
@@ -16,7 +16,7 @@ const Link = styled(NavLink)`
 
   :focus {
     border-radius: 0.2em;
-    box-shadow: ${({ theme }): string => theme.colors.outline};
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 `;
 

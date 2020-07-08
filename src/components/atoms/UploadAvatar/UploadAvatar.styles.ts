@@ -12,15 +12,16 @@ export const Wrapper = styled(Flex)`
   z-index: 2;
 `;
 
-export const PhotoIcon = styled(Icons.FilledPhoto)`
-  fill: ${({ theme }): string => theme.colors.opacityDarkGrey};
+export const PhotoIcon = styled(Icons.Camera)`
+  fill: ${({ theme }): string => theme.colors.text};
   height: 64px;
+  opacity: 0.5;
   width: 64px;
 `;
 
 export const Container = styled(Flex)`
   align-items: center;
-  background-color: ${({ theme }): string => theme.colors.opacityGrey};
+  background-color: rgba(0, 0, 0, 0.2);
   display: none;
   height: 100%;
   justify-content: center;
@@ -39,13 +40,16 @@ export const FileInput = styled.input`
   width: 100%;
   z-index: 2;
 
+  :disabled {
+    cursor: not-allowed;
+  }
+
   :hover + ${Container}, :focus + ${Container} {
     display: flex;
   }
 
   :disabled + ${Container} {
-    background-color: ${({ theme }): string =>
-      theme.colors.disabledInputBackground};
+    background-color: ${({ theme }): string => theme.colors.border};
     cursor: not-allowed;
     display: flex;
     opacity: 0.5;

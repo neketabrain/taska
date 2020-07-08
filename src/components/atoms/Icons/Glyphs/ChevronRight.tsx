@@ -1,14 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { GlyphProps } from "./Glyphs.types";
 
-function ChevronRight(props: GlyphProps): JSX.Element {
-  return (
-    <svg {...props} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8.59009 16.58L13.1701 12L8.59009 7.41L10.0001 6L16.0001 12L10.0001 18L8.59009 16.58Z" />
-    </svg>
-  );
-}
+const ChevronRight: FC<GlyphProps> = (props) => (
+  <svg {...props} viewBox="0 0 24 24">
+    <path d="M9.3 6.7a1 1 0 000 1.4l3.9 3.9-4 3.9a1 1 0 001.5 1.4l4.6-4.6a1 1 0 000-1.4l-4.6-4.6a1 1 0 00-1.4 0z" />
+  </svg>
+);
 
 ChevronRight.defaultProps = {
   fill: "black",

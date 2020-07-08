@@ -64,10 +64,12 @@ export const SubmitButton = styled(Button)`
 export const UserAvatar = styled.img`
   border-radius: 50%;
   height: 100%;
+  line-height: 120px;
   max-height: 120px;
   max-width: 120px;
   object-fit: cover;
   position: relative;
+  text-align: center;
   width: 100%;
 `;
 
@@ -75,7 +77,7 @@ export const MockAvatar = styled(Box)`
   align-items: center;
   background-color: ${({ theme }): string => theme.colors.primary};
   border-radius: 50%;
-  color: ${({ theme }): string => theme.colors.invertedText};
+  color: ${({ theme }): string => theme.colors.foreground};
   display: flex;
   font-size: 24px;
   font-weight: 600;

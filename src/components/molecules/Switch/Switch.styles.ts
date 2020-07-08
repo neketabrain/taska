@@ -26,9 +26,9 @@ export const SwitchContainer = styled.label`
 `;
 
 export const Switcher = styled.span`
-  background-color: ${({ theme }): string => theme.colors.primary};
+  background-color: ${({ theme }): string => theme.colors.backgroundHover};
   border: 1px solid ${({ theme }): string => theme.colors.border};
-  border-radius: 4px;
+  border-radius: 14px;
   bottom: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -39,15 +39,15 @@ export const Switcher = styled.span`
   top: 0;
 
   :before {
-    background-color: ${({ theme }): string => theme.colors.cardBackground};
-    border-radius: 2px;
-    bottom: 0;
+    background-color: ${({ theme }): string => theme.colors.foreground};
+    border-radius: 50%;
+    bottom: 1px;
     content: "";
-    height: 100%;
-    left: 0;
+    height: calc(100% - 2px);
+    left: 1px;
     position: absolute;
     transition: transform 0.4s;
-    width: 20px;
+    width: 16px;
   }
 `;
 
@@ -58,20 +58,18 @@ export const NativeInput = styled.input`
 
   :focus + ${Switcher} {
     border-color: ${({ theme }): string => theme.colors.secondary};
-    box-shadow: ${({ theme }): string => theme.colors.outline};
+    box-shadow: ${({ theme }): string => theme.colors.secondaryOutline};
+  }
+
+  :checked + ${Switcher} {
+    background-color: ${({ theme }): string => theme.colors.secondary};
   }
 
   :checked + ${Switcher}:before {
-    transform: translateX(26px);
+    transform: translateX(28px);
   }
 
   :disabled + ${Switcher} {
-    background-color: ${({ theme }): string => theme.colors.borderDarker};
     cursor: not-allowed;
-
-    :before {
-      background-color: ${({ theme }): string =>
-        theme.colors.disabledInputBackground};
-    }
-  }
+    opacity: 0.5;
 `;
