@@ -1,83 +1,83 @@
-import React, { FormEvent, useState } from "react";
+import React, { useCallback, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Input, Link, CheckBox } from "src/components";
+import { CheckBox, Input, Link } from "src/components";
 import { ROUTES } from "src/constants";
 import { useForm } from "src/hooks";
+import { OnSubmitEvent } from "src/types";
 
 import {
+  ButtonContainer,
+  CheckBoxContainer,
   Form,
   InputContainer,
-  ButtonContainer,
   SubmitButton,
-  CheckBoxContainer,
 } from "./LoginForm.styles";
-import { LoginFormProps, LoginFormValues } from "./LoginForm.types";
+import { LoginFormProps } from "./LoginForm.types";
 
-const defaultValues: LoginFormValues = {
-  email: "",
-  password: "",
-  isRemembered: false,
-};
-
-function LoginForm(props: LoginFormProps): JSX.Element {
-  const { onSubmit, getError, clearError } = props;
+const LoginForm: FC<LoginFormProps> = (props) => {
+  const { className, getError, initialValues, onSubmit, setErrors } = props;
 
   const { t } = useTranslation("login");
 
-  const { values, onChange } = useForm(defaultValues, clearError);
+  const { onChange, setValues, values } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> {
-    event.preventDefault();
+  const resetValues = useCallback(() => setValues({ password: "" }), [
+    setValues,
+  ]);
 
-    setSubmitting(true);
-    await onSubmit(values);
-    setSubmitting(false);
-  }
+  const handleSubmit = useCallback(
+    async (event: OnSubmitEvent) => {
+      event.preventDefault();
+
+      setSubmitting(true);
+      await onSubmit(values, resetValues);
+      setSubmitting(false);
+    },
+    [onSubmit, resetValues, setSubmitting, values]
+  );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className={className} onSubmit={handleSubmit}>
       <InputContainer>
         <Input
-          required
+          disabled={isSubmitting}
           error={getError ? getError("email") : ""}
           label={t("email.label")}
           name="email"
+          onChange={onChange}
+          required={true}
           type="email"
           value={values.email}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
       <InputContainer>
         <Input
-          required
+          disabled={isSubmitting}
           error={getError ? getError("password") : ""}
           label={t("password.label")}
           name="password"
+          onChange={onChange}
+          required={true}
           type="password"
           value={values.password}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
       <CheckBoxContainer>
         <CheckBox
-          name="isRemembered"
-          label={t("remember")}
           checked={values.isRemembered}
-          onChange={onChange}
           disabled={isSubmitting}
+          label={t("remember")}
+          name="isRemembered"
+          onChange={onChange}
         />
       </CheckBoxContainer>
 
       <ButtonContainer>
-        <SubmitButton variant="primary" type="submit" disabled={isSubmitting}>
+        <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
           {t("button")}
         </SubmitButton>
 
@@ -85,6 +85,6 @@ function LoginForm(props: LoginFormProps): JSX.Element {
       </ButtonContainer>
     </Form>
   );
-}
+};
 
 export default LoginForm;

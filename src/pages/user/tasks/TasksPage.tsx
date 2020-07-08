@@ -1,32 +1,68 @@
 import loadable from "@loadable/component";
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useEffect, useState, FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import { ROUTES } from "../../../constants";
+import { Api } from "src/api";
+import { ROUTES } from "src/constants";
+import { ApplicationStore, TasksTypes } from "src/store";
 
 import { Wrapper } from "./TasksPages.styles";
 
 const EditTaskPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./edit")
 );
+const NewTaskPage = loadable(() => import(/* webpackPrefetch: true */ "./new"));
 const TaskListPage = loadable(() =>
   import(/* webpackPrefetch: true */ "./list")
 );
 const TaskPage = loadable(() => import(/* webpackPrefetch: true */ "./task"));
-const NewTaskPage = loadable(() => import(/* webpackPrefetch: true */ "./new"));
 
-function TasksPage(): JSX.Element {
+const TasksPage: FC = () => {
+  const [isFetching, setFetching] = useState(false);
+
+  const dispatch = useDispatch();
+  const tasks = useSelector((state: ApplicationStore) => state.tasks);
+
+  useEffect(() => {
+    if (!tasks) {
+      const { uid } = Api.auth.currentUser || {};
+      if (!uid) return;
+
+      setFetching(true);
+
+      Api.db
+        .collection("users")
+        .doc(uid)
+        .collection("tasks")
+        .get()
+        .then((res) => {
+          const fetchedTasks = res.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+
+          dispatch({ type: TasksTypes.GET, payload: fetchedTasks });
+        })
+        .finally(() => setFetching(false));
+    }
+  }, [dispatch, setFetching, tasks]);
+
   return (
     <Wrapper>
       <Switch>
-        <Route exact path={ROUTES.NEW_TASK} component={NewTaskPage} />
+        <Route component={NewTaskPage} exact={true} path={ROUTES.NEW_TASK} />
 
         <Route path={ROUTES.TASKS}>
-          <TaskListPage />
+          <TaskListPage isFetching={isFetching} />
 
           <Switch>
-            <Route exact path={ROUTES.TASK} component={TaskPage} />
-            <Route exact path={ROUTES.EDIT_TASK} component={EditTaskPage} />
+            <Route component={TaskPage} exact={true} path={ROUTES.TASK} />
+            <Route
+              component={EditTaskPage}
+              exact={true}
+              path={ROUTES.EDIT_TASK}
+            />
 
             <Redirect to={ROUTES.TASKS} />
           </Switch>
@@ -36,6 +72,6 @@ function TasksPage(): JSX.Element {
       </Switch>
     </Wrapper>
   );
-}
+};
 
 export default TasksPage;

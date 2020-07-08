@@ -3,47 +3,37 @@ import styled from "styled-components";
 import { Link } from "../Link";
 
 export const Container = styled.li`
+  margin: 0;
+  padding: 0;
   position: relative;
   width: 100%;
-  padding: 0;
-  margin: 0;
 `;
 
 export const NavLink = styled(Link)`
-  width: 100%;
+  border-radius: 10px;
+  color: ${({ theme }): string => theme.colors.textSecondary};
   height: 32px;
   padding: 0 8px;
-  border-radius: 4px;
-  color: ${({ theme }): string => theme.colors.buttons.primary.background};
+  width: 100%;
 
-  :hover {
-    text-decoration: none;
-    background-color: ${({ theme }): string => theme.colors.border};
-    color: ${({ theme }): string =>
-      theme.colors.buttons.primary.backgroundHover};
-
-    svg {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
-    }
-  }
-
+  :hover,
   :focus {
-    box-shadow: ${({ theme }): string => theme.colors.buttons.primary.outline};
-    border-radius: 4px;
+    background-color: ${({ theme }): string => theme.colors.backgroundHover};
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: none;
   }
 
   svg {
-    fill: ${({ theme }): string => theme.colors.buttons.primary.background};
-    width: 20px;
+    fill: ${({ theme }): string => theme.colors.textSecondary};
     height: 20px;
     margin-right: 16px;
+    width: 20px;
   }
 
   &.active {
     color: ${({ theme }): string => theme.colors.text};
     font-weight: 600;
-    background-color: ${({ theme }): string => theme.colors.border};
 
     svg {
       fill: ${({ theme }): string => theme.colors.text};

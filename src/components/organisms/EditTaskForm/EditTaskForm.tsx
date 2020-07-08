@@ -1,9 +1,10 @@
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { Box, Flex, Input, TextArea } from "src/components";
+import { Box, DatePicker, Flex, Input, TextArea } from "src/components";
 import { useForm } from "src/hooks";
+import { OnSubmitEvent } from "src/types";
 
 import {
   Button,
@@ -13,81 +14,95 @@ import {
 } from "./EditTaskForm.styles";
 import { EditTaskFormProps } from "./EditTaskForm.types";
 
-function EditTaskForm(props: EditTaskFormProps): JSX.Element {
-  const { initialState, isEditing, onSubmit } = props;
+const EditTaskForm: FC<EditTaskFormProps> = (props) => {
+  const { className, initialValues, isEditing, onSubmit } = props;
 
   const { t } = useTranslation("tasks");
   const history = useHistory();
 
-  const { values, onChange } = useForm(initialState);
+  const { onChange, setValues, values } = useForm(initialValues);
   const [isSubmitting, setSubmitting] = useState(false);
 
   const handleSubmit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
+    async (event: OnSubmitEvent) => {
       event.preventDefault();
 
       setSubmitting(true);
-
-      try {
-        await onSubmit(values);
-      } catch {
-        setSubmitting(false);
-      }
+      await onSubmit(values);
+      setSubmitting(false);
     },
-    [onSubmit, values]
+    [onSubmit, setSubmitting, values]
   );
+
+  const date = useMemo(() => (!!values.date ? new Date(values.date) : null), [
+    values.date,
+  ]);
+  const time = useMemo(() => (!!values.time ? new Date(values.time) : null), [
+    values.time,
+  ]);
 
   const cancel = useCallback(() => history.goBack(), [history]);
 
+  const handleChangeDate = useCallback(
+    (newDate: Date | null) => setValues({ date: newDate?.toISOString() }),
+    [setValues]
+  );
+  const handleChangeTime = useCallback(
+    (newTime: Date | null) => setValues({ time: newTime?.toISOString() }),
+    [setValues]
+  );
+
   return (
-    <Form id="editTask" onSubmit={handleSubmit}>
+    <Form className={className} id="editTask" onSubmit={handleSubmit}>
       <InputContainer>
         <Input
-          required
+          autoComplete="off"
+          disabled={isSubmitting}
           label={t("newTask.form.name")}
           name="name"
+          onChange={onChange}
+          required={true}
           type="text"
           value={values.name}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
       <InputContainer>
         <TextArea
+          autoComplete="off"
+          disabled={isSubmitting}
           label={t("newTask.form.description")}
           name="description"
-          form="editTask"
+          onChange={onChange}
           rows={4}
           value={values.description}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
       <InputContainer>
         <Flex justifyContent="space-between">
           <Box width="48%">
-            <Input
-              required
-              label={t("newTask.form.date")}
-              name="date"
-              type="date"
-              value={values.date}
-              onChange={onChange}
+            <DatePicker
+              autoComplete="off"
+              customInput={<Input label={t("newTask.form.date")} name="date" />}
               disabled={isSubmitting}
+              name="date"
+              onChange={handleChangeDate}
+              required={true}
+              selected={date}
             />
           </Box>
 
           <Box width="48%">
-            <Input
-              required
-              label={t("newTask.form.time")}
-              name="time"
-              type="time"
-              value={values.time}
-              onChange={onChange}
+            <DatePicker
+              autoComplete="off"
+              customInput={<Input label={t("newTask.form.time")} name="time" />}
               disabled={isSubmitting}
+              name="time"
+              onChange={handleChangeTime}
+              required={true}
+              selected={time}
+              time={true}
             />
           </Box>
         </Flex>
@@ -95,27 +110,27 @@ function EditTaskForm(props: EditTaskFormProps): JSX.Element {
 
       <InputContainer>
         <Input
+          disabled={isSubmitting}
           label={t("newTask.form.address")}
           name="address"
+          onChange={onChange}
           type="text"
           value={values.address}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
       <ButtonContainer>
-        <Button variant="primary" type="submit" disabled={isSubmitting}>
+        <Button disabled={isSubmitting} type="submit" variant="secondary">
           {!isEditing && t("newTask.form.submit")}
           {!!isEditing && t("editTask.form.submit")}
         </Button>
 
         {!!isEditing && (
           <Button
-            onClick={cancel}
-            variant="secondary"
-            type="button"
             disabled={isSubmitting}
+            onClick={cancel}
+            type="button"
+            variant="basic"
           >
             {t("editTask.form.cancel")}
           </Button>
@@ -123,6 +138,6 @@ function EditTaskForm(props: EditTaskFormProps): JSX.Element {
       </ButtonContainer>
     </Form>
   );
-}
+};
 
 export default EditTaskForm;

@@ -29,10 +29,10 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    resources: locales,
     react: {
       wait: true,
     },
+    resources: locales,
   });
 
 export default i18n;

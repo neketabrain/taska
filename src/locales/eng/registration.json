@@ -1,6 +1,6 @@
 {
-  "title": "Registration",
-  "toLogin": "Login",
+  "button": "Sign up",
+  "divider": "or",
   "email": {
     "label": "Email"
   },
@@ -10,11 +10,11 @@
   "lastName": {
     "label": "Last name"
   },
+  "pageTitle": "Taska. Registration",
   "password": {
     "label": "Password"
   },
-  "button": "Sign up",
-  "divider": "or",
-  "withGoogle": "Sign in with Google",
-  "pageTitle": "Taska. Registration"
+  "title": "Registration",
+  "toLogin": "Login",
+  "withGoogle": "Sign in with Google"
 }

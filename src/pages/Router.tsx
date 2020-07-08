@@ -1,16 +1,16 @@
 import loadable from "@loadable/component";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import { Api } from "src/api";
 import { Header, PageWrapper } from "src/components";
-import { ApplicationStore, UserTypes } from "src/store";
+import { UserTypes, ApplicationStore } from "src/store";
 
 const Guest = loadable(() => import(/* webpackPrefetch: true */ "./guest"));
 const User = loadable(() => import(/* webpackPrefetch: true */ "./user"));
 
-function Router(): JSX.Element {
+const Router: FC = () => {
   const [isFetching, setFetching] = useState(true);
 
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function Router(): JSX.Element {
       dispatch({ type: UserTypes.SET, payload: user });
       setFetching(false);
     });
-  }, [dispatch]);
+  }, [dispatch, setFetching]);
 
   if (isFetching) {
     return <></>;
@@ -33,12 +33,12 @@ function Router(): JSX.Element {
 
       <PageWrapper>
         <BrowserRouter>
-          {!!user && <User />}
           {!user && <Guest />}
+          {!!user && <User />}
         </BrowserRouter>
       </PageWrapper>
     </>
   );
-}
+};
 
 export default Router;

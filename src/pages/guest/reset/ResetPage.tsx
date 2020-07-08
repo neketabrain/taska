@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useCallback, FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 import { Api } from "src/api";
 import {
+  Link,
   ResetPasswordForm,
   ResetPasswordFormValues,
-  Link,
 } from "src/components";
 import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
 
-import { Main, Container, Header, Title, ChevronIcon } from "../Guest.styles";
+import { ChevronIcon, Container, Header, Main, Title } from "../Guest.styles";
 
-function ResetPage(): JSX.Element {
+const initialValues: ResetPasswordFormValues = {
+  email: "",
+};
+
+const ResetPage: FC = () => {
   const { t } = useTranslation("reset");
 
-  const { clearError, getError, addError, clearAllErrors } = useErrors();
+  const { addError, getError, setErrors } = useErrors();
 
-  async function handleSubmit(values: ResetPasswordFormValues): Promise<void> {
-    const { email } = values;
+  const handleSubmit = useCallback(
+    async (values: ResetPasswordFormValues) => {
+      const { email } = values;
 
-    clearAllErrors();
+      setErrors({}, true);
 
-    Api.auth.sendPasswordResetEmail(email).catch((err) => addError(err.code));
-  }
+      await Api.auth
+        .sendPasswordResetEmail(email)
+        .catch((err) => addError(err?.code));
+    },
+    [addError, setErrors]
+  );
 
   return (
     <Main>
@@ -41,13 +50,14 @@ function ResetPage(): JSX.Element {
         </Header>
 
         <ResetPasswordForm
-          onSubmit={handleSubmit}
-          clearError={clearError}
           getError={getError}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          setErrors={setErrors}
         />
       </Container>
     </Main>
   );
-}
+};
 
 export default ResetPage;

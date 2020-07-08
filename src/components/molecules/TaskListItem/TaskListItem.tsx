@@ -1,27 +1,25 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Box } from "src/components";
+import { Box, CheckButton } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
+import { getLocale } from "src/utils";
 
 import {
-  Wrapper,
+  ClockIcon,
   InfoContainer,
   Name,
   Time,
-  ClockIcon,
-  CheckButton,
-  CheckIcon,
-  FilledCheckIcon,
+  Wrapper,
 } from "./TaskListItem.styles";
 import { TaskListItemProps } from "./TaskListItem.types";
 
-function TaskListItem(props: TaskListItemProps): JSX.Element {
-  const { task, className } = props;
-  const { id, name, time, completed } = task;
+const TaskListItem: FC<TaskListItemProps> = (props) => {
+  const { className, task } = props;
+  const { completed, id, name, time } = task;
 
   const [isPending, setPending] = useState(false);
 
@@ -29,10 +27,25 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const path = `${ROUTES.TASKS}/${id}`;
-  const isActive = new RegExp(`^${path}(/edit)?$`, "is").test(pathname);
+  const path = useMemo(() => `${ROUTES.TASKS}/${id}`, [id]);
+  const isActive = useMemo(
+    () => new RegExp(`^${path}(/edit)?$`, "is").test(pathname),
+    [path, pathname]
+  );
 
-  const handleClick = useCallback(() => history.push(path), [history, path]);
+  const parsedTime = useMemo(
+    () =>
+      new Date(time).toLocaleTimeString(getLocale(), {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    [time]
+  );
+
+  const handleClick = useCallback(() => {
+    history.push(path);
+  }, [history, path]);
+
   const handleKeyPress = useCallback(
     (event) => {
       if (event.key === "Enter") {
@@ -43,9 +56,7 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
   );
 
   const handleCheck = useCallback(
-    (event) => {
-      event.stopPropagation();
-
+    (checked: boolean) => {
       const { uid } = Api.auth.currentUser || {};
       if (!uid) return;
 
@@ -56,42 +67,43 @@ function TaskListItem(props: TaskListItemProps): JSX.Element {
         .doc(uid)
         .collection("tasks")
         .doc(id)
-        .update("completed", !completed)
+        .update("completed", checked)
         .then(() =>
           dispatch({
             type: TasksTypes.UPDATE,
-            payload: { ...task, completed: !completed },
+            payload: { ...task, completed: checked },
           })
         )
         .finally(() => setPending(false));
     },
-    [completed, dispatch, id, task]
+    [dispatch, id, task]
   );
 
   return (
     <Wrapper
-      tabIndex={0}
       className={className}
+      isActive={isActive}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
-      isActive={isActive}
+      tabIndex={0}
     >
       <Box>
-        <CheckButton onClick={handleCheck} disabled={isPending}>
-          {completed && <FilledCheckIcon />}
-          {!completed && <CheckIcon />}
-        </CheckButton>
+        <CheckButton
+          checked={completed}
+          disabled={isPending}
+          onChange={handleCheck}
+        />
       </Box>
 
       <InfoContainer>
         <Name>{name}</Name>
         <Time>
           <ClockIcon />
-          {time}
+          {parsedTime}
         </Time>
       </InfoContainer>
     </Wrapper>
   );
-}
+};
 
 export default TaskListItem;

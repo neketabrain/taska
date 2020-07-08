@@ -1,12 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
+
+import { ClassName } from "src/types";
 
 import { LogoText } from "./Logo.styles";
-import { LogoProps } from "./Logo.types";
 
-function Logo(props: LogoProps): JSX.Element {
+const Logo: FC<ClassName> = (props) => {
   const { className } = props;
 
   return <LogoText className={className}>Taska</LogoText>;
-}
+};
 
 export default Logo;

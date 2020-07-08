@@ -2,32 +2,33 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const ButtonLink = styled(NavLink)`
-  position: relative;
-  width: 100%;
-  height: 40px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  padding: 0;
+  background-color: ${({ theme }): string => theme.colors.secondary};
+  border-radius: 10px;
+  color: ${({ theme }): string => theme.colors.foreground};
   cursor: pointer;
+  display: flex;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  outline: 0;
+  padding: 0;
+  position: relative;
   text-decoration: none;
-  color: ${({ theme }): string => theme.colors.buttons.primary.color};
-  background-color: ${({ theme }): string =>
-    theme.colors.buttons.primary.background};
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  width: 100%;
 
   :hover {
-    background-color: ${({ theme }): string =>
-      theme.colors.buttons.primary.backgroundHover};
+    background-color: ${({ theme }): string => theme.colors.secondaryHover};
   }
 
   :active {
-    background-color: ${({ theme }): string =>
-      theme.colors.buttons.primary.backgroundActive};
+    background-color: ${({ theme }): string => theme.colors.secondaryActive};
+  }
+
+  :focus {
+    box-shadow: ${({ theme }): string => theme.colors.secondaryOutline};
   }
 `;
 

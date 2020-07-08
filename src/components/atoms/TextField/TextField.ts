@@ -1,38 +1,39 @@
 import styled, {
   css,
+  DefaultTheme,
   FlattenInterpolation,
   ThemeProps,
-  DefaultTheme,
 } from "styled-components";
 
 const TextField = styled.input<{ hasError?: boolean }>`
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: inherit;
   border: 1px solid ${({ theme }): string => theme.colors.border};
-  border-radius: 4px;
+  border-radius: 10px;
+  box-sizing: border-box;
   color: ${({ theme }): string => theme.colors.text};
   font-family: "Open Sans", sans-serif;
-  padding: 10px 16px;
-  outline: 0;
-  background-color: inherit;
+  font-size: 14px;
   max-height: 40px;
+  outline: 0;
+  padding: 10px 16px;
+  position: relative;
+  width: 100%;
 
   @media screen and (max-width: 480px) {
-    padding: 15px 16px;
+    font-size: 16px;
     max-height: 50px;
+    padding: 15px 16px;
   }
 
   :focus {
-    border-color: ${({ theme }): string => theme.colors.secondary};
-    box-shadow: ${({ theme }): string => theme.colors.outline};
+    border-color: ${({ theme }): string => theme.colors.primary};
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 
   :disabled {
+    background-color: ${({ theme }): string => theme.colors.background};
+    color: ${({ theme }): string => theme.colors.textSecondary};
     cursor: not-allowed;
-    color: ${({ theme }): string => theme.colors.additionalText};
-    background-color: ${({ theme }): string =>
-      theme.colors.disabledInputBackground};
   }
 
   ${({
@@ -40,9 +41,12 @@ const TextField = styled.input<{ hasError?: boolean }>`
   }): FlattenInterpolation<ThemeProps<DefaultTheme>> | false | undefined =>
     hasError &&
     css`
+      background-color: ${({ theme }): string => theme.colors.errorOpacity};
       border-color: ${({ theme }): string => theme.colors.error} !important;
-      background-color: ${({ theme }): string =>
-        theme.colors.errorInputBackground};
+
+      :focus {
+        box-shadow: ${({ theme }): string => theme.colors.errorOutline};
+      }
     `};
 `;
 

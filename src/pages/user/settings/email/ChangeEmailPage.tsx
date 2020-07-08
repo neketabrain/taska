@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
@@ -8,43 +8,52 @@ import { useErrors } from "src/hooks";
 import { UserTypes } from "src/store";
 
 import {
-  ContentSection,
+  AlertContainer,
   Container,
+  ContentSection,
   ContentWrapper,
   Title,
-  AlertContainer,
 } from "../SettingsPage.styles";
 
-function ChangeEmailPage(): JSX.Element {
+const initialValues: ChangeEmailFormValues = {
+  email: "",
+  password: "",
+};
+
+const ChangeEmailPage: FC = () => {
   const { t } = useTranslation("settings");
+
   const dispatch = useDispatch();
 
-  const { clearError, getError, addError, clearAllErrors } = useErrors();
+  const { addError, getError, setErrors } = useErrors();
   const [isSuccessful, setSuccessful] = useState(false);
 
-  async function handleSubmit(
-    values: ChangeEmailFormValues,
-    resetValues: () => void
-  ): Promise<void> {
-    const { email } = Api.auth.currentUser || {};
-    if (!email) return;
+  const handleSubmit = useCallback(
+    async (values: ChangeEmailFormValues, resetValues: VoidFunction) => {
+      const { email } = Api.auth.currentUser || {};
+      if (!email) return;
 
-    const { email: newEmail, password } = values;
+      const { email: newEmail, password } = values;
 
-    clearAllErrors();
-    setSuccessful(false);
+      setErrors({}, true);
+      setSuccessful(false);
 
-    return Api.auth
-      .signInWithEmailAndPassword(email, password)
-      .then((res) =>
-        res.user?.updateEmail(newEmail).then(() => {
-          dispatch({ type: UserTypes.UPDATE, payload: { email: newEmail } });
+      Api.auth
+        .signInWithEmailAndPassword(email, password)
+        .then((res) =>
+          res.user?.updateEmail(newEmail).then(() => {
+            dispatch({ type: UserTypes.UPDATE, payload: { email: newEmail } });
+            resetValues();
+            setSuccessful(true);
+          })
+        )
+        .catch((err) => {
+          addError(err?.code);
           resetValues();
-          setSuccessful(true);
-        })
-      )
-      .catch((err) => addError(err.code));
-  }
+        });
+    },
+    [addError, dispatch, setErrors]
+  );
 
   return (
     <ContentSection>
@@ -57,14 +66,15 @@ function ChangeEmailPage(): JSX.Element {
 
         <ContentWrapper>
           <ChangeEmailForm
-            onSubmit={handleSubmit}
-            clearError={clearError}
             getError={getError}
+            onSubmit={handleSubmit}
+            initialValues={initialValues}
+            setErrors={setErrors}
           />
         </ContentWrapper>
       </Container>
     </ContentSection>
   );
-}
+};
 
 export default ChangeEmailPage;

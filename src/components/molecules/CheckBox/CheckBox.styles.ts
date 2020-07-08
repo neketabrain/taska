@@ -1,78 +1,87 @@
 import styled from "styled-components";
 
-import { Icons, Box } from "../../atoms";
+import { Box, Icons } from "../../atoms";
 
 export const CheckBoxContainer = styled(Box)`
   display: inline-block;
 `;
 
 export const CheckIcon = styled(Icons.Check)`
-  width: 16px;
+  display: none;
+  fill: ${({ theme }): string => theme.colors.foreground};
   height: 16px;
-  fill: ${({ theme }): string => theme.colors.text};
-  position: absolute;
-  top: 1px;
   left: 1px;
+  position: absolute;
+  stroke: ${({ theme }): string => theme.colors.foreground};
+  stroke-width: 2px;
+  top: 1px;
+  width: 16px;
   z-index: 2;
 
   @media screen and (max-width: 480px) {
-    width: 18px;
     height: 18px;
-    top: 2px;
     left: 2px;
+    top: 2px;
+    width: 18px;
   }
 `;
 
 export const NativeCheckbox = styled.input`
-  border: 0;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;
-  white-space: nowrap;
-  width: 0;
-  position: absolute;
+  clip: rect(0 0 0 0);
+  height: 1px;
   margin: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
 
-  :disabled ~ ${CheckIcon} {
-    fill: ${({ theme }): string => theme.colors.additionalText};
+  :checked ~ ${CheckIcon} {
+    display: inline-block;
   }
 `;
 
 export const CustomCheckbox = styled.div`
-  display: inline-block;
-  margin-right: 16px;
-  width: 18px;
-  height: 18px;
   background-color: inherit;
   border: 1px solid ${({ theme }): string => theme.colors.border};
+  border-radius: 6px;
   box-sizing: border-box;
-  border-radius: 4px;
   cursor: pointer;
+  display: inline-block;
+  height: 18px;
+  margin-right: 8px;
+  width: 18px;
 
   @media screen and (max-width: 480px) {
-    width: 22px;
     height: 22px;
+    width: 22px;
   }
 
-  ${NativeCheckbox}:focus + & {
-    border-color: ${({ theme }): string => theme.colors.secondary};
-    box-shadow: ${({ theme }): string => theme.colors.outline};
+  ${NativeCheckbox}:active + &, ${NativeCheckbox}:focus + & {
+    border-color: ${({ theme }): string => theme.colors.primary};
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
 
   ${NativeCheckbox}:disabled + & {
+    background-color: ${({ theme }): string => theme.colors.background};
     cursor: not-allowed;
-    background-color: ${({ theme }): string =>
-      theme.colors.disabledInputBackground};
+  }
+
+  ${NativeCheckbox}:checked + & {
+    background-color: ${({ theme }): string => theme.colors.primary};
+    border: none;
+  }
+
+  ${NativeCheckbox}:disabled:checked + & {
+    background-color: ${({ theme }): string => theme.colors.textSecondary};
+    border: none;
   }
 `;
 
 export const Label = styled.label`
-  font-family: "Open Sans", sans-serif;
-  position: relative;
-  padding: 0;
-  line-height: 18px;
-  display: flex;
   align-items: center;
   color: ${({ theme }): string => theme.colors.text};
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  line-height: 18px;
+  padding: 0;
+  position: relative;
 `;

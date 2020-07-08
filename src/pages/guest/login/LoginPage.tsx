@@ -1,49 +1,59 @@
-import React from "react";
+import React, { useCallback, FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 import { Api } from "src/api";
-import { LoginForm, LoginFormValues, Button, Link } from "src/components";
+import { Button, Link, LoginForm, LoginFormValues } from "src/components";
 import { ROUTES } from "src/constants";
 import { useErrors } from "src/hooks";
 
 import {
-  Main,
-  Container,
-  Header,
-  Title,
   ChevronIcon,
-  DividerContainer,
+  Container,
   Divider,
+  DividerContainer,
   DividerText,
   GoogleIcon,
+  Header,
+  Main,
+  Title,
 } from "../Guest.styles";
 
-function LoginPage(): JSX.Element {
+const initialValues: LoginFormValues = {
+  email: "",
+  isRemembered: false,
+  password: "",
+};
+
+const LoginPage: FC = () => {
   const { t } = useTranslation("login");
 
-  const { clearError, getError, addError, clearAllErrors } = useErrors();
+  const { addError, getError, setErrors } = useErrors();
 
-  async function handleSubmit(values: LoginFormValues): Promise<void> {
-    const { email, password, isRemembered } = values;
-    const { LOCAL, SESSION } = Api.persistence;
+  const handleSubmit = useCallback(
+    async (values: LoginFormValues, resetValues: VoidFunction) => {
+      const { email, isRemembered, password } = values;
+      const { LOCAL, SESSION } = Api.persistence;
 
-    clearAllErrors();
+      setErrors({}, true);
 
-    Api.auth
-      .setPersistence(isRemembered ? LOCAL : SESSION)
-      .then(() =>
-        Api.auth
-          .signInWithEmailAndPassword(email, password)
-          .catch((err) => addError(err.code))
+      await Api.auth.setPersistence(isRemembered ? LOCAL : SESSION).then(() =>
+        Api.auth.signInWithEmailAndPassword(email, password).catch((err) => {
+          addError(err?.code);
+          resetValues();
+        })
       );
-  }
+    },
+    [addError, setErrors]
+  );
 
-  function signInWithGoogle(): void {
-    Api.auth
-      .signInWithPopup(Api.googleAuthProvider)
-      .catch((err) => addError(err.code));
-  }
+  const signInWithGoogle = useCallback(
+    () =>
+      Api.auth
+        .signInWithPopup(Api.googleAuthProvider)
+        .catch((err) => addError(err.code)),
+    [addError]
+  );
 
   return (
     <Main>
@@ -60,9 +70,10 @@ function LoginPage(): JSX.Element {
         </Header>
 
         <LoginForm
-          onSubmit={handleSubmit}
-          clearError={clearError}
           getError={getError}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          setErrors={setErrors}
         />
 
         <DividerContainer>
@@ -71,13 +82,13 @@ function LoginPage(): JSX.Element {
           <Divider />
         </DividerContainer>
 
-        <Button type="button" variant="secondary" onClick={signInWithGoogle}>
+        <Button onClick={signInWithGoogle} type="button" variant="basic">
           <GoogleIcon />
           {t("withGoogle")}
         </Button>
       </Container>
     </Main>
   );
-}
+};
 
 export default LoginPage;

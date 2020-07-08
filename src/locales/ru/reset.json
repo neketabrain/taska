@@ -1,9 +1,9 @@
 {
-  "title": "Сброс пароля",
-  "toLogin": "Вход",
+  "button": "Сбросить",
   "email": {
     "label": "Электронная почта"
   },
-  "button": "Сбросить",
-  "pageTitle": "Taska. Сброс пароля"
+  "pageTitle": "Taska. Сброс пароля",
+  "title": "Сброс пароля",
+  "toLogin": "Вход"
 }

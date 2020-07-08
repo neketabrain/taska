@@ -1,73 +1,78 @@
 import styled, {
   css,
+  DefaultTheme,
   FlattenInterpolation,
   ThemeProps,
-  DefaultTheme,
 } from "styled-components";
 
 import { ButtonProps } from "./Button.types";
 
 const variants = {
   primary: css`
-    color: ${({ theme }): string => theme.colors.buttons.primary.color};
-    background-color: ${({ theme }): string =>
-      theme.colors.buttons.primary.background};
+    background-color: ${({ theme }): string => theme.colors.primary};
+    color: ${({ theme }): string => theme.colors.foreground};
 
     :focus {
-      box-shadow: ${({ theme }): string =>
-        theme.colors.buttons.primary.outline};
+      box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
     }
 
     :hover {
-      background-color: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+      background-color: ${({ theme }): string => theme.colors.primaryHover};
     }
 
     :active {
-      background-color: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundActive};
+      background-color: ${({ theme }): string => theme.colors.primaryActive};
     }
   `,
+
   secondary: css`
-    color: ${({ theme }): string => theme.colors.buttons.secondary.color};
-    background-color: ${({ theme }): string =>
-      theme.colors.buttons.secondary.background};
-    border: 1px solid
-      ${({ theme }): string => theme.colors.buttons.secondary.border};
+    background-color: ${({ theme }): string => theme.colors.secondary};
+    color: ${({ theme }): string => theme.colors.foreground};
 
     :focus {
-      box-shadow: ${({ theme }): string =>
-        theme.colors.buttons.secondary.outline};
+      box-shadow: ${({ theme }): string => theme.colors.secondaryOutline};
     }
 
-    :focus,
     :hover {
-      border-color: ${({ theme }): string =>
-        theme.colors.buttons.secondary.borderHover};
+      background-color: ${({ theme }): string => theme.colors.secondaryHover};
     }
 
     :active {
-      background-color: ${({ theme }): string =>
-        theme.colors.buttons.secondary.backgroundActive};
+      background-color: ${({ theme }): string => theme.colors.secondaryActive};
+    }
+  `,
+
+  basic: css`
+    background-color: ${({ theme }): string => theme.colors.foreground};
+    border: 1px solid ${({ theme }): string => theme.colors.border};
+    color: ${({ theme }): string => theme.colors.text};
+
+    :focus {
+      box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
+    }
+
+    :active,
+    :hover {
+      background-color: ${({ theme }): string => theme.colors.foregroundHover};
     }
   `,
 };
 
 const Button = styled.button<ButtonProps>`
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  outline: 0;
+  padding: 0;
   position: relative;
   width: 100%;
-  height: 40px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  padding: 0;
-  cursor: pointer;
-  outline: 0;
-  font-size: 14px;
-  border: none;
 
   :disabled {
     cursor: not-allowed;
@@ -75,8 +80,8 @@ const Button = styled.button<ButtonProps>`
   }
 
   @media screen and (max-width: 480px) {
-    height: 50px;
     font-size: 16px;
+    height: 50px;
   }
 
   ${({ variant }): FlattenInterpolation<ThemeProps<DefaultTheme>> =>

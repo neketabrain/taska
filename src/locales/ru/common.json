@@ -1,10 +1,17 @@
 {
-  "navMenu": {
-    "newTask": "Добавить задачу",
-    "taskList": "Список задач",
-    "settings": "Настройки",
-    "logout": "Выйти"
+  "datePicker": {
+    "time": "Время",
+    "today": "Сегодня"
   },
-  "switchLanguage": "Switch to English",
-  "mobileSwitchLanguage": "English"
+  "imageAlts": {
+    "avatar": "Аватар"
+  },
+  "mobileSwitchLanguage": "English",
+  "navMenu": {
+    "logout": "Выйти",
+    "newTask": "Добавить задачу",
+    "settings": "Настройки",
+    "taskList": "Список задач"
+  },
+  "switchLanguage": "Switch to English"
 }

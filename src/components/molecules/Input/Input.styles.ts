@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Box, TextField, Text } from "src/components";
+import { Box, Text, TextField } from "src/components";
 
 export const InputContainer = styled(Box)`
   position: relative;
@@ -8,8 +8,8 @@ export const InputContainer = styled(Box)`
 `;
 
 export const Label = styled.label`
-  font-family: "Open Sans", sans-serif;
   color: ${({ theme }): string => theme.colors.text};
+  font-family: "Open Sans", sans-serif;
 `;
 
 export const Field = styled(TextField)`
@@ -17,7 +17,7 @@ export const Field = styled(TextField)`
 `;
 
 export const Error = styled(Text)`
-  font-size: 12px;
   color: ${({ theme }): string => theme.colors.error};
+  font-size: 12px;
   margin: 4px 0 0;
 `;

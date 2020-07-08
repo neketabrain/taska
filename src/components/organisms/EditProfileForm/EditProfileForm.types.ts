@@ -1,9 +1,11 @@
-export interface EditProfileFormValues {
+import { ClassName } from "src/types";
+
+export type EditProfileFormValues = {
   firstName: string;
   lastName: string;
-}
+};
 
-export interface EditProfileFormProps {
+export type EditProfileFormProps = ClassName & {
+  initialValues: EditProfileFormValues;
   onSubmit: (values: EditProfileFormValues) => Promise<void>;
-  initialState: EditProfileFormValues;
-}
+};

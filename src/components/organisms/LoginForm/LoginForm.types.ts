@@ -1,12 +1,18 @@
-import { UseErrors } from "src/hooks/useErrors";
+import { GetError, SetErrors } from "src/hooks/useErrors/useErrors.types";
+import { ClassName } from "src/types";
 
-export interface LoginFormValues {
+export type LoginFormValues = {
   email: string;
-  password: string;
   isRemembered: boolean;
-}
+  password: string;
+};
 
-export interface LoginFormProps extends Partial<UseErrors> {
-  onSubmit: (values: LoginFormValues) => Promise<void>;
-  error?: string;
-}
+export type LoginFormProps = ClassName & {
+  getError: GetError;
+  initialValues: LoginFormValues;
+  onSubmit: (
+    values: LoginFormValues,
+    resetValues: VoidFunction
+  ) => Promise<void>;
+  setErrors: SetErrors;
+};

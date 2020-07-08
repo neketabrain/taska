@@ -1,12 +1,19 @@
-import { UseErrors } from "src/hooks/useErrors";
+import { GetError, SetErrors } from "src/hooks/useErrors/useErrors.types";
+import { ClassName } from "src/types";
 
-export interface RegistrationFormValues {
+export type RegistrationFormValues = {
+  email: string;
   firstName: string;
   lastName: string;
-  email: string;
   password: string;
-}
+};
 
-export interface RegistrationFormProps extends Partial<UseErrors> {
-  onSubmit: (values: RegistrationFormValues) => Promise<void>;
-}
+export type RegistrationFormProps = ClassName & {
+  getError: GetError;
+  initialValues: RegistrationFormValues;
+  onSubmit: (
+    values: RegistrationFormValues,
+    resetValues: VoidFunction
+  ) => Promise<void>;
+  setErrors: SetErrors;
+};

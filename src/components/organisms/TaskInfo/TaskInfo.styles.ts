@@ -5,20 +5,20 @@ import styled, {
   ThemeProps,
 } from "styled-components";
 
-import { Box, Flex, Text, Icons, Link } from "src/components";
+import { Box, CheckButton, Flex, Icons, Link, Text } from "src/components";
 
 export const Wrapper = styled(Box)`
   width: 100%;
 `;
 
 export const Container = styled(Box)`
-  width: 100%;
   padding-top: 16px;
+  width: 100%;
 `;
 
 export const Header = styled(Flex)<{ withBorder?: boolean }>`
-  width: 100%;
   flex-direction: row;
+  width: 100%;
 
   ${({
     withBorder,
@@ -26,8 +26,8 @@ export const Header = styled(Flex)<{ withBorder?: boolean }>`
   }): FlattenInterpolation<ThemeProps<DefaultTheme>> | false | undefined =>
     withBorder &&
     css`
-      padding-bottom: 16px;
       border-bottom: 1px solid ${theme.colors.border};
+      padding-bottom: 16px;
     `};
 `;
 
@@ -42,32 +42,23 @@ export const Name = styled(Text)`
 `;
 
 export const DateText = styled(Text)`
-  font-size: 14px;
-  color: ${({ theme }): string => theme.colors.primary};
-  margin: 4px 0 0;
-  display: flex;
   align-items: center;
+  color: ${({ theme }): string => theme.colors.textSecondary};
+  display: flex;
+  font-size: 14px;
+  margin: 4px 0 0;
 `;
 
 export const ClockIcon = styled(Icons.Clock)`
-  width: 14px;
+  fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 14px;
-  fill: ${({ theme }): string => theme.colors.primary};
   margin-right: 4px;
+  width: 14px;
 `;
 
-export const CheckIcon = styled(Icons.CircleCheck)`
-  position: relative;
-  width: 36px;
+export const CheckTaskButton = styled(CheckButton)`
   height: 36px;
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
-`;
-
-export const FilledCheckIcon = styled(Icons.FilledCircleCheck)`
-  position: relative;
   width: 36px;
-  height: 36px;
-  fill: ${({ theme }): string => theme.colors.buttons.primary.background};
 `;
 
 export const Description = styled(Text)`
@@ -75,12 +66,12 @@ export const Description = styled(Text)`
   white-space: pre-line;
 `;
 
-export const PinIcon = styled(Icons.FilledPin)`
-  width: 16px;
+export const PinIcon = styled(Icons.Pin)`
+  fill: ${({ theme }): string => theme.colors.primary};
   height: 16px;
-  position: relative;
-  fill: ${({ theme }): string => theme.colors.secondary};
   margin-right: 4px;
+  position: relative;
+  width: 16px;
 `;
 
 export const Time = styled(DateText)`
@@ -88,10 +79,10 @@ export const Time = styled(DateText)`
 `;
 
 export const CalendarIcon = styled(Icons.Calendar)`
-  width: 14px;
+  fill: ${({ theme }): string => theme.colors.textSecondary};
   height: 14px;
-  fill: ${({ theme }): string => theme.colors.primary};
   margin-right: 4px;
+  width: 14px;
 `;
 
 export const ButtonWrapper = styled(Box)`
@@ -101,67 +92,68 @@ export const ButtonWrapper = styled(Box)`
 export const ButtonContainer = styled(Flex)`
   justify-content: space-between;
   margin-left: 16px;
-  width: 100%;
   max-width: 65px;
+  width: 100%;
 `;
 
-export const PenIcon = styled(Icons.FilledPen)`
-  width: 24px;
-  height: 24px;
+export const PenIcon = styled(Icons.Edit)`
   fill: ${({ theme }): string => theme.colors.border};
+  height: 24px;
+  width: 24px;
 `;
 
-export const TrashIcon = styled(Icons.FilledTrash)`
-  width: 24px;
-  height: 24px;
+export const TrashIcon = styled(Icons.Delete)`
   fill: ${({ theme }): string => theme.colors.border};
+  height: 24px;
+  width: 24px;
 `;
 
 export const VerticalDivider = styled(Box)`
-  width: 1px;
+  background-color: ${({ theme }): string => theme.colors.border};
   height: 24px;
   margin: 0 8px;
-  background-color: ${({ theme }): string => theme.colors.border};
+  width: 1px;
 `;
 
-export const IconButton = styled.button`
-  position: relative;
-  padding: 0;
-  margin: 0;
-  border: none;
-  display: flex;
+export const DeleteButton = styled.button`
   align-items: center;
-  justify-content: center;
   background-color: transparent;
+  border: none;
   cursor: pointer;
-  outline-color: ${({ theme }): string => theme.colors.primaryOutline};
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  position: relative;
 
   :disabled {
     cursor: not-allowed;
     opacity: 0.5;
-    
-    ${TrashIcon} {
-      fill: ${({ theme }): string => theme.colors.primary};
-    }
   }
 
-  :hover {
-    ${CheckIcon}, ${FilledCheckIcon}, ${TrashIcon} {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+  :focus {
+    border-radius: 2px;
+    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
+  }
+
+  :hover,
+  :focus {
+    ${TrashIcon} {
+      fill: ${({ theme }): string => theme.colors.error};
     }
   }
 `;
 
 export const EditButton = styled(Link)`
-  fill: ${({ theme }): string => theme.colors.border};
   color: ${({ theme }): string => theme.colors.border};
+  fill: ${({ theme }): string => theme.colors.border};
 
-  :hover {
+  :hover,
+  :focus {
     text-decoration: none;
     ${PenIcon} {
-      fill: ${({ theme }): string =>
-        theme.colors.buttons.primary.backgroundHover};
+      fill: ${({ theme }): string => theme.colors.text};
     }
   }
 `;

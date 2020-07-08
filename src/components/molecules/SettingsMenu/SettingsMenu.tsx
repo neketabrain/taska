@@ -1,36 +1,36 @@
-import React from "react";
+import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { SettingsMenuItem } from "src/components";
 import { ROUTES } from "src/constants";
+import { ClassName } from "src/types";
 
 import { Container, SettingsMenuItemList } from "./SettingsMenu.styles";
-import { SettingsMenuProps } from "./SettingsMenu.types";
 
 const navItems = [
   {
+    exact: true,
     label: "email",
     path: ROUTES.SETTINGS_EMAIL,
-    exact: true,
   },
   {
+    exact: true,
     label: "password",
     path: ROUTES.SETTINGS_PASSWORD,
-    exact: true,
   },
   {
+    exact: true,
     label: "profile",
     path: ROUTES.SETTINGS_PROFILE,
-    exact: true,
   },
   {
+    exact: true,
     label: "preferences",
     path: ROUTES.SETTINGS_PREFERENCES,
-    exact: true,
   },
 ];
 
-function SettingsMenu(props: SettingsMenuProps): JSX.Element {
+const SettingsMenu: FC<ClassName> = (props) => {
   const { className } = props;
 
   const { t } = useTranslation("settings");
@@ -48,6 +48,6 @@ function SettingsMenu(props: SettingsMenuProps): JSX.Element {
       </SettingsMenuItemList>
     </Container>
   );
-}
+};
 
 export default SettingsMenu;

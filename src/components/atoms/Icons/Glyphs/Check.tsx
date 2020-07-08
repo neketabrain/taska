@@ -1,19 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { GlyphProps } from "./Glyphs.types";
 
-function Check(props: GlyphProps): JSX.Element {
-  return (
-    <svg {...props} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" />
-    </svg>
-  );
-}
+const Check: FC<GlyphProps> = (props) => (
+  <svg {...props} viewBox="0 0 24 24">
+    <path d="M9 16.2l-3.5-3.5a1 1 0 00-1.4 1.4l4.2 4.2c.4.4 1 .4 1.4 0L20.3 7.7a1 1 0 10-1.4-1.4L9 16.2z" />
+  </svg>
+);
 
 Check.defaultProps = {
-  width: "24px",
-  height: "24px",
   fill: "black",
+  height: "24px",
+  width: "24px",
 };
 
 export default Check;

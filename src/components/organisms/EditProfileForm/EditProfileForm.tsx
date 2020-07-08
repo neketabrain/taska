@@ -1,53 +1,54 @@
-import React, { FormEvent, useState } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { Input, UploadAvatar } from "src/components";
 import { useForm } from "src/hooks";
 import { ApplicationStore } from "src/store";
+import { OnSubmitEvent } from "src/types";
+import { getUserInitials } from "src/utils";
 
 import {
-  Form,
-  FlexContainer,
-  InputContainer,
-  SubmitButton,
-  InputsContainer,
   AvatarContainer,
-  Picture,
   AvatarLabel,
+  FlexContainer,
+  Form,
+  InputContainer,
+  InputsContainer,
   MockAvatar,
+  Picture,
+  SubmitButton,
   UserAvatar,
 } from "./EditProfileForm.styles";
 import { EditProfileFormProps } from "./EditProfileForm.types";
 
-function EditProfileForm(props: EditProfileFormProps): JSX.Element {
-  const { onSubmit, initialState } = props;
+const EditProfileForm: FC<EditProfileFormProps> = (props) => {
+  const { className, initialValues, onSubmit } = props;
 
   const { t } = useTranslation("settings");
+  const { t: tCommon } = useTranslation("common");
 
-  const user = useSelector((state: ApplicationStore) => state.user);
-
-  const { values, onChange } = useForm(initialState);
+  const { onChange, values } = useForm(initialValues);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const userName = user?.displayName || "";
-  const userAvatar = user?.photoURL;
+  const handleSubmit = useCallback(
+    async (event: OnSubmitEvent) => {
+      event.preventDefault();
 
-  const [firstName = [""], lastName = [""]] = userName.split(" ");
-  const avatarText = firstName[0] + lastName[0];
+      setSubmitting(true);
+      await onSubmit(values);
+      setSubmitting(false);
+    },
+    [onSubmit, setSubmitting, values]
+  );
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> {
-    event.preventDefault();
-
-    setSubmitting(true);
-    await onSubmit(values);
-    setSubmitting(false);
-  }
+  const user = useSelector((state: ApplicationStore) => state.user);
+  const userAvatar = useMemo(() => user?.photoURL, [user]);
+  const userName = useMemo(() => user?.displayName || "", [user]);
+  const userInitials = useMemo(() => getUserInitials(userName), [userName]);
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className={className} onSubmit={handleSubmit}>
       <FlexContainer>
         <AvatarContainer>
           <AvatarLabel htmlFor="profileAvatar">
@@ -57,43 +58,45 @@ function EditProfileForm(props: EditProfileFormProps): JSX.Element {
           <Picture>
             <UploadAvatar name="profileAvatar" />
 
-            {!!userAvatar && <UserAvatar src={userAvatar} alt="User avatar" />}
-            {!userAvatar && <MockAvatar>{avatarText}</MockAvatar>}
+            {!!userAvatar && (
+              <UserAvatar alt={tCommon("imageAlts.avatar")} src={userAvatar} />
+            )}
+            {!userAvatar && <MockAvatar>{userInitials}</MockAvatar>}
           </Picture>
         </AvatarContainer>
 
         <InputsContainer>
           <InputContainer>
             <Input
-              required
+              disabled={isSubmitting}
               label={t("profilePage.form.firstName")}
               name="firstName"
+              onChange={onChange}
+              required={true}
               type="text"
               value={values.firstName}
-              onChange={onChange}
-              disabled={isSubmitting}
             />
           </InputContainer>
 
           <InputContainer>
             <Input
-              required
+              disabled={isSubmitting}
               label={t("profilePage.form.lastName")}
               name="lastName"
+              onChange={onChange}
+              required={true}
               type="text"
               value={values.lastName}
-              onChange={onChange}
-              disabled={isSubmitting}
             />
           </InputContainer>
         </InputsContainer>
       </FlexContainer>
 
-      <SubmitButton variant="primary" type="submit" disabled={isSubmitting}>
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("profilePage.form.submit")}
       </SubmitButton>
     </Form>
   );
-}
+};
 
 export default EditProfileForm;

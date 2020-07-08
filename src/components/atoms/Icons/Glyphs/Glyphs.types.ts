@@ -1,6 +1,8 @@
-export interface GlyphProps {
-  width?: string;
-  height?: string;
+import { ClassName, OnClickEvent } from "src/types";
+
+export type GlyphProps = ClassName & {
   fill?: string;
-  className?: string;
-}
+  height?: string;
+  onClick?: <T>(event: OnClickEvent<T>) => void;
+  width?: string;
+};

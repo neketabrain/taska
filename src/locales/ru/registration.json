@@ -1,6 +1,6 @@
 {
-  "title": "Регистрация",
-  "toLogin": "Вход",
+  "button": "Зарегистрироваться",
+  "divider": "или",
   "email": {
     "label": "Электронная почта"
   },
@@ -10,11 +10,11 @@
   "lastName": {
     "label": "Фамилия"
   },
+  "pageTitle": "Taska. Регистрация",
   "password": {
     "label": "Пароль"
   },
-  "button": "Зарегистрироваться",
-  "divider": "или",
-  "withGoogle": "Войти через Google",
-  "pageTitle": "Taska. Регистрация"
+  "title": "Регистрация",
+  "toLogin": "Вход",
+  "withGoogle": "Войти через Google"
 }

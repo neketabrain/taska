@@ -1,19 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Container, NavLink } from "./NavItem.styles";
 import { NavItemProps } from "./NavItem.types";
 
-function NavItem(props: NavItemProps): JSX.Element {
-  const { label, Icon, className, ...rest } = props;
+const NavItem: FC<NavItemProps> = (props) => {
+  const { className, Icon, label, ...rest } = props;
 
   return (
-    <Container className={className}>
+    <Container className={className} role="menuitem">
       <NavLink activeClassName="active" {...rest}>
-        {Icon && <Icon />}
+        {Icon && <Icon aria-hidden="true" />}
         {label}
       </NavLink>
     </Container>
   );
-}
+};
 
 export default NavItem;

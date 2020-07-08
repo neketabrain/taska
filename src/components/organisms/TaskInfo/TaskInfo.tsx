@@ -1,79 +1,95 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Box, NativeLink, Flex } from "src/components";
+import { Box, Flex, NativeLink } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
+import { getLocale } from "src/utils";
 
 import {
-  Wrapper,
-  Header,
-  NameContainer,
-  Name,
-  Time,
-  ClockIcon,
-  IconButton,
-  FilledCheckIcon,
-  CheckIcon,
-  Container,
-  Description,
-  PinIcon,
-  DateText,
-  CalendarIcon,
-  VerticalDivider,
   ButtonContainer,
-  PenIcon,
-  TrashIcon,
-  EditButton,
   ButtonWrapper,
+  CalendarIcon,
+  CheckTaskButton,
+  ClockIcon,
+  Container,
+  DateText,
+  DeleteButton,
+  Description,
+  EditButton,
+  Header,
+  Name,
+  NameContainer,
+  PenIcon,
+  PinIcon,
+  Time,
+  TrashIcon,
+  VerticalDivider,
+  Wrapper,
 } from "./TaskInfo.styles";
 import { TaskInfoProps } from "./TaskInfo.types";
 
-function TaskInfo(props: TaskInfoProps): JSX.Element {
-  const { task, className } = props;
-  const { id, name, time, date, description, completed, address } = task;
+const TaskInfo: FC<TaskInfoProps> = (props) => {
+  const { className, task } = props;
+  const { address, completed, date, description, id, name, time } = task;
+
+  const { t } = useTranslation("accessibility");
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [isPending, setPending] = useState(false);
-  const [isDeleting, setDeleting] = useState(false);
 
-  const parsedDate = useMemo(() => new Date(date).toLocaleDateString(), [date]);
   const addressPath = useMemo(
     () => `https://www.google.com/maps/search/${address}`,
     [address]
   );
   const editPath = useMemo(() => `${ROUTES.TASKS}/${id}/edit`, [id]);
+  const parsedDate = useMemo(
+    () => new Date(date).toLocaleDateString(getLocale()),
+    [date]
+  );
+  const parsedTime = useMemo(
+    () =>
+      new Date(time).toLocaleTimeString(getLocale(), {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    [time]
+  );
 
-  const handleCheck = useCallback(() => {
-    const { uid } = Api.auth.currentUser || {};
-    if (!uid) return;
+  const handleCheck = useCallback(
+    (checked: boolean) => {
+      const { uid } = Api.auth.currentUser || {};
+      if (!uid) return;
 
-    setPending(true);
+      setPending(true);
 
-    Api.db
-      .collection("users")
-      .doc(uid)
-      .collection("tasks")
-      .doc(id)
-      .update("completed", !completed)
-      .then(() =>
-        dispatch({
-          type: TasksTypes.UPDATE,
-          payload: { ...task, completed: !completed },
-        })
-      )
-      .finally(() => setPending(false));
-  }, [completed, dispatch, id, task]);
+      Api.db
+        .collection("users")
+        .doc(uid)
+        .collection("tasks")
+        .doc(id)
+        .update("completed", checked)
+        .then(() =>
+          dispatch({
+            type: TasksTypes.UPDATE,
+            payload: { ...task, completed: checked },
+          })
+        )
+        .finally(() => setPending(false));
+    },
+    [dispatch, id, task]
+  );
 
   const handleDelete = useCallback(() => {
     const { uid } = Api.auth.currentUser || {};
     if (!uid) return;
 
-    setDeleting(true);
+    setPending(true);
 
     Api.db
       .collection("users")
@@ -85,17 +101,18 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
         dispatch({ type: TasksTypes.DELETE, payload: id });
         history.push(ROUTES.TASKS);
       })
-      .catch(() => setDeleting(false));
+      .catch(() => setPending(false));
   }, [dispatch, history, id]);
 
   return (
     <Wrapper className={className}>
       <Header withBorder={!!description || !!address}>
         <Box>
-          <IconButton onClick={handleCheck} disabled={isPending}>
-            {completed && <FilledCheckIcon />}
-            {!completed && <CheckIcon />}
-          </IconButton>
+          <CheckTaskButton
+            checked={completed}
+            disabled={isPending}
+            onChange={handleCheck}
+          />
         </Box>
 
         <NameContainer>
@@ -109,22 +126,26 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
 
             <Time>
               <ClockIcon />
-              {time}
+              {parsedTime}
             </Time>
           </Flex>
         </NameContainer>
 
         <ButtonWrapper>
           <ButtonContainer>
-            <EditButton to={editPath}>
+            <EditButton aria-label={t("editTask")} to={editPath}>
               <PenIcon />
             </EditButton>
 
             <VerticalDivider />
 
-            <IconButton onClick={handleDelete} disabled={isDeleting}>
+            <DeleteButton
+              aria-label={t("deleteTask")}
+              disabled={isPending}
+              onClick={handleDelete}
+            >
               <TrashIcon />
-            </IconButton>
+            </DeleteButton>
           </ButtonContainer>
         </ButtonWrapper>
       </Header>
@@ -137,13 +158,17 @@ function TaskInfo(props: TaskInfoProps): JSX.Element {
 
       {!!address && (
         <Container>
-          <NativeLink href={addressPath} target="_blank" rel="noreferrer">
+          <NativeLink
+            href={addressPath}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
             <PinIcon /> {address}
           </NativeLink>
         </Container>
       )}
     </Wrapper>
   );
-}
+};
 
 export default TaskInfo;

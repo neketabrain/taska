@@ -1,47 +1,47 @@
 {
-  "pageTitle": "Taska. Settings",
-  "title": "Settings",
-  "navMenu": {
-    "email": "Change email",
-    "password": "Change password",
-    "profile": "Edit profile",
-    "preferences": "Preferences"
-  },
   "emailPage": {
-    "title": "Email",
-    "successful": "Your email address change was successful",
     "form": {
       "email": "New email",
       "password": "Password",
       "submit": "Change"
-    }
+    },
+    "successful": "Your email address change was successful",
+    "title": "Email"
   },
+  "navMenu": {
+    "email": "Change email",
+    "password": "Change password",
+    "preferences": "Preferences",
+    "profile": "Edit profile"
+  },
+  "pageTitle": "Taska. Settings",
   "passwordPage": {
-    "title": "Password",
-    "successful": "Your password change was successful",
     "form": {
-      "oldPassword": "Old password",
       "newPassword": "New password",
+      "oldPassword": "Old password",
       "submit": "Change"
-    }
+    },
+    "successful": "Your password change was successful",
+    "title": "Password"
+  },
+  "preferencesPage": {
+    "darkMode": "Dark mode:",
+    "english": "English",
+    "language": "Language:",
+    "off": "Off",
+    "on": "On",
+    "russian": "Русский",
+    "title": "Preferences"
   },
   "profilePage": {
-    "title": "Profile",
-    "successful": "Your profile change was successful",
     "form": {
       "firstName": "First name",
       "lastName": "Last name",
       "photoURL": "Avatar",
       "submit": "Change"
-    }
+    },
+    "successful": "Your profile change was successful",
+    "title": "Profile"
   },
-  "preferencesPage": {
-    "title": "Preferences",
-    "language": "Language:",
-    "russian": "Русский",
-    "english": "English",
-    "darkMode": "Dark mode:",
-    "on": "On",
-    "off": "Off"
-  }
+  "title": "Settings"
 }

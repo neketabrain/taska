@@ -1,65 +1,61 @@
-import React, { FormEvent, useState } from "react";
+import React, { useCallback, useState, FC } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Input, Box, Flex } from "src/components";
+import { Box, Flex, Input } from "src/components";
 import { useForm } from "src/hooks";
+import { OnSubmitEvent } from "src/types";
 
 import { Form, InputContainer, SubmitButton } from "./RegistrationForm.styles";
-import {
-  RegistrationFormProps,
-  RegistrationFormValues,
-} from "./RegistrationForm.types";
+import { RegistrationFormProps } from "./RegistrationForm.types";
 
-const defaultValues: RegistrationFormValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-};
-
-function RegistrationForm(props: RegistrationFormProps): JSX.Element {
-  const { onSubmit, getError, clearError } = props;
+const RegistrationForm: FC<RegistrationFormProps> = (props) => {
+  const { className, getError, initialValues, onSubmit, setErrors } = props;
 
   const { t } = useTranslation("registration");
 
-  const { values, onChange } = useForm(defaultValues, clearError);
+  const { values, onChange, setValues } = useForm(initialValues, setErrors);
   const [isSubmitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> {
-    event.preventDefault();
+  const resetValues = useCallback(() => setValues({ password: "" }), [
+    setValues,
+  ]);
 
-    setSubmitting(true);
-    await onSubmit(values);
-    setSubmitting(false);
-  }
+  const handleSubmit = useCallback(
+    async (event: OnSubmitEvent) => {
+      event.preventDefault();
+
+      setSubmitting(true);
+      await onSubmit(values, resetValues);
+      setSubmitting(false);
+    },
+    [onSubmit, resetValues, setSubmitting, values]
+  );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className={className} onSubmit={handleSubmit}>
       <InputContainer>
         <Flex justifyContent="space-between">
           <Box width="48%">
             <Input
-              required
+              disabled={isSubmitting}
               label={t("firstName.label")}
               name="firstName"
+              onChange={onChange}
+              required={true}
               type="text"
               value={values.firstName}
-              onChange={onChange}
-              disabled={isSubmitting}
             />
           </Box>
 
           <Box width="48%">
             <Input
-              required
+              disabled={isSubmitting}
               label={t("lastName.label")}
               name="lastName"
+              onChange={onChange}
+              required={true}
               type="text"
               value={values.lastName}
-              onChange={onChange}
-              disabled={isSubmitting}
             />
           </Box>
         </Flex>
@@ -67,35 +63,35 @@ function RegistrationForm(props: RegistrationFormProps): JSX.Element {
 
       <InputContainer>
         <Input
-          required
+          disabled={isSubmitting}
           error={getError ? getError("email") : ""}
           label={t("email.label")}
           name="email"
+          onChange={onChange}
+          required={true}
           type="email"
           value={values.email}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
       <InputContainer>
         <Input
-          required
+          disabled={isSubmitting}
           error={getError ? getError("password") : ""}
           label={t("password.label")}
           name="password"
+          onChange={onChange}
+          required={true}
           type="password"
           value={values.password}
-          onChange={onChange}
-          disabled={isSubmitting}
         />
       </InputContainer>
 
-      <SubmitButton variant="primary" type="submit" disabled={isSubmitting}>
+      <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">
         {t("button")}
       </SubmitButton>
     </Form>
   );
-}
+};
 
 export default RegistrationForm;

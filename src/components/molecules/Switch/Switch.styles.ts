@@ -19,58 +19,57 @@ export const RightLabel = styled(LeftLabel)`
 `;
 
 export const SwitchContainer = styled.label`
-  position: relative;
-  height: 100%;
-  width: 48px;
   display: inline-block;
+  height: 100%;
+  position: relative;
+  width: 48px;
 `;
 
 export const Switcher = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 4px;
-  overflow: hidden;
+  background-color: ${({ theme }): string => theme.colors.backgroundHover};
   border: 1px solid ${({ theme }): string => theme.colors.border};
+  border-radius: 14px;
+  bottom: 0;
   box-sizing: border-box;
+  cursor: pointer;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
 
   :before {
-    position: absolute;
+    background-color: ${({ theme }): string => theme.colors.foreground};
+    border-radius: 50%;
+    bottom: 1px;
     content: "";
-    height: 100%;
-    width: 20px;
-    left: 0;
-    bottom: 0;
-    background-color: ${({ theme }): string => theme.colors.primary};
+    height: calc(100% - 2px);
+    left: 1px;
+    position: absolute;
     transition: transform 0.4s;
-    border-radius: 2px;
+    width: 16px;
   }
 `;
 
 export const NativeInput = styled.input`
+  height: 0;
   opacity: 0;
   width: 0;
-  height: 0;
 
   :focus + ${Switcher} {
     border-color: ${({ theme }): string => theme.colors.secondary};
-    box-shadow: ${({ theme }): string => theme.colors.outline};
+    box-shadow: ${({ theme }): string => theme.colors.secondaryOutline};
+  }
+
+  :checked + ${Switcher} {
+    background-color: ${({ theme }): string => theme.colors.secondary};
   }
 
   :checked + ${Switcher}:before {
-    transform: translateX(26px);
+    transform: translateX(28px);
   }
 
   :disabled + ${Switcher} {
     cursor: not-allowed;
-    background-color: ${({ theme }): string =>
-      theme.colors.disabledInputBackground};
-
-    :before {
-      background-color: ${({ theme }): string => theme.colors.borderDarker};
-    }
-  }
+    opacity: 0.5;
 `;

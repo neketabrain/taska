@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import { Flex, Box, Card, H1, Text } from "src/components";
+import { Box, Card, Flex, H1, Text } from "src/components";
 
 export const Wrapper = styled.main`
+  display: flex;
   position: relative;
   width: 100%;
-  display: flex;
 `;
 
 export const Container = styled(Card)`
@@ -13,21 +13,21 @@ export const Container = styled(Card)`
 `;
 
 export const Title = styled(H1)<{ decreasedMargin?: boolean }>`
-  padding: 0 24px;
   margin-bottom: ${({ decreasedMargin }): string =>
     (decreasedMargin && "16px") || "32px"};
+  padding: 0 24px;
 `;
 
 export const MenuSection = styled.section`
-  position: relative;
-  max-width: 350px;
-  width: 100%;
   margin-right: 16px;
+  max-width: 350px;
+  position: relative;
+  width: 100%;
 `;
 
 export const ContentSection = styled.section`
-  position: relative;
   max-width: 460px;
+  position: relative;
   width: 100%;
 `;
 
@@ -36,21 +36,21 @@ export const ContentWrapper = styled(Box)`
 `;
 
 export const AlertContainer = styled(Flex)`
-  width: 100%;
-  margin-bottom: 16px;
-  background-color: ${({ theme }): string => theme.colors.opacitySuccessful};
-  color: ${({ theme }): string => theme.colors.successfulText};
-  text-align: center;
-  justify-content: center;
   align-items: center;
+  background-color: ${({ theme }): string => theme.colors.secondaryOpacity};
+  color: ${({ theme }): string => theme.colors.secondary};
   font-weight: 600;
+  justify-content: center;
+  margin-bottom: 16px;
   padding: 12px 24px;
+  text-align: center;
+  width: 100%;
 `;
 
 export const FieldContainer = styled(Flex)`
-  width: 100%;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   :not(:first-of-type) {
     margin-top: 16px;

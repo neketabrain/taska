@@ -1,9 +1,9 @@
 {
-  "title": "Reset password",
-  "toLogin": "Login",
+  "button": "Reset",
   "email": {
     "label": "Email"
   },
-  "button": "Reset",
-  "pageTitle": "Taska. Reset password"
+  "pageTitle": "Taska. Reset password",
+  "title": "Reset password",
+  "toLogin": "Login"
 }

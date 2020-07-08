@@ -4,44 +4,25 @@ declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
       background: string;
-      cardBackground: string;
-      text: string;
-      additionalText: string;
-      invertedText: string;
-      primaryLightest: string;
-      primary: string;
-      primaryDark: string;
-      primaryDarkest: string;
-      secondary: string;
+      backgroundHover: string;
       border: string;
-      borderDarker: string;
+      cardBoxShadow: string;
       error: string;
-      disabledInputBackground: string;
-      errorInputBackground: string;
-      outline: string;
-      opacityGrey: string;
-      opacityDarkGrey: string;
-      successfulText: string;
-      opacitySuccessful: string;
+      errorOpacity: string;
+      errorOutline: string;
+      foreground: string;
+      foregroundHover: string;
+      primary: string;
+      primaryActive: string;
+      primaryHover: string;
       primaryOutline: string;
-
-      buttons: {
-        primary: {
-          color: string;
-          background: string;
-          backgroundHover: string;
-          backgroundActive: string;
-          outline: string;
-        };
-        secondary: {
-          color: string;
-          background: string;
-          backgroundActive: string;
-          border: string;
-          borderHover: string;
-          outline: string;
-        };
-      };
+      secondary: string;
+      secondaryActive: string;
+      secondaryHover: string;
+      secondaryOpacity: string;
+      secondaryOutline: string;
+      text: string;
+      textSecondary: string;
     };
   }
 }
