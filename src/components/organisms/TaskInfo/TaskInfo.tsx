@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState, FC } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -36,6 +37,8 @@ import { TaskInfoProps } from "./TaskInfo.types";
 const TaskInfo: FC<TaskInfoProps> = (props) => {
   const { className, task } = props;
   const { address, completed, date, description, id, name, time } = task;
+
+  const { t } = useTranslation("accessibility");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -128,7 +131,7 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
 
         <ButtonWrapper>
           <ButtonContainer>
-            <EditButton to={editPath}>
+            <EditButton aria-label={t("editTask")} to={editPath}>
               <PenIcon />
             </EditButton>
 
