@@ -5,7 +5,7 @@ import styled, {
   ThemeProps,
 } from "styled-components";
 
-import { Box, Flex, Icons, Link, Text } from "src/components";
+import { Box, CheckButton, Flex, Icons, Link, Text } from "src/components";
 
 export const Wrapper = styled(Box)`
   width: 100%;
@@ -56,17 +56,8 @@ export const ClockIcon = styled(Icons.Clock)`
   width: 14px;
 `;
 
-export const CheckIcon = styled(Icons.CheckCircle)`
-  fill: ${({ theme }): string => theme.colors.textSecondary};
+export const CheckTaskButton = styled(CheckButton)`
   height: 36px;
-  position: relative;
-  width: 36px;
-`;
-
-export const FilledCheckIcon = styled(Icons.CheckCircleFilled)`
-  fill: ${({ theme }): string => theme.colors.primary};
-  height: 36px;
-  position: relative;
   width: 36px;
 `;
 
@@ -124,7 +115,7 @@ export const VerticalDivider = styled(Box)`
   width: 1px;
 `;
 
-const IconButton = styled.button`
+export const DeleteButton = styled.button`
   align-items: center;
   background-color: transparent;
   border: none;
@@ -140,29 +131,7 @@ const IconButton = styled.button`
     cursor: not-allowed;
     opacity: 0.5;
   }
-`;
 
-export const CheckButton = styled(IconButton)`
-  :focus {
-    border-radius: 50%;
-    box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
-  }
-
-  :hover,
-  :focus {
-    ${CheckIcon}, ${FilledCheckIcon} {
-      fill: ${({ theme }): string => theme.colors.primaryHover};
-    }
-  }
-
-  :active {
-    ${CheckIcon}, ${FilledCheckIcon} {
-      fill: ${({ theme }): string => theme.colors.primaryActive};
-    }
-  }
-`;
-
-export const DeleteButton = styled(IconButton)`
   :focus {
     border-radius: 2px;
     box-shadow: ${({ theme }): string => theme.colors.primaryOutline};

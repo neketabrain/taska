@@ -13,15 +13,13 @@ import {
   ButtonContainer,
   ButtonWrapper,
   CalendarIcon,
-  CheckButton,
-  CheckIcon,
+  CheckTaskButton,
   ClockIcon,
   Container,
   DateText,
   DeleteButton,
   Description,
   EditButton,
-  FilledCheckIcon,
   Header,
   Name,
   NameContainer,
@@ -63,26 +61,29 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
     [time]
   );
 
-  const handleCheck = useCallback(() => {
-    const { uid } = Api.auth.currentUser || {};
-    if (!uid) return;
+  const handleCheck = useCallback(
+    (checked: boolean) => {
+      const { uid } = Api.auth.currentUser || {};
+      if (!uid) return;
 
-    setPending(true);
+      setPending(true);
 
-    Api.db
-      .collection("users")
-      .doc(uid)
-      .collection("tasks")
-      .doc(id)
-      .update("completed", !completed)
-      .then(() =>
-        dispatch({
-          type: TasksTypes.UPDATE,
-          payload: { ...task, completed: !completed },
-        })
-      )
-      .finally(() => setPending(false));
-  }, [completed, dispatch, id, task]);
+      Api.db
+        .collection("users")
+        .doc(uid)
+        .collection("tasks")
+        .doc(id)
+        .update("completed", checked)
+        .then(() =>
+          dispatch({
+            type: TasksTypes.UPDATE,
+            payload: { ...task, completed: checked },
+          })
+        )
+        .finally(() => setPending(false));
+    },
+    [dispatch, id, task]
+  );
 
   const handleDelete = useCallback(() => {
     const { uid } = Api.auth.currentUser || {};
@@ -107,10 +108,11 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
     <Wrapper className={className}>
       <Header withBorder={!!description || !!address}>
         <Box>
-          <CheckButton disabled={isPending} onClick={handleCheck}>
-            {completed && <FilledCheckIcon />}
-            {!completed && <CheckIcon />}
-          </CheckButton>
+          <CheckTaskButton
+            checked={completed}
+            disabled={isPending}
+            onChange={handleCheck}
+          />
         </Box>
 
         <NameContainer>
@@ -137,7 +139,11 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
 
             <VerticalDivider />
 
-            <DeleteButton disabled={isPending} onClick={handleDelete}>
+            <DeleteButton
+              aria-label={t("deleteTask")}
+              disabled={isPending}
+              onClick={handleDelete}
+            >
               <TrashIcon />
             </DeleteButton>
           </ButtonContainer>

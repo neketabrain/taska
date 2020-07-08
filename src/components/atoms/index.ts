@@ -2,6 +2,7 @@ export * from "./Box";
 export * from "./Button";
 export * from "./ButtonLink";
 export * from "./Card";
+export * from "./CheckButton";
 export * from "./Flex";
 export * from "./H1";
 export * from "./Icons";

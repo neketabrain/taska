@@ -1,5 +1,7 @@
 {
+  "checkButton": "Check task",
   "darkMode": "Dark mode",
+  "deleteTask": "Delete task",
   "editTask": "Edit task",
   "filterByDate": "Filter by date",
   "language": "Language",

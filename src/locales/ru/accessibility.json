@@ -1,5 +1,7 @@
 {
+  "checkButton": "Отметить задачу",
   "darkMode": "Темный режим",
+  "deleteTask": "Удалить задачу",
   "editTask": "Редактировать задачу",
   "filterByDate": "Фильтр по дате",
   "language": "Язык",

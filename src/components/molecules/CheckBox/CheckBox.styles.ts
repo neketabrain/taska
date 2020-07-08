@@ -55,7 +55,7 @@ export const CustomCheckbox = styled.div`
     width: 22px;
   }
 
-  ${NativeCheckbox}:focus + & {
+  ${NativeCheckbox}:active + &, ${NativeCheckbox}:focus + & {
     border-color: ${({ theme }): string => theme.colors.primary};
     box-shadow: ${({ theme }): string => theme.colors.primaryOutline};
   }
