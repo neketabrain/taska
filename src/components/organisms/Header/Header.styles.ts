@@ -12,6 +12,14 @@ export const Wrapper = styled.header`
   padding: 0 32px;
   position: relative;
   width: 100%;
+
+  @media screen and (max-width: 480px) {
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 360px) {
+    padding: 0 16px;
+  }
 `;
 
 export const Container = styled(Card)`

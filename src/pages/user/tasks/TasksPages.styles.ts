@@ -25,7 +25,7 @@ export const SecondarySection = styled(PrimarySection)`
 
 export const ListContainer = styled(Card)`
   display: flex;
-  height: calc(100% - 88px - 16px);
+  height: calc(100% - 50px - 16px);
   margin-top: 16px;
   padding: 24px 0;
 `;

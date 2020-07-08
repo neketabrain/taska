@@ -6,16 +6,17 @@ export const Wrapper = styled(Flex)`
   flex-direction: row;
   height: 100%;
   margin: 0 auto;
-  padding: 16px 32px 60px;
+  min-height: 500px;
+  padding: 0 32px;
   position: relative;
   width: 100%;
 
   @media screen and (max-width: 480px) {
-    padding: 16px 24px 60px;
+    padding: 0 24px;
   }
 
   @media screen and (max-width: 360px) {
-    padding: 16px 16px 60px;
+    padding: 0 16px;
   }
 `;
 
