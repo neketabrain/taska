@@ -3,6 +3,10 @@
     "time": "Время",
     "today": "Сегодня"
   },
+  "errorBoundary": {
+    "button": "На главную",
+    "text": "Что-то пошло не так..."
+  },
   "imageAlts": {
     "avatar": "Аватар"
   },
