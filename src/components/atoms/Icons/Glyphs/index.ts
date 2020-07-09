@@ -12,6 +12,7 @@ import ExitFilled from "./ExitFilled";
 import Google from "./Google";
 import ListFilled from "./ListFilled";
 import Pin from "./Pin";
+import SadCat from "./SadCat";
 import Settings from "./Settings";
 
 export default {
@@ -29,5 +30,6 @@ export default {
   Google,
   ListFilled,
   Pin,
+  SadCat,
   Settings,
 };

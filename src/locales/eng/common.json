@@ -3,6 +3,10 @@
     "time": "Time",
     "today": "Today"
   },
+  "errorBoundary": {
+    "button": "To main page",
+    "text": "Something went wrong..."
+  },
   "imageAlts": {
     "avatar": "Avatar"
   },

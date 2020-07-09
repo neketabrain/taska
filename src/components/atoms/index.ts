@@ -3,6 +3,7 @@ export * from "./Button";
 export * from "./ButtonLink";
 export * from "./Card";
 export * from "./CheckButton";
+export * from "./ErrorBoundary";
 export * from "./Flex";
 export * from "./H1";
 export * from "./Icons";

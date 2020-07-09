@@ -30,6 +30,11 @@ const ButtonLink = styled(NavLink)`
   :focus {
     box-shadow: ${({ theme }): string => theme.colors.secondaryOutline};
   }
+
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+    height: 50px;
+  }
 `;
 
 export default ButtonLink;
