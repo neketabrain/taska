@@ -65,5 +65,6 @@ export const FieldLabel = styled(Text)`
 export const FieldHandler = styled(Flex)`
   align-items: center;
   justify-content: center;
+  min-width: 210px;
   width: 210px;
 `;
