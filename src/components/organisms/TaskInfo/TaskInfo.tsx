@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Box, Flex, NativeLink } from "src/components";
+import { Box, Flex, LinkDetector, NativeLink } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
 import { getLocale } from "src/utils";
@@ -152,7 +152,9 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
 
       {!!description && (
         <Container>
-          <Description>{description}</Description>
+          <Description>
+            <LinkDetector>{description}</LinkDetector>
+          </Description>
         </Container>
       )}
 

@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useState, FC } from "react";
-import { Scrollbars } from "react-custom-scrollbars";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { TaskList } from "src/components";
+import { Scrollable, TaskList } from "src/components";
 import { ApplicationStore } from "src/store";
 import { TasksState } from "src/store/tasks";
 import { resetTime } from "src/utils";
@@ -83,9 +82,9 @@ const TaskListPage: FC<TaskListPageProps> = (props) => {
         {isFetching && <ListLoader />}
 
         {!isFetching && (
-          <Scrollbars autoHide={true} style={{ height: "100%" }}>
+          <Scrollable autoHide={true} style={{ height: "100%" }}>
             <TaskList tasks={tasks} />
-          </Scrollbars>
+          </Scrollable>
         )}
       </ListContainer>
     </SecondarySection>
