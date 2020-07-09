@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 import { ERRORS } from "src/constants";
 
@@ -25,7 +26,7 @@ const useErrors = (): UseErrors => {
           [errorName]: error,
         }));
       } else {
-        alert(error); //TODO: Change to toast
+        toast.error(error);
       }
     },
     [setErrors]

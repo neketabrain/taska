@@ -16,4 +16,5 @@ export * from "./SettingsMenuItem";
 export * from "./Text";
 export * from "./TextareaField";
 export * from "./TextField";
+export * from "./ToastContainer";
 export * from "./UploadAvatar";
