@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import "./i18n";
 
 import { GlobalStyles } from "./assets";
+import { ToastContainer } from "./components";
 import { ThemeContext } from "./context/themeContext";
 import Router from "./pages";
 import { configureStore } from "./store";
@@ -28,6 +29,7 @@ const App: FC = () => {
         <Provider store={store}>
           <Router />
         </Provider>
+        <ToastContainer />
       </ThemeProvider>
     </HelmetProvider>
   );
