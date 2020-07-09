@@ -26,10 +26,14 @@ export const Wrapper = styled(Box)`
   .react-datepicker__triangle {
     border-bottom-color: ${({ theme }): string =>
       theme.colors.background} !important;
+    border-top-color: ${({ theme }): string =>
+      theme.colors.background} !important;
     left: 50% !important;
 
     :before {
       border-bottom-color: ${({ theme }): string =>
+        theme.colors.border} !important;
+      border-top-color: ${({ theme }): string =>
         theme.colors.border} !important;
     }
   }
