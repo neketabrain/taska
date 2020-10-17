@@ -42,7 +42,7 @@ const TasksPage: FC = () => {
             id: doc.id,
           }));
 
-          dispatch({ type: TasksTypes.GET, payload: fetchedTasks });
+          dispatch({ type: TasksTypes.SET, payload: fetchedTasks });
         })
         .finally(() => setFetching(false));
     }

@@ -1,6 +1,8 @@
-import { TasksState } from "src/store/tasks";
+import { Task } from "src/store/tasks";
 import { ClassName } from "src/types";
 
+export type Tasks = Array<[string, Task[]]>;
+
 export type TaskListProps = ClassName & {
-  tasks: TasksState;
+  tasks: Tasks;
 };

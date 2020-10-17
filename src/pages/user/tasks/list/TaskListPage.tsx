@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useState, FC } from "react";
+import React, { useCallback, useMemo, useState, FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { Scrollable, TaskList } from "src/components";
 import { ApplicationStore } from "src/store";
-import { TasksState } from "src/store/tasks";
-import { resetTime } from "src/utils";
 
 import {
   DateInput,
@@ -18,6 +16,7 @@ import {
 } from "../TasksPages.styles";
 
 import { TaskListPageProps } from "./TaskListPage.types";
+import { formatTasks } from "./TaskListPage.utils";
 
 const TaskListPage: FC<TaskListPageProps> = (props) => {
   const { isFetching } = props;
@@ -25,40 +24,18 @@ const TaskListPage: FC<TaskListPageProps> = (props) => {
   const { t } = useTranslation("tasks");
   const { t: tA11y } = useTranslation("accessibility");
 
-  const cachedTasks = useSelector((state: ApplicationStore) => state.tasks);
-
   const [filter, setFilter] = useState<Date | null>(null);
-  const [tasks, setTasks] = useState<TasksState>(null);
+
+  const cachedTasks = useSelector((state: ApplicationStore) => state.tasks);
+  const tasks = useMemo(() => formatTasks(cachedTasks, filter), [
+    cachedTasks,
+    filter,
+  ]);
 
   const handleChangeFilter = useCallback(
     (newDate: Date | null) => setFilter(newDate),
     [setFilter]
   );
-
-  useEffect(() => {
-    const filterDate = resetTime(filter);
-
-    const filteredTasks =
-      filterDate && cachedTasks
-        ? cachedTasks.filter((task) => {
-            const taskDate = new Date(task.date);
-            taskDate.setHours(0);
-            taskDate.setMinutes(0);
-            taskDate.setSeconds(0);
-            taskDate.setMilliseconds(0);
-
-            return taskDate.getTime() === filterDate.getTime();
-          })
-        : cachedTasks;
-
-    const sortedTasksByTime =
-      filteredTasks &&
-      filteredTasks.sort(
-        (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
-      );
-
-    setTasks(sortedTasksByTime);
-  }, [cachedTasks, filter, setTasks]);
 
   return (
     <SecondarySection>

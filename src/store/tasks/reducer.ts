@@ -26,7 +26,7 @@ function TasksReducer(
       return state && state.filter((task) => task.id !== action.payload);
     }
 
-    case TasksTypes.GET: {
+    case TasksTypes.SET: {
       return action.payload;
     }
 
