@@ -2,7 +2,7 @@ export enum TasksTypes {
   ADD = "ADD_TASK",
   CLEAN = "CLEAN_TASKS",
   DELETE = "DELETE_TASK",
-  GET = "GET_TASKS",
+  SET = "SET_TASKS",
   UPDATE = "UPDATE_TASK",
 }
 
@@ -34,7 +34,7 @@ type DeleteTask = {
 };
 
 type GetTasks = {
-  type: TasksTypes.GET;
+  type: TasksTypes.SET;
   payload: Task[];
 };
 
