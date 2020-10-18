@@ -8,7 +8,6 @@ const Scrollable: FC<ScrollbarProps> = (props) => {
 
   const { theme } = useContext(ThemeContext);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderThumb = useCallback(
     (props) => {
       const { style, ...rest } = props;

@@ -9,7 +9,7 @@ const darkTheme: DefaultTheme = {
     error: "#FF453A",
     errorOpacity: "rgba(255, 69, 58, 0.1)",
     errorOutline: "0 0 0 3px rgba(255, 69, 58, 0.4)",
-    foreground: "#080808",
+    foreground: "#0C0C0C",
     foregroundHover: "#141414",
     primary: "#0A84FF",
     primaryActive: "#148EFF",

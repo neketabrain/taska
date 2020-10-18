@@ -24,3 +24,18 @@ export const EmptyText = styled(Text)`
 export const Button = styled(ButtonLink)`
   margin-top: 16px;
 `;
+
+export const DateContainer = styled(Box)`
+  border-bottom: 1px solid ${({ theme }): string => theme.colors.border};
+  padding: 0 24px 12px;
+  width: 100%;
+
+  :not(:first-of-type) {
+    margin-top: 12px;
+  }
+`;
+
+export const DateText = styled(Text)`
+  font-weight: 600;
+  margin: 0;
+`;

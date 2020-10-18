@@ -7,7 +7,7 @@ import { Api } from "src/api";
 import { Box, Flex, LinkDetector, NativeLink } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
-import { getLocale } from "src/utils";
+import { getLocale, getLocaleDate, getLocaleTime } from "src/utils";
 
 import {
   ButtonContainer,
@@ -48,13 +48,10 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
     [address]
   );
   const editPath = useMemo(() => `${ROUTES.TASKS}/${id}/edit`, [id]);
-  const parsedDate = useMemo(
-    () => new Date(date).toLocaleDateString(getLocale()),
-    [date]
-  );
+  const parsedDate = useMemo(() => getLocaleDate(date, getLocale()), [date]);
   const parsedTime = useMemo(
     () =>
-      new Date(time).toLocaleTimeString(getLocale(), {
+      getLocaleTime(time, getLocale(), {
         hour: "2-digit",
         minute: "2-digit",
       }),

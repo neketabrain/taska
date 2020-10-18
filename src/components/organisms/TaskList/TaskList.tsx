@@ -1,10 +1,17 @@
-import React, { FC } from "react";
+import React, { Fragment, FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { TaskListItem } from "src/components";
 import { ROUTES } from "src/constants";
 
-import { Button, EmptyContainer, EmptyText, List } from "./TaskList.styles";
+import {
+  Button,
+  DateContainer,
+  DateText,
+  EmptyContainer,
+  EmptyText,
+  List,
+} from "./TaskList.styles";
 import { TaskListProps } from "./TaskList.types";
 
 const TaskList: FC<TaskListProps> = (props) => {
@@ -14,11 +21,20 @@ const TaskList: FC<TaskListProps> = (props) => {
 
   return (
     <List className={className}>
-      {!!tasks &&
-        tasks.length > 0 &&
-        tasks.map((task) => <TaskListItem key={task.id} task={task} />)}
+      {tasks.length > 0 &&
+        tasks.map(([date, arr]) => (
+          <Fragment key={date}>
+            <DateContainer>
+              <DateText>{date}</DateText>
+            </DateContainer>
 
-      {!!tasks && tasks.length < 1 && (
+            {arr.map((task) => (
+              <TaskListItem key={task.id} task={task} />
+            ))}
+          </Fragment>
+        ))}
+
+      {tasks.length < 1 && (
         <EmptyContainer>
           <EmptyText>{t("taskList.emptyList")}</EmptyText>
           <Button to={ROUTES.NEW_TASK}>{t("taskList.createTask")}</Button>
