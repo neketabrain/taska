@@ -10,17 +10,17 @@ import { ROUTES } from "../../../constants";
 
 import { Container, MenuSection, Title, Wrapper } from "./SettingsPage.styles";
 
-const ChangeEmailPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./email")
+const ChangeEmailPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./email")
 );
-const ChangePasswordPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./password")
+const ChangePasswordPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./password")
 );
-const PreferencesPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./preferences")
+const PreferencesPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./preferences")
 );
-const ProfilePage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./profile")
+const ProfilePage = loadable(
+  () => import(/* webpackPrefetch: true */ "./profile")
 );
 
 const SettingsPage: FC = () => {
