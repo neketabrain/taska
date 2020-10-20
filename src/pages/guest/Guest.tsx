@@ -5,8 +5,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { ROUTES } from "src/constants";
 
 const LoginPage = loadable(() => import(/* webpackPrefetch: true */ "./login"));
-const RegistrationPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./registration")
+const RegistrationPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./registration")
 );
 const ResetPage = loadable(() => import(/* webpackPrefetch: true */ "./reset"));
 

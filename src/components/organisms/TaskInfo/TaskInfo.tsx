@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Api } from "src/api";
-import { Box, Flex, LinkDetector, NativeLink } from "src/components";
+import { Box, Flex, LinkDetector, NativeLink, Tooltip } from "src/components";
 import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
 import { getLocale, getLocaleDate, getLocaleTime } from "src/utils";
@@ -130,19 +130,23 @@ const TaskInfo: FC<TaskInfoProps> = (props) => {
 
         <ButtonWrapper>
           <ButtonContainer>
-            <EditButton aria-label={t("editTask")} to={editPath}>
-              <PenIcon />
-            </EditButton>
+            <Tooltip overlay={t("editTask")}>
+              <EditButton aria-label={t("editTask")} to={editPath}>
+                <PenIcon />
+              </EditButton>
+            </Tooltip>
 
             <VerticalDivider />
 
-            <DeleteButton
-              aria-label={t("deleteTask")}
-              disabled={isPending}
-              onClick={handleDelete}
-            >
-              <TrashIcon />
-            </DeleteButton>
+            <Tooltip overlay={t("deleteTask")}>
+              <DeleteButton
+                aria-label={t("deleteTask")}
+                disabled={isPending}
+                onClick={handleDelete}
+              >
+                <TrashIcon />
+              </DeleteButton>
+            </Tooltip>
           </ButtonContainer>
         </ButtonWrapper>
       </Header>
