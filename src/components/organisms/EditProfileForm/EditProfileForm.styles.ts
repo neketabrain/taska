@@ -45,6 +45,7 @@ export const AvatarLabel = styled.label`
 
 export const InputsContainer = styled(Box)`
   margin-left: 24px;
+  width: 100%;
 `;
 
 export const InputContainer = styled(Box)`

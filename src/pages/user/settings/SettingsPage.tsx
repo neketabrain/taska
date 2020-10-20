@@ -8,7 +8,13 @@ import { SettingsMenu } from "src/components";
 
 import { ROUTES } from "../../../constants";
 
-import { Container, MenuSection, Title, Wrapper } from "./SettingsPage.styles";
+import {
+  Container,
+  DesktopContainer,
+  MenuSection,
+  MobileContainer,
+  Title,
+} from "./SettingsPage.styles";
 
 const ChangeEmailPage = loadable(
   () => import(/* webpackPrefetch: true */ "./email")
@@ -27,35 +33,75 @@ const SettingsPage: FC = () => {
   const { t } = useTranslation("settings");
 
   return (
-    <Wrapper>
+    <>
       <Helmet>
         <title>{t("pageTitle")}</title>
       </Helmet>
 
-      <MenuSection>
-        <Container>
-          <Title>{t("title")}</Title>
-          <SettingsMenu />
-        </Container>
-      </MenuSection>
+      <DesktopContainer>
+        <MenuSection>
+          <Container>
+            <Title>{t("title")}</Title>
+            <SettingsMenu />
+          </Container>
+        </MenuSection>
 
-      <Switch>
-        <Route component={ChangeEmailPage} path={ROUTES.SETTINGS_EMAIL} />
-        <Route component={ChangePasswordPage} path={ROUTES.SETTINGS_PASSWORD} />
-        <Route
-          component={ProfilePage}
-          exact={true}
-          path={ROUTES.SETTINGS_PROFILE}
-        />
-        <Route
-          component={PreferencesPage}
-          exact={true}
-          path={ROUTES.SETTINGS_PREFERENCES}
-        />
+        <Switch>
+          <Route component={ChangeEmailPage} path={ROUTES.SETTINGS_EMAIL} />
+          <Route
+            component={ChangePasswordPage}
+            path={ROUTES.SETTINGS_PASSWORD}
+          />
+          <Route
+            component={ProfilePage}
+            exact={true}
+            path={ROUTES.SETTINGS_PROFILE}
+          />
+          <Route
+            component={PreferencesPage}
+            exact={true}
+            path={ROUTES.SETTINGS_PREFERENCES}
+          />
 
-        <Redirect to={ROUTES.SETTINGS_EMAIL} />
-      </Switch>
-    </Wrapper>
+          <Redirect to={ROUTES.SETTINGS} />
+        </Switch>
+      </DesktopContainer>
+
+      <MobileContainer>
+        <Switch>
+          <Route exact={true} path={ROUTES.SETTINGS}>
+            <MenuSection>
+              <Container>
+                <Title>{t("title")}</Title>
+                <SettingsMenu />
+              </Container>
+            </MenuSection>
+          </Route>
+          <Route
+            exact={true}
+            component={ChangeEmailPage}
+            path={ROUTES.SETTINGS_EMAIL}
+          />
+          <Route
+            exact={true}
+            component={ChangePasswordPage}
+            path={ROUTES.SETTINGS_PASSWORD}
+          />
+          <Route
+            component={ProfilePage}
+            exact={true}
+            path={ROUTES.SETTINGS_PROFILE}
+          />
+          <Route
+            component={PreferencesPage}
+            exact={true}
+            path={ROUTES.SETTINGS_PREFERENCES}
+          />
+
+          <Redirect to={ROUTES.SETTINGS} />
+        </Switch>
+      </MobileContainer>
+    </>
   );
 };
 

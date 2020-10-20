@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { Card, DatePicker, H1, Loader, TextField } from "src/components";
 
-export const Wrapper = styled.main`
+const Wrapper = styled.main`
   display: flex;
   position: relative;
   width: 100%;
@@ -13,19 +13,33 @@ export const Title = styled(H1)`
 `;
 
 export const PrimarySection = styled.section`
-  max-width: 460px;
   position: relative;
   width: 100%;
 `;
 
 export const SecondarySection = styled(PrimarySection)`
+  flex-grow: 1;
+  height: 100%;
   margin-right: 16px;
   max-width: 350px;
+  width: 100%;
+
+  @media screen and (max-width: 1151px) {
+    max-width: 100%;
+  }
+`;
+
+export const NewTaskContainer = styled(PrimarySection)`
+  max-width: 460px;
+
+  @media screen and (max-width: 1151px) {
+    max-width: 100%;
+  }
 `;
 
 export const ListContainer = styled(Card)`
   display: flex;
-  height: calc(100% - 50px - 16px);
+  height: calc(100% - 49px - 16px);
   margin-top: 16px;
   padding: 24px 0;
 `;
@@ -52,5 +66,19 @@ export const DateInput = styled(DatePicker)`
   .react-datepicker__close-icon {
     height: 48px;
     right: 24px;
+  }
+`;
+
+export const DesktopContainer = styled(Wrapper)`
+  @media screen and (max-width: 1151px) {
+    display: none;
+  }
+`;
+
+export const MobileContainer = styled(Wrapper)`
+  display: none;
+
+  @media screen and (max-width: 1151px) {
+    display: block;
   }
 `;

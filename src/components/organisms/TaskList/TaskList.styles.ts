@@ -26,7 +26,6 @@ export const Button = styled(ButtonLink)`
 `;
 
 export const DateContainer = styled(Box)`
-  border-bottom: 1px solid ${({ theme }): string => theme.colors.border};
   padding: 0 24px 12px;
   width: 100%;
 

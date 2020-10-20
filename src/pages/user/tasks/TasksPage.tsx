@@ -7,7 +7,7 @@ import { Api } from "src/api";
 import { ROUTES } from "src/constants";
 import { ApplicationStore, TasksTypes } from "src/store";
 
-import { Wrapper } from "./TasksPages.styles";
+import { DesktopContainer, MobileContainer } from "./TasksPages.styles";
 
 const EditTaskPage = loadable(
   () => import(/* webpackPrefetch: true */ "./edit")
@@ -49,11 +49,11 @@ const TasksPage: FC = () => {
   }, [dispatch, setFetching, tasks]);
 
   return (
-    <Wrapper>
-      <Switch>
-        <Route component={NewTaskPage} exact={true} path={ROUTES.NEW_TASK} />
+    <Switch>
+      <Route component={NewTaskPage} exact={true} path={ROUTES.NEW_TASK} />
 
-        <Route path={ROUTES.TASKS}>
+      <Route path={ROUTES.TASKS}>
+        <DesktopContainer>
           <TaskListPage isFetching={isFetching} />
 
           <Switch>
@@ -66,11 +66,27 @@ const TasksPage: FC = () => {
 
             <Redirect to={ROUTES.TASKS} />
           </Switch>
-        </Route>
+        </DesktopContainer>
 
-        <Redirect to={ROUTES.TASKS} />
-      </Switch>
-    </Wrapper>
+        <MobileContainer>
+          <Switch>
+            <Route exact={true} path={ROUTES.TASKS}>
+              <TaskListPage isFetching={isFetching} />
+            </Route>
+            <Route component={TaskPage} exact={true} path={ROUTES.TASK} />
+            <Route
+              component={EditTaskPage}
+              exact={true}
+              path={ROUTES.EDIT_TASK}
+            />
+
+            <Redirect to={ROUTES.TASKS} />
+          </Switch>
+        </MobileContainer>
+      </Route>
+
+      <Redirect to={ROUTES.TASKS} />
+    </Switch>
   );
 };
 

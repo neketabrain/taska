@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { Box, Card, Flex, H1, Text } from "src/components";
 
-export const Wrapper = styled.main`
+const Wrapper = styled.main`
   display: flex;
   position: relative;
   width: 100%;
@@ -18,17 +18,20 @@ export const Title = styled(H1)<{ decreasedMargin?: boolean }>`
   padding: 0 24px;
 `;
 
-export const MenuSection = styled.section`
-  margin-right: 16px;
-  max-width: 350px;
+export const ContentSection = styled.section`
   position: relative;
   width: 100%;
 `;
 
-export const ContentSection = styled.section`
-  max-width: 460px;
-  position: relative;
+export const MenuSection = styled(ContentSection)`
+  flex-grow: 1;
+  margin-right: 16px;
+  max-width: 350px;
   width: 100%;
+
+  @media screen and (max-width: 1151px) {
+    max-width: 100%;
+  }
 `;
 
 export const ContentWrapper = styled(Box)`
@@ -67,4 +70,18 @@ export const FieldHandler = styled(Flex)`
   justify-content: center;
   min-width: 210px;
   width: 210px;
+`;
+
+export const DesktopContainer = styled(Wrapper)`
+  @media screen and (max-width: 1151px) {
+    display: none;
+  }
+`;
+
+export const MobileContainer = styled(Wrapper)`
+  display: none;
+
+  @media screen and (max-width: 1151px) {
+    display: block;
+  }
 `;

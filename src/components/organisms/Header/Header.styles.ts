@@ -7,19 +7,10 @@ export const Wrapper = styled.header`
   display: flex;
   height: 60px;
   justify-content: center;
-  margin: 16px auto 0;
-  max-width: 1152px;
-  padding: 0 32px;
+  margin-bottom: 16px;
+  padding: 0 16px;
   position: relative;
   width: 100%;
-
-  @media screen and (max-width: 480px) {
-    padding: 0 24px;
-  }
-
-  @media screen and (max-width: 360px) {
-    padding: 0 16px;
-  }
 `;
 
 export const Container = styled(Card)`

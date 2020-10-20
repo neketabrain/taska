@@ -4,20 +4,12 @@ import { Flex, NavMenu } from "src/components";
 
 export const Wrapper = styled(Flex)`
   flex-direction: row;
-  height: 100%;
+  height: calc(100% - 60px - 16px);
   margin: 0 auto;
   min-height: 500px;
-  padding: 0 32px;
+  padding: 0 16px;
   position: relative;
   width: 100%;
-
-  @media screen and (max-width: 480px) {
-    padding: 0 24px;
-  }
-
-  @media screen and (max-width: 360px) {
-    padding: 0 16px;
-  }
 `;
 
 export const LeftSideContainer = styled.aside`

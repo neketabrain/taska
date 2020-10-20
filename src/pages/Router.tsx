@@ -29,9 +29,9 @@ const Router: FC = () => {
 
   return (
     <>
-      <Header />
-
       <PageWrapper>
+        <Header />
+
         <BrowserRouter>
           {!user && <Guest />}
           {!!user && <User />}

@@ -10,7 +10,7 @@ import { ROUTES } from "src/constants";
 import { TasksTypes } from "src/store";
 import { Task } from "src/store/tasks";
 
-import { PrimarySection, Title } from "../TasksPages.styles";
+import { NewTaskContainer, Title } from "../TasksPages.styles";
 
 const initialValues: Task = {
   address: "",
@@ -50,7 +50,7 @@ const NewTaskPage: FC = () => {
   );
 
   return (
-    <PrimarySection>
+    <NewTaskContainer>
       <Helmet>
         <title>{t("newTask.pageTitle")}</title>
       </Helmet>
@@ -59,7 +59,7 @@ const NewTaskPage: FC = () => {
         <Title>{t("newTask.title")}</Title>
         <EditTaskForm initialValues={initialValues} onSubmit={handleSubmit} />
       </Card>
-    </PrimarySection>
+    </NewTaskContainer>
   );
 };
 
