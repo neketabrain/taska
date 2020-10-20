@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+import "rc-tooltip/assets/bootstrap.css";
+
 import { openSansFonts } from "../fonts";
 
 const GlobalStyles = createGlobalStyle`
@@ -36,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
   
-  ${openSansFonts}
+  ${openSansFonts};
 `;
 
 export default GlobalStyles;

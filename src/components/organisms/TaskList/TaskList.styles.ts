@@ -31,11 +31,12 @@ export const DateContainer = styled(Box)`
   width: 100%;
 
   :not(:first-of-type) {
-    margin-top: 12px;
+    margin-top: 24px;
   }
 `;
 
 export const DateText = styled(Text)`
+  color: ${({ theme }): string => theme.colors.textSecondary};
   font-weight: 600;
   margin: 0;
 `;
