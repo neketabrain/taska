@@ -8,11 +8,11 @@ import { ROUTES } from "src/constants";
 
 import { LeftSideContainer, Menu, Wrapper } from "./User.styles";
 
-const LogoutPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./logout")
+const LogoutPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./logout")
 );
-const SettingsPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./settings")
+const SettingsPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./settings")
 );
 const TasksPage = loadable(() => import(/* webpackPrefetch: true */ "./tasks"));
 

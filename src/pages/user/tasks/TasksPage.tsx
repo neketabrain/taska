@@ -9,12 +9,12 @@ import { ApplicationStore, TasksTypes } from "src/store";
 
 import { Wrapper } from "./TasksPages.styles";
 
-const EditTaskPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./edit")
+const EditTaskPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./edit")
 );
 const NewTaskPage = loadable(() => import(/* webpackPrefetch: true */ "./new"));
-const TaskListPage = loadable(() =>
-  import(/* webpackPrefetch: true */ "./list")
+const TaskListPage = loadable(
+  () => import(/* webpackPrefetch: true */ "./list")
 );
 const TaskPage = loadable(() => import(/* webpackPrefetch: true */ "./task"));
 
