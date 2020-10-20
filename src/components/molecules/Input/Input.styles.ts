@@ -20,4 +20,8 @@ export const Error = styled(Text)`
   color: ${({ theme }): string => theme.colors.error};
   font-size: 12px;
   margin: 4px 0 0;
+
+  @media screen and (max-width: 700px) {
+    font-size: 14px;
+  }
 `;

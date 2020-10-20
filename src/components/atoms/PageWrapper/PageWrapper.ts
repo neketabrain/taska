@@ -9,6 +9,10 @@ const PageWrapper = styled(Box)`
   min-height: 100%;
   padding: 16px 0;
   width: 100%;
+
+  @media screen and (max-width: 700px) {
+    padding: 0;
+  }
 `;
 
 export default PageWrapper;

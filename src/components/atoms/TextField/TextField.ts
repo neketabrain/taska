@@ -19,7 +19,7 @@ const TextField = styled.input<{ hasError?: boolean }>`
   position: relative;
   width: 100%;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
     font-size: 16px;
     max-height: 50px;
     padding: 15px 16px;

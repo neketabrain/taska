@@ -8,7 +8,6 @@ import { OnSubmitEvent } from "src/types";
 
 import {
   ButtonContainer,
-  CheckBoxContainer,
   Form,
   InputContainer,
   SubmitButton,
@@ -66,7 +65,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         />
       </InputContainer>
 
-      <CheckBoxContainer>
+      <InputContainer>
         <CheckBox
           checked={values.isRemembered}
           disabled={isSubmitting}
@@ -74,7 +73,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
           name="isRemembered"
           onChange={onChange}
         />
-      </CheckBoxContainer>
+      </InputContainer>
 
       <ButtonContainer>
         <SubmitButton disabled={isSubmitting} type="submit" variant="secondary">

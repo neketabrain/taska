@@ -18,7 +18,7 @@ export const CheckIcon = styled(Icons.Check)`
   width: 16px;
   z-index: 2;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
     height: 18px;
     left: 2px;
     top: 2px;
@@ -50,7 +50,7 @@ export const CustomCheckbox = styled.div`
   margin-right: 8px;
   width: 18px;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
     height: 22px;
     width: 22px;
   }

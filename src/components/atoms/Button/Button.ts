@@ -79,7 +79,7 @@ const Button = styled.button<ButtonProps>`
     opacity: 0.5;
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
     font-size: 16px;
     height: 50px;
   }

@@ -15,24 +15,20 @@ export const InputContainer = styled(Box)`
   }
 `;
 
-export const CheckBoxContainer = styled(Box)`
-  margin-top: 24px;
-`;
-
 export const ButtonContainer = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 32px;
 
-  @media screen and (max-width: 480px) {
-    margin-top: 40px;
+  @media screen and (max-width: 700px) {
+    margin-top: 28px;
   }
 `;
 
 export const SubmitButton = styled(Button)`
   max-width: 128px;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
     max-width: 180px;
     width: 50%;
   }

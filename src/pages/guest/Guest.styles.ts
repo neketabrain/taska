@@ -7,8 +7,8 @@ export const Main = styled.main`
   padding: 60px 0;
   position: relative;
 
-  @media screen and (max-width: 480px) {
-    height: 100%;
+  @media screen and (max-width: 700px) {
+    height: calc(100% - 48px);
     max-width: 100%;
     padding: 0;
   }
@@ -21,14 +21,11 @@ export const Container = styled(Card)`
   max-width: 420px;
   width: 100%;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
+    border-radius: 24px 24px 0 0;
     height: 100%;
     max-width: 100%;
-    padding: 60px 24px;
-  }
-
-  @media screen and (max-width: 360px) {
-    padding: 60px 16px;
+    padding: 24px 16px 40px;
   }
 `;
 
@@ -39,8 +36,13 @@ export const Header = styled(Flex)`
 `;
 
 export const Title = styled(H1)`
+  font-weight: 600;
   margin: 0;
   max-width: 70%;
+
+  @media screen and (max-width: 700px) {
+    font-size: 24px;
+  }
 `;
 
 export const ChevronIcon = styled(Icons.ChevronRight)`
@@ -56,6 +58,10 @@ export const DividerContainer = styled(Flex)`
   margin: 24px 0;
   position: relative;
   width: 100%;
+
+  @media screen and (max-width: 700px) {
+    margin: 16px 0;
+  }
 `;
 
 export const DividerText = styled(Text)`
@@ -72,4 +78,9 @@ export const GoogleIcon = styled(Icons.Google)`
   height: 20px;
   margin-right: 16px;
   width: 20px;
+
+  @media screen and (max-width: 700px) {
+    height: 24px;
+    width: 24px;
+  }
 `;
