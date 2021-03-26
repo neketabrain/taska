@@ -1,22 +1,28 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "paths": {
-      "src": ["./src"]
-    },
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
-  }
+    "target": "esnext",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "/styles/*": ["styles/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }

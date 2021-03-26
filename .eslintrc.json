@@ -1,56 +1,38 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es6": true,
     "jest": true
   },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
   "extends": [
-    "prettier",
-    "prettier/babel",
-    "prettier/react",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
-    "react-app"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "prettier"
   ],
-  "parser": "babel-eslint",
-  "plugins": ["babel", "import", "jsx-a11y", "prettier", "react"],
-  "root": true,
-  "rules": {
-    "import/named": "off",
-    "import/order": [
-      "error",
-      {
-        "alphabetize": {
-          "caseInsensitive": true,
-          "order": "asc"
-        },
-        "groups": [
-          ["builtin", "external"],
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
-        "newlines-between": "always"
-      }
-    ],
-    "max-len": [
-      "warn",
-      {
-        "code": 120,
-        "ignoreComments": true
-      }
-    ],
-    "no-console": "warn",
-    "no-multi-spaces": "error",
-    "no-unused-vars": "warn",
-    "prettier/prettier": "error",
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-    "strict": "off"
-  },
+  "plugins": ["@babel", "@typescript-eslint", "prettier", "react"],
   "settings": {
+    "react": {
+      "pragma": "React",
+      "fragment": "Fragment",
+      "version": "detect"
+    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
@@ -58,33 +40,38 @@
       }
     }
   },
-
-  "overrides": [
-    {
-      "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/typescript",
-        "prettier/@typescript-eslint"
-      ],
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "ecmaFeatures": {
-          "jsx": true,
-          "modules": true
-        },
-        "project": "./tsconfig.json",
-        "sourceType": "module"
-      },
-      "plugins": ["@typescript-eslint"],
-      "rules": {
-        "@typescript-eslint/interface-name-prefix": [
-          "error",
-          {
-            "prefixWithI": "never"
-          }
-        ]
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "no-multi-spaces": "error",
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreComments": true
       }
-    }
-  ]
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "react/react-in-jsx-scope": "off",
+    "@babel/new-cap": "error",
+    "@babel/no-invalid-this": "error",
+    "@babel/no-unused-expressions": "error",
+    "@babel/semi": "error",
+    "@typescript-eslint/ban-types": "off",
+    "import/extensions": "off",
+    "import/newline-after-import": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "groups": [["builtin", "external"], "internal", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ]
+  }
 }
