@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
+import { Box, Text, Button } from 'components';
+
+const Container = styled(Box)`
   height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 32px;
 `;
 
 const Title = styled.h1`
@@ -13,16 +14,14 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const Text = styled(Title).attrs({ as: 'p' })`
-  font-size: 24px;
-  color: black;
-`;
-
 const Home: FC = () => {
   return (
     <Container>
       <Title>My page</Title>
       <Text>Привет, мир!</Text>
+      <Button variant="primary" disabled={false}>
+        Click
+      </Button>
     </Container>
   );
 };
