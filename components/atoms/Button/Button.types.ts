@@ -1,3 +1,3 @@
 export type ButtonProps = {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'basic';
 };
