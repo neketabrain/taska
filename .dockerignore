@@ -1,0 +1,17 @@
+.dockerignore
+.env
+.firebaserc
+.gitignore
+Dockerfile
+firebase.json
+firestore.indexes.json
+firestore.rules
+
+/.firebase
+/.git
+/.github
+/build
+/node_modules
+/.next
+/.vercel
+/out
