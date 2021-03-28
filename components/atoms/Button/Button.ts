@@ -6,13 +6,12 @@ const variants = {
   primary: css`
     background-color: ${({ theme }) => theme.colors.primary};
 
-    :hover:not(:disabled):not(:focus) {
+    :hover:not(:disabled):not(:focus),
+    :active {
       background-color: ${({ theme }) => theme.colors.primaryDark};
     }
 
-    :active,
     :focus {
-      background-color: ${({ theme }) => theme.colors.primary};
       box-shadow: ${({ theme }) => theme.shadows.primary};
     }
   `,
@@ -20,14 +19,32 @@ const variants = {
   secondary: css`
     background-color: ${({ theme }) => theme.colors.secondary};
 
-    :hover:not(:disabled):not(:focus) {
+    :hover:not(:disabled):not(:focus),
+    :active {
       background-color: ${({ theme }) => theme.colors.secondaryDark};
     }
 
-    :active,
     :focus {
-      background-color: ${({ theme }) => theme.colors.secondary};
       box-shadow: ${({ theme }) => theme.shadows.secondary};
+    }
+  `,
+
+  basic: css`
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.text};
+    border: 1px solid ${({ theme }) => theme.colors.grey};
+
+    :hover:not(:disabled):not(:focus),
+    :active {
+      background-color: ${({ theme }) => theme.colors.greyLight};
+    }
+
+    :focus {
+      box-shadow: ${({ theme }) => theme.shadows.grey};
+    }
+
+    :disabled {
+      background-color: ${({ theme }) => theme.colors.grey};
     }
   `,
 };
